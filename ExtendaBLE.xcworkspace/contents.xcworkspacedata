@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Source"
+      name = "Source">
+      <FileRef
+         location = "group:ExtendaBLE.swift">
+      </FileRef>
+      <Group
+         location = "group:EBManager"
+         name = "EBManager">
+         <FileRef
+            location = "group:EBCentralManager.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBPeripheralManager.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:EBMaker"
+         name = "EBMaker">
+         <FileRef
+            location = "group:EBCentralMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBPeripheralMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBCharacteristicMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBServiceMaker.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:EBTransaction"
+         name = "EBTransaction">
+         <FileRef
+            location = "group:EBTransaction.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Extensions"
+         name = "Extensions">
+         <FileRef
+            location = "group:Data+BLE.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Data+BLEConversion.swift">
+         </FileRef>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:ExtendaBLE/ExtendaBLE.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ExtendaBLE-Demo/ExtendaBLE-Demo.xcodeproj">
+   </FileRef>
+</Workspace>
