@@ -27,10 +27,10 @@
             location = "group:EBPeripheralMaker.swift">
          </FileRef>
          <FileRef
-            location = "group:EBCharacteristicMaker.swift">
+            location = "group:EBServiceMaker.swift">
          </FileRef>
          <FileRef
-            location = "group:EBServiceMaker.swift">
+            location = "group:EBCharacteristicMaker.swift">
          </FileRef>
       </Group>
       <Group
@@ -55,6 +55,9 @@
       location = "group:ExtendaBLE/ExtendaBLE.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ExtendaBLE-Demo/ExtendaBLE-Demo.xcodeproj">
+      location = "group:/Users/Anton/Developer/OpenSource/ExtendaBLE/ExtendaBLE-Demo/ExtendeBLE-iOS-Demo/ExtendaBLE-iOS-Demo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ExtendaBLE-Demo/ExtendaBLE-OSX-Demo/ExtendaBLE-OSX-Demo.xcodeproj">
    </FileRef>
 </Workspace>

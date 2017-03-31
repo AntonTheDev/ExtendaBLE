@@ -13,6 +13,7 @@ public class EBCentralMaker {
     
     var queue: DispatchQueue?
     var services = [EBServiceMaker]()
+    var peripheralName : String?
     
     required public init(queue: DispatchQueue?) {
         self.queue = queue
@@ -38,9 +39,18 @@ public class EBCentralMaker {
             }
 
             newCentralManager.services.append(constructedService)
+            newCentralManager.chunkedCharacteristicUUIDS += service.chunkedCharacteristicUUIDS
         }
         
-        newCentralManager.services.append(newMTUService())
+        if  newCentralManager.chunkedCharacteristicUUIDS.count > 0 {
+            newCentralManager.services.append(newMTUService())
+        }
+
         return newCentralManager
+    }
+    
+    @discardableResult public func peripheralName(_ peripheralName : String) -> EBCentralMaker {
+        self.peripheralName = peripheralName
+        return self
     }
 }

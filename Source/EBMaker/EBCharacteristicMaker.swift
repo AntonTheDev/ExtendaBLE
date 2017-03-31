@@ -17,6 +17,7 @@ public class EBCharacteristicMaker {
     var uuid : String
     var value : Data?
     var updateCallback : EBTransactionCallback?
+    var chunkingEnabled : Bool = false
     
     var permissions : CBAttributePermissions = [.readable, .writeable]
     var properties : CBCharacteristicProperties =  [.read, .write, .notify]
@@ -32,6 +33,11 @@ public class EBCharacteristicMaker {
     
     @discardableResult public func permissions(_ permissions : CBAttributePermissions) -> EBCharacteristicMaker {
         self.permissions = permissions
+        return self
+    }
+    
+    @discardableResult public func chunkingEnabled(_ chunkingEnabled : Bool) -> EBCharacteristicMaker {
+        self.chunkingEnabled = chunkingEnabled
         return self
     }
     

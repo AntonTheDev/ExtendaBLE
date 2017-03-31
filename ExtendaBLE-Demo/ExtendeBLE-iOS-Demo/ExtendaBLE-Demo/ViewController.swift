@@ -29,11 +29,11 @@ class ViewController: UIViewController {
         
         super.viewDidAppear(animated)
         
-        if UIDevice.current.name == "iPhone 6Plus" {
+     //   if UIDevice.current.name == "iPhone 6Plus" {
             configureSliceServicePeripheralManager()
-        } else {
-            configureSensorCentralManager()
-        }
+    //    } else {
+    //        configureSensorCentralManager()
+    //    }
     }
 }
 
@@ -54,11 +54,11 @@ extension ViewController {
             manager.addService(sliceServiceUUIDKey) {(service) in
                 
                 service.addProperty(sliceServiceCharacteristicUUIDKey).onUpdate { (data, error) in
-                    let valueString = String(data: data, encoding: .utf8)
+                    let valueString = String(data: data!, encoding: .utf8)
                     
                     print("\nPeripheral Updated Value with : \n\n\(String(describing: valueString))\n")
                     
-                    }.properties([.read, .write, .notify]).permissions([.readable, .writeable])
+                    }.properties([.read, .write, .notify]).permissions([.readable, .writeable]).chunkingEnabled(true)
             }
             
             }.startAdvertising()
@@ -69,7 +69,7 @@ extension ViewController {
         
         central = ExtendaBLE.newCentralManager() { (manager) in
             
-            manager.addService(sensorServiceUUID) {(service) in
+            manager.addService(sliceServiceUUIDKey) {(service) in
                 service.addProperty(sensorValueCharacteristicUUID).properties([.read]).permissions([.readable])
                 service.addProperty(sensorConfigCharacteristicUUID).properties([.write]).permissions([.writeable])
             }
@@ -88,7 +88,7 @@ extension ViewController {
         central?.write(data: Data(bytes : configBytes), toUUID: sensorConfigCharacteristicUUID) { (writtenData, error) in
             
             self.central?.read(fromUUID: sensorValueCharacteristicUUID) { (returnedData, error) in
-                if let value = returnedData.int16Value(0..<2) {
+                if let value = returnedData?.int16Value(0..<2) {
                     print("\nRead Callback \n\n\(value)\n\n")
                 }
             }
@@ -124,7 +124,7 @@ extension ViewController {
         central?.write(data: Data(bytes : configBytes), toUUID: sensorConfigCharacteristicUUID) { (writtenData, error) in
             
             self.central?.read(fromUUID: sensorValueCharacteristicUUID) { (returnedData, error) in
-                if let value = returnedData.int16Value(0..<2) {
+                if let value = returnedData?.int16Value(0..<2) {
                     print("\nRead Callback \n\n\(value)\n\n")
                 }
             }

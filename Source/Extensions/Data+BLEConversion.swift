@@ -56,6 +56,11 @@ extension Data {
     }
 
     private func numericValue<T> (_ range : Range<Data.Index>) -> T? {
+        
+        if range.lowerBound + range.upperBound > count {
+            return nil
+        }
+        
         let value =  subdata(in:range).withUnsafeBytes { (ptr: UnsafePointer<T>) -> T in
             return ptr.pointee
         }

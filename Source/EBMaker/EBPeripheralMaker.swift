@@ -15,11 +15,9 @@ public let mtuCharacteristicUUIDKey = "37CD1740-6822-4D85-9AAF-C2378FDC4329"
 func newMTUService() -> CBMutableService {
     
     #if os(tvOS)
-        
         let mtuService = CBService(type: CBUUID(string: mtuServiceUUIDKey), primary: true)
         let mtuCharacteristic =  CBCharacteristic(type: CBUUID(string: mtuCharacteristicUUIDKey), properties: [.notify, .read], value: nil, permissions: [.readable])
     #else
-        
         let mtuService = CBMutableService(type: CBUUID(string: mtuServiceUUIDKey), primary: true)
         let mtuCharacteristic =  CBMutableCharacteristic(type: CBUUID(string: mtuCharacteristicUUIDKey), properties: [.notify, .read], value: nil, permissions: [.readable])
     #endif
@@ -44,7 +42,6 @@ public class EBPeripheralMaker {
        
         newPeripheralManager.localName = localName
        
-        
         for (_, service) in services {
             
             let constructedService = service.constructedService()
@@ -54,9 +51,12 @@ public class EBPeripheralMaker {
             }
             
             newPeripheralManager.services.append(constructedService)
+            newPeripheralManager.chunkedCharacteristicUUIDS += service.chunkedCharacteristicUUIDS
         }
-        
-        newPeripheralManager.services.append(newMTUService())
+       
+        if newPeripheralManager.chunkedCharacteristicUUIDS.count > 0 {
+             newPeripheralManager.services.append(newMTUService())
+        }
         
         return newPeripheralManager
     }
@@ -72,5 +72,4 @@ public class EBPeripheralMaker {
         self.localName = localname
         return self
     }
-
 }

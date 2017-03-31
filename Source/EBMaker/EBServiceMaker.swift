@@ -14,7 +14,8 @@ public class EBServiceMaker {
     var serviceUUID : String
     var primary : Bool
     
-    var characteristics = [EBCharacteristicMaker]()
+    var characteristics             = [EBCharacteristicMaker]()
+    var chunkedCharacteristicUUIDS  = [CBUUID]()
     
     var characteristicUpdateCallbacks = [CBUUID : EBTransactionCallback]()
    
@@ -36,13 +37,26 @@ public class EBServiceMaker {
         for characteristic in characteristics {
             
             let newCharacteristic = characteristic.constructedCharacteristic()
-            characteristicUpdateCallbacks[newCharacteristic.uuid] = characteristic.updateCallback
            
             if newService.characteristics != nil {
                newService.characteristics!.append(newCharacteristic)
             } else {
                newService.characteristics = [newCharacteristic]
             }
+            
+            #if os(OSX)
+                characteristicUpdateCallbacks[newCharacteristic.uuid!] = characteristic.updateCallback
+               
+                if characteristic.chunkingEnabled {
+                    chunkedCharacteristicUUIDS.append(newCharacteristic.uuid!)
+                }
+            #else
+                characteristicUpdateCallbacks[newCharacteristic.uuid] = characteristic.updateCallback
+                
+                if characteristic.chunkingEnabled {
+                    chunkedCharacteristicUUIDS.append(newCharacteristic.uuid)
+                }
+            #endif
         }
         
         return newService

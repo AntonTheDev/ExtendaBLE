@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A0322321E8DFFBD0080E13F"
-            BuildableName = "ExtendaBLE-Demo.app"
-            BlueprintName = "ExtendaBLE-Demo"
-            ReferencedContainer = "container:ExtendaBLE-Demo.xcodeproj">
+            BuildableName = "ExtendaBLE-iOS-Demo.app"
+            BlueprintName = "ExtendaBLE-iOS-Demo"
+            ReferencedContainer = "container:ExtendaBLE-iOS-Demo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3A0322321E8DFFBD0080E13F"
-            BuildableName = "ExtendaBLE-Demo.app"
-            BlueprintName = "ExtendaBLE-Demo"
-            ReferencedContainer = "container:ExtendaBLE-Demo.xcodeproj">
+            BuildableName = "ExtendaBLE-iOS-Demo.app"
+            BlueprintName = "ExtendaBLE-iOS-Demo"
+            ReferencedContainer = "container:ExtendaBLE-iOS-Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

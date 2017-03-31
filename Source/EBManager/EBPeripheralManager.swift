@@ -7,10 +7,14 @@
 //
 
 import Foundation
-import UIKit
 import CoreBluetooth
 
-public typealias PeripheralManagerStateChangeCallBack = ((_ state: CBManagerState) -> Void)
+#if os(OSX)
+    public typealias PeripheralManagerStateChangeCallBack = ((_ state: CBPeripheralManagerState) -> Void)
+#else
+    public typealias PeripheralManagerStateChangeCallBack = ((_ state: CBManagerState) -> Void)
+#endif
+
 public typealias PeripheralManagerDidStartAdvertisingCallBack = ((_ started : Bool, _ error: Error?) -> Void)
 public typealias PeripheralManagerDidAddServiceCallBack = ((_ service: CBService, _ error: Error?) -> Void)
 public typealias PeripheralManagerSubscriopnChangeToCallBack = ((_ subscribed : Bool, _ central: CBCentral, _ characteristic: CBCharacteristic) -> Void)
@@ -18,13 +22,14 @@ public typealias PeripheralManagerIsReadyToUpdateCallBack = (() -> Void)
 
 public class EBPeripheralManager : NSObject {
     
-    internal var localName : String?
     internal var peripheralManager : CBPeripheralManager
+    internal var localName : String?
     
-    internal var mtuValue : Int16 = 0
+    internal var mtuValue : Int16 = 23
     
     internal var services = [CBMutableService]()
     
+    internal var chunkedCharacteristicUUIDS = [CBUUID]()
     internal var registeredCharacteristicUpdateCallbacks = [CBUUID : EBTransactionCallback]()
     
     internal var activeWriteTransations = [CBUUID : Transaction]()
@@ -42,7 +47,7 @@ public class EBPeripheralManager : NSObject {
         #else
             peripheralManager = CBPeripheralManager(delegate: nil, queue: queue)
         #endif
-
+        
         super.init()
         peripheralManager.delegate = self
     }
@@ -88,41 +93,86 @@ extension EBPeripheralManager {
             peripheralManager.remove(service)
         }
     }
+}
+
+// MARK: Transaction Handlers
+
+extension EBPeripheralManager {
     
     internal func handleReadRequest(_ request: CBATTRequest) {
-
-        if let readTransaction = readTransaction(for: request) {
+        
+        guard let data = dataValue(for : request.characteristic) else {
+            peripheralManager.respond(to: request, withResult: .attributeNotFound)
+            return
+        }
+        
+        var activeReadTransaction = activeReadTransations[request.characteristic.uuid]
+        
+        if activeReadTransaction == nil {
             
-            readTransaction.responseCount = readTransaction.responseCount  +  1
-
-            request.value = readTransaction.chunks[readTransaction.responseCount - 1]
-
-            peripheralManager.respond(to: request, withResult: .success)
+            var transactionType : TransactionType = .read
             
-            if readTransaction.isComplete {
-                activeReadTransations[request.characteristic.uuid] = nil
-                //registeredCharacteristicReadCallbacks[request.characteristic.uuid]?(readTransaction.data!)
+            if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == request.characteristic.uuid }) {
+                transactionType = .readChunkable
             }
+            
+            activeReadTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize:  mtuValue)
+            activeReadTransaction?.data = data
+            activeReadTransaction?.characteristic = characteristic(for: request)
+            
+            activeReadTransations[request.characteristic.uuid] = activeReadTransaction
+        }
+        
+        guard let readTransaction = activeReadTransations[request.characteristic.uuid] else {
+            return
+        }
+        
+        readTransaction.sentReceipt()
+        request.value = readTransaction.nextPacket()
+        peripheralManager.respond(to: request, withResult: .success)
+        
+        if readTransaction.isComplete {
+            activeReadTransations[request.characteristic.uuid] = nil
+            //registeredCharacteristicReadCallbacks[request.characteristic.uuid]?(readTransaction.data!)
         }
     }
     
     internal func handleWriteRequests(_ requests: [CBATTRequest]) {
         
         for request in requests {
+            
+            var activeWriteTransaction = activeWriteTransations[request.characteristic.uuid]
+            
+            if activeWriteTransaction == nil {
+                
+                var transactionType : TransactionType = .write
+                
+                if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == request.characteristic.uuid }) {
+                    transactionType = .writeChunkable
+                }
+                
+                activeWriteTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize:  mtuValue)
+                activeWriteTransaction?.characteristic = characteristic(for: request)
+                
+                activeWriteTransations[request.characteristic.uuid] = activeWriteTransaction
+            }
+            
+            guard let writeTransaction = activeWriteTransations[request.characteristic.uuid] else {
+                return
+            }
+            
+            writeTransaction.appendPacket(request.value)
+            writeTransaction.sentReceipt()
+            
             if let characteristic = characteristic(for : request) {
                 
-                guard let  transaction = writeTransaction(for : request) else {
-                    break
-                }
-
                 peripheralManager.respond(to: request, withResult: .success)
                 
-                if transaction.isComplete {
-                    let reconstructedValue = transaction.reconstructedValue
-                    characteristic.value = reconstructedValue
+                if writeTransaction.isComplete {
+                    characteristic.value = writeTransaction.data
                     
                     activeWriteTransations[request.characteristic.uuid] = nil
-                    registeredCharacteristicUpdateCallbacks[request.characteristic.uuid]?(reconstructedValue, nil)
+                    registeredCharacteristicUpdateCallbacks[request.characteristic.uuid]?(writeTransaction.data, nil)
                 }
             }
         }
@@ -139,51 +189,6 @@ extension EBPeripheralManager {
                 peripheralManager.updateValue(data, for:  characteristic, onSubscribedCentrals: [central])
             }
         }
-    }
-}
-
-
-// MARK: Transaction Handlers
-
-extension EBPeripheralManager {
-    
-    internal func readTransaction(for request: CBATTRequest) ->Transaction? {
-        
-        if let data = dataValue(for : request.characteristic) {
-            
-            var readTransaction = activeReadTransations[request.characteristic.uuid]
-        
-            if readTransaction == nil {
-                readTransaction = Transaction()
-                readTransaction?.data = data
-                readTransaction?.chunks = data.packetArray(withMTUSize: mtuValue)
-                activeReadTransations[request.characteristic.uuid] = readTransaction
-            }
-            
-            return readTransaction
-        }
-        
-        return nil
-    }
-    
-    internal func writeTransaction(for request: CBATTRequest) -> Transaction? {
-        
-        if let data = request.value {
-            
-            var writeTransaction = activeWriteTransations[request.characteristic.uuid]
-            
-            if writeTransaction == nil {
-                writeTransaction = Transaction()
-                writeTransaction!.responseCount = data.totalPackets
-                activeWriteTransations[request.characteristic.uuid] = writeTransaction
-            }
-            
-            writeTransaction!.chunks.append(data)
-            
-            return writeTransaction
-        }
-        
-        return nil
     }
     
     internal func dataValue(for characteristic: CBCharacteristic?) -> Data? {
@@ -262,7 +267,7 @@ extension EBPeripheralManager: CBPeripheralManagerDelegate {
             break;
         }
         
-        print("\nPeripheral \(UIDevice.current.name) BLE state - \(peripheral.state.rawValue)")
+        print("\nPeripheral BLE state - \(peripheral.state.rawValue)")
         stateChangeCallBack?(peripheral.state)
     }
     

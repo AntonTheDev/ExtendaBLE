@@ -11,35 +11,35 @@
 		3A0322391E8DFFBD0080E13F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322381E8DFFBD0080E13F /* ViewController.swift */; };
 		3A03223E1E8DFFBD0080E13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223D1E8DFFBD0080E13F /* Assets.xcassets */; };
 		3A0322411E8DFFBD0080E13F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223F1E8DFFBD0080E13F /* LaunchScreen.storyboard */; };
-		3A0322581E8E006F0080E13F /* EBCentralMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03224B1E8E006F0080E13F /* EBCentralMaker.swift */; };
-		3A0322591E8E006F0080E13F /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03224C1E8E006F0080E13F /* EBCharacteristicMaker.swift */; };
-		3A03225A1E8E006F0080E13F /* EBPeripheralMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03224D1E8E006F0080E13F /* EBPeripheralMaker.swift */; };
-		3A03225B1E8E006F0080E13F /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03224E1E8E006F0080E13F /* EBServiceMaker.swift */; };
-		3A03225C1E8E006F0080E13F /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322501E8E006F0080E13F /* EBCentralManager.swift */; };
-		3A03225D1E8E006F0080E13F /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322511E8E006F0080E13F /* EBPeripheralManager.swift */; };
-		3A03225E1E8E006F0080E13F /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322531E8E006F0080E13F /* EBTransaction.swift */; };
-		3A03225F1E8E006F0080E13F /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322541E8E006F0080E13F /* ExtendaBLE.swift */; };
-		3A0322601E8E006F0080E13F /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322561E8E006F0080E13F /* Data+BLE.swift */; };
-		3A0322611E8E006F0080E13F /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322571E8E006F0080E13F /* Data+BLEConversion.swift */; };
+		3A6F749F1E8EA91C00CDDE0B /* EBCentralMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74921E8EA91C00CDDE0B /* EBCentralMaker.swift */; };
+		3A6F74A01E8EA91C00CDDE0B /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74931E8EA91C00CDDE0B /* EBCharacteristicMaker.swift */; };
+		3A6F74A11E8EA91C00CDDE0B /* EBPeripheralMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74941E8EA91C00CDDE0B /* EBPeripheralMaker.swift */; };
+		3A6F74A21E8EA91C00CDDE0B /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74951E8EA91C00CDDE0B /* EBServiceMaker.swift */; };
+		3A6F74A31E8EA91C00CDDE0B /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74971E8EA91C00CDDE0B /* EBCentralManager.swift */; };
+		3A6F74A41E8EA91C00CDDE0B /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74981E8EA91C00CDDE0B /* EBPeripheralManager.swift */; };
+		3A6F74A51E8EA91C00CDDE0B /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F749A1E8EA91C00CDDE0B /* EBTransaction.swift */; };
+		3A6F74A61E8EA91C00CDDE0B /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F749B1E8EA91C00CDDE0B /* ExtendaBLE.swift */; };
+		3A6F74A71E8EA91C00CDDE0B /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F749D1E8EA91C00CDDE0B /* Data+BLE.swift */; };
+		3A6F74A81E8EA91C00CDDE0B /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F749E1E8EA91C00CDDE0B /* Data+BLEConversion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A0322331E8DFFBD0080E13F /* ExtendaBLE-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A0322331E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-iOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0322361E8DFFBD0080E13F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A0322381E8DFFBD0080E13F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A03223D1E8DFFBD0080E13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A0322401E8DFFBD0080E13F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A0322421E8DFFBD0080E13F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A03224B1E8E006F0080E13F /* EBCentralMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralMaker.swift; sourceTree = "<group>"; };
-		3A03224C1E8E006F0080E13F /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
-		3A03224D1E8E006F0080E13F /* EBPeripheralMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralMaker.swift; sourceTree = "<group>"; };
-		3A03224E1E8E006F0080E13F /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
-		3A0322501E8E006F0080E13F /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
-		3A0322511E8E006F0080E13F /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
-		3A0322531E8E006F0080E13F /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
-		3A0322541E8E006F0080E13F /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
-		3A0322561E8E006F0080E13F /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
-		3A0322571E8E006F0080E13F /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		3A6F74921E8EA91C00CDDE0B /* EBCentralMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralMaker.swift; sourceTree = "<group>"; };
+		3A6F74931E8EA91C00CDDE0B /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
+		3A6F74941E8EA91C00CDDE0B /* EBPeripheralMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralMaker.swift; sourceTree = "<group>"; };
+		3A6F74951E8EA91C00CDDE0B /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
+		3A6F74971E8EA91C00CDDE0B /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
+		3A6F74981E8EA91C00CDDE0B /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
+		3A6F749A1E8EA91C00CDDE0B /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
+		3A6F749B1E8EA91C00CDDE0B /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
+		3A6F749D1E8EA91C00CDDE0B /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
+		3A6F749E1E8EA91C00CDDE0B /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +56,7 @@
 		3A03222A1E8DFFBD0080E13F = {
 			isa = PBXGroup;
 			children = (
-				3A0322491E8E006F0080E13F /* Source */,
+				3A6F74901E8EA91C00CDDE0B /* Source */,
 				3A0322351E8DFFBD0080E13F /* ExtendaBLE-Demo */,
 				3A0322341E8DFFBD0080E13F /* Products */,
 			);
@@ -65,7 +65,7 @@
 		3A0322341E8DFFBD0080E13F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A0322331E8DFFBD0080E13F /* ExtendaBLE-Demo.app */,
+				3A0322331E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,52 +90,52 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3A0322491E8E006F0080E13F /* Source */ = {
+		3A6F74901E8EA91C00CDDE0B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3A0322541E8E006F0080E13F /* ExtendaBLE.swift */,
-				3A03224F1E8E006F0080E13F /* EBManager */,
-				3A03224A1E8E006F0080E13F /* EBMaker */,
-				3A0322521E8E006F0080E13F /* EBTransaction */,
-				3A0322551E8E006F0080E13F /* Extensions */,
+				3A6F74911E8EA91C00CDDE0B /* EBMaker */,
+				3A6F74961E8EA91C00CDDE0B /* EBManager */,
+				3A6F74991E8EA91C00CDDE0B /* EBTransaction */,
+				3A6F749B1E8EA91C00CDDE0B /* ExtendaBLE.swift */,
+				3A6F749C1E8EA91C00CDDE0B /* Extensions */,
 			);
 			name = Source;
-			path = ../Source;
+			path = ../../Source;
 			sourceTree = "<group>";
 		};
-		3A03224A1E8E006F0080E13F /* EBMaker */ = {
+		3A6F74911E8EA91C00CDDE0B /* EBMaker */ = {
 			isa = PBXGroup;
 			children = (
-				3A03224B1E8E006F0080E13F /* EBCentralMaker.swift */,
-				3A03224C1E8E006F0080E13F /* EBCharacteristicMaker.swift */,
-				3A03224D1E8E006F0080E13F /* EBPeripheralMaker.swift */,
-				3A03224E1E8E006F0080E13F /* EBServiceMaker.swift */,
+				3A6F74921E8EA91C00CDDE0B /* EBCentralMaker.swift */,
+				3A6F74931E8EA91C00CDDE0B /* EBCharacteristicMaker.swift */,
+				3A6F74941E8EA91C00CDDE0B /* EBPeripheralMaker.swift */,
+				3A6F74951E8EA91C00CDDE0B /* EBServiceMaker.swift */,
 			);
 			path = EBMaker;
 			sourceTree = "<group>";
 		};
-		3A03224F1E8E006F0080E13F /* EBManager */ = {
+		3A6F74961E8EA91C00CDDE0B /* EBManager */ = {
 			isa = PBXGroup;
 			children = (
-				3A0322501E8E006F0080E13F /* EBCentralManager.swift */,
-				3A0322511E8E006F0080E13F /* EBPeripheralManager.swift */,
+				3A6F74971E8EA91C00CDDE0B /* EBCentralManager.swift */,
+				3A6F74981E8EA91C00CDDE0B /* EBPeripheralManager.swift */,
 			);
 			path = EBManager;
 			sourceTree = "<group>";
 		};
-		3A0322521E8E006F0080E13F /* EBTransaction */ = {
+		3A6F74991E8EA91C00CDDE0B /* EBTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				3A0322531E8E006F0080E13F /* EBTransaction.swift */,
+				3A6F749A1E8EA91C00CDDE0B /* EBTransaction.swift */,
 			);
 			path = EBTransaction;
 			sourceTree = "<group>";
 		};
-		3A0322551E8E006F0080E13F /* Extensions */ = {
+		3A6F749C1E8EA91C00CDDE0B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3A0322561E8E006F0080E13F /* Data+BLE.swift */,
-				3A0322571E8E006F0080E13F /* Data+BLEConversion.swift */,
+				3A6F749D1E8EA91C00CDDE0B /* Data+BLE.swift */,
+				3A6F749E1E8EA91C00CDDE0B /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -143,9 +143,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A0322321E8DFFBD0080E13F /* ExtendaBLE-Demo */ = {
+		3A0322321E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A0322451E8DFFBD0080E13F /* Build configuration list for PBXNativeTarget "ExtendaBLE-Demo" */;
+			buildConfigurationList = 3A0322451E8DFFBD0080E13F /* Build configuration list for PBXNativeTarget "ExtendaBLE-iOS-Demo" */;
 			buildPhases = (
 				3A03222F1E8DFFBD0080E13F /* Sources */,
 				3A0322301E8DFFBD0080E13F /* Frameworks */,
@@ -155,9 +155,9 @@
 			);
 			dependencies = (
 			);
-			name = "ExtendaBLE-Demo";
+			name = "ExtendaBLE-iOS-Demo";
 			productName = "ExtendaBLE-Demo";
-			productReference = 3A0322331E8DFFBD0080E13F /* ExtendaBLE-Demo.app */;
+			productReference = 3A0322331E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -177,7 +177,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 3A03222E1E8DFFBD0080E13F /* Build configuration list for PBXProject "ExtendaBLE-Demo" */;
+			buildConfigurationList = 3A03222E1E8DFFBD0080E13F /* Build configuration list for PBXProject "ExtendaBLE-iOS-Demo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -190,7 +190,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3A0322321E8DFFBD0080E13F /* ExtendaBLE-Demo */,
+				3A0322321E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -213,17 +213,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A0322391E8DFFBD0080E13F /* ViewController.swift in Sources */,
-				3A0322611E8E006F0080E13F /* Data+BLEConversion.swift in Sources */,
-				3A03225F1E8E006F0080E13F /* ExtendaBLE.swift in Sources */,
-				3A03225C1E8E006F0080E13F /* EBCentralManager.swift in Sources */,
-				3A03225E1E8E006F0080E13F /* EBTransaction.swift in Sources */,
-				3A0322601E8E006F0080E13F /* Data+BLE.swift in Sources */,
-				3A03225D1E8E006F0080E13F /* EBPeripheralManager.swift in Sources */,
-				3A0322581E8E006F0080E13F /* EBCentralMaker.swift in Sources */,
-				3A0322591E8E006F0080E13F /* EBCharacteristicMaker.swift in Sources */,
-				3A03225A1E8E006F0080E13F /* EBPeripheralMaker.swift in Sources */,
+				3A6F74A81E8EA91C00CDDE0B /* Data+BLEConversion.swift in Sources */,
+				3A6F74A61E8EA91C00CDDE0B /* ExtendaBLE.swift in Sources */,
+				3A6F74A31E8EA91C00CDDE0B /* EBCentralManager.swift in Sources */,
+				3A6F74A51E8EA91C00CDDE0B /* EBTransaction.swift in Sources */,
+				3A6F74A71E8EA91C00CDDE0B /* Data+BLE.swift in Sources */,
+				3A6F74A41E8EA91C00CDDE0B /* EBPeripheralManager.swift in Sources */,
+				3A6F749F1E8EA91C00CDDE0B /* EBCentralMaker.swift in Sources */,
+				3A6F74A01E8EA91C00CDDE0B /* EBCharacteristicMaker.swift in Sources */,
+				3A6F74A11E8EA91C00CDDE0B /* EBPeripheralMaker.swift in Sources */,
 				3A0322371E8DFFBD0080E13F /* AppDelegate.swift in Sources */,
-				3A03225B1E8E006F0080E13F /* EBServiceMaker.swift in Sources */,
+				3A6F74A21E8EA91C00CDDE0B /* EBServiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
 				INFOPLIST_FILE = "ExtendaBLE-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-ios.ExtendaBLE-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -353,6 +354,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
 				INFOPLIST_FILE = "ExtendaBLE-Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-ios.ExtendaBLE-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -363,7 +365,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A03222E1E8DFFBD0080E13F /* Build configuration list for PBXProject "ExtendaBLE-Demo" */ = {
+		3A03222E1E8DFFBD0080E13F /* Build configuration list for PBXProject "ExtendaBLE-iOS-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A0322431E8DFFBD0080E13F /* Debug */,
@@ -372,13 +374,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A0322451E8DFFBD0080E13F /* Build configuration list for PBXNativeTarget "ExtendaBLE-Demo" */ = {
+		3A0322451E8DFFBD0080E13F /* Build configuration list for PBXNativeTarget "ExtendaBLE-iOS-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3A0322461E8DFFBD0080E13F /* Debug */,
 				3A0322471E8DFFBD0080E13F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
