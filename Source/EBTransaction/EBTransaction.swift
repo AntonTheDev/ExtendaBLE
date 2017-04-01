@@ -107,7 +107,6 @@ public class Transaction {
     }
 }
 
-
 public class EBTransaction {
     
     var data : Data?

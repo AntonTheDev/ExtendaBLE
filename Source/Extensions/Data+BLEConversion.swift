@@ -42,7 +42,6 @@ extension Data {
         return numericValue(range)
     }
     
-    
     public func doubleValue(_ range : Range<Data.Index>) -> Double? {
         return numericValue(range)
     }
@@ -52,12 +51,18 @@ extension Data {
     }
     
     public func stringValue(_ range : Range<Data.Index>) -> String? {
+        
+        if range.lowerBound + range.upperBound > count {
+            return nil
+        }
+        
         return String(data:  subdata(in:range), encoding: .utf8)
     }
 
     private func numericValue<T> (_ range : Range<Data.Index>) -> T? {
         
         if range.lowerBound + range.upperBound > count {
+            print("\(range) outside of bounds for numeric value in \(self)")
             return nil
         }
         

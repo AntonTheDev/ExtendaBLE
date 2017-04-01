@@ -27,7 +27,7 @@ public class EBPeripheralManager : NSObject {
     
     internal var mtuValue : Int16 = 23
     
-    internal var services = [CBMutableService]()
+    internal var registeredServices = [CBMutableService]()
     
     internal var chunkedCharacteristicUUIDS = [CBUUID]()
     internal var registeredCharacteristicUpdateCallbacks = [CBUUID : EBTransactionCallback]()
@@ -67,7 +67,7 @@ extension EBPeripheralManager {
             advertisementData[CBAdvertisementDataLocalNameKey] = localName
         }
         
-        let serviceUUIDs = services.map { $0.uuid }
+        let serviceUUIDs = registeredServices.map { $0.uuid }
         
         if serviceUUIDs.count > 0 {
             advertisementData[CBAdvertisementDataServiceUUIDsKey] = serviceUUIDs
@@ -83,13 +83,13 @@ extension EBPeripheralManager {
     }
     
     internal func configureServices() {
-        for service in services {
+        for service in registeredServices {
             peripheralManager.add(service)
         }
     }
     
     internal func clearServices() {
-        for service in services {
+        for service in registeredServices {
             peripheralManager.remove(service)
         }
     }
@@ -153,7 +153,6 @@ extension EBPeripheralManager {
                 
                 activeWriteTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize:  mtuValue)
                 activeWriteTransaction?.characteristic = characteristic(for: request)
-                
                 activeWriteTransations[request.characteristic.uuid] = activeWriteTransaction
             }
             
@@ -179,7 +178,7 @@ extension EBPeripheralManager {
     }
     
     internal func handleMTUSubscription(for central: CBCentral) {
-        for service in services {
+        for service in registeredServices {
             if let characteristic =  service.characteristics?.first(where: { $0.uuid.uuidString == mtuCharacteristicUUIDKey }) as? CBMutableCharacteristic {
                 
                 var value: Int = central.maximumUpdateValueLength
@@ -197,7 +196,7 @@ extension EBPeripheralManager {
             return nil
         }
         
-        for service in services {
+        for service in registeredServices {
             
             if let index =  service.characteristics?.index(of : characteristic),
                 let data = (service.characteristics![index] as! CBMutableCharacteristic).value {
@@ -211,7 +210,7 @@ extension EBPeripheralManager {
     
     internal func characteristic(for request: CBATTRequest) -> CBMutableCharacteristic? {
         
-        for service in services {
+        for service in registeredServices {
             if  let index =  service.characteristics?.index(of : request.characteristic),
                 let characteristic = service.characteristics?[index] as? CBMutableCharacteristic {
                 return characteristic

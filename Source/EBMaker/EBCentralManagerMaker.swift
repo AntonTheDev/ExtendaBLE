@@ -1,5 +1,5 @@
 //
-//  EBCentralMaker.swift
+//  EBCentralManagerMaker.swift
 //  CameraApp
 //
 //  Created by Anton Doudarev on 3/23/17.
@@ -9,17 +9,25 @@
 import Foundation
 import CoreBluetooth
 
-public class EBCentralMaker {
+public class EBCentralManagerMaker  {
     
-    var queue: DispatchQueue?
-    var services = [EBServiceMaker]()
-    var peripheralName : String?
+    internal var queue: DispatchQueue?
+    internal var services = [EBServiceMaker]()
+    internal var peripheralName : String?
     
     required public init(queue: DispatchQueue?) {
         self.queue = queue
     }
     
-    @discardableResult public func addService(_ uuid: String, primary isPrimary: Bool = true, service : (_ service : EBServiceMaker) -> Void) -> EBCentralMaker {
+    @discardableResult public func peripheralName(_ peripheralName : String) -> EBCentralManagerMaker {
+        self.peripheralName = peripheralName
+        return self
+    }
+    
+    @discardableResult public func addService(_ uuid: String,
+                                              primary isPrimary: Bool = true,
+                                              service : (_ service : EBServiceMaker) -> Void) -> EBCentralManagerMaker
+    {
         let newService = EBServiceMaker(uuid, primary: isPrimary)
         services.append(newService)
         service(newService)
@@ -31,26 +39,18 @@ public class EBCentralMaker {
         let newCentralManager = EBCentralManager(queue: queue)
         
         for service in services {
-        
-            let constructedService = service.constructedService()
-            
             for (uuid, updateCallback) in service.characteristicUpdateCallbacks {
                 newCentralManager.registeredCharacteristicUpdateCallbacks[uuid] = updateCallback
             }
 
-            newCentralManager.services.append(constructedService)
+            newCentralManager.registeredServiceUUIDs.append(CBUUID(string: service.serviceUUID))
             newCentralManager.chunkedCharacteristicUUIDS += service.chunkedCharacteristicUUIDS
         }
         
         if  newCentralManager.chunkedCharacteristicUUIDS.count > 0 {
-            newCentralManager.services.append(newMTUService())
+            newCentralManager.registeredServiceUUIDs.append(CBUUID(string: mtuServiceUUIDKey))
         }
 
         return newCentralManager
-    }
-    
-    @discardableResult public func peripheralName(_ peripheralName : String) -> EBCentralMaker {
-        self.peripheralName = peripheralName
-        return self
     }
 }

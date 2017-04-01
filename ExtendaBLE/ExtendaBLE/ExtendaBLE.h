@@ -7,14 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-/*
-#if TARGET_OS_MAC
-  //  #import <Cocoa/Cocoa.h>
-#else TARGET_OS_IPHONE
-  //  #import <UIKit/UIKit.h>
-#endif
-*/
 
 //! Project version number for ExtendaBLE.
 FOUNDATION_EXPORT double ExtendaBLEVersionNumber;

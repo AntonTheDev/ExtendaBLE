@@ -11,16 +11,20 @@ import CoreBluetooth
 
 class ExtendaBLE {
     
-    public class func newCentralManager(queue: DispatchQueue? = nil, central : (_ central : EBCentralMaker) -> Void) -> EBCentralManager {
-        let newManager = EBCentralMaker(queue: queue)
+    public class func newCentralManager(queue: DispatchQueue? = nil, central : (_ central : EBCentralManagerMaker) -> Void) -> EBCentralManager {
+        let newManager = EBCentralManagerMaker(queue: queue)
         central(newManager)
         return newManager.constructedCentralManager()
     }
+   
     
-    public class func newPeripheralManager(queue: DispatchQueue? = nil, peripheral : (_ peripheral : EBPeripheralMaker) -> Void) -> EBPeripheralManager {
-        let newManager = EBPeripheralMaker(queue: queue)
+    #if !os(tvOS)
+    public class func newPeripheralManager(queue: DispatchQueue? = nil, peripheral : (_ peripheral : EBPeripheralManagerMaker) -> Void) -> EBPeripheralManager {
+        let newManager = EBPeripheralManagerMaker(queue: queue)
         peripheral(newManager)
         return newManager.constructedPeripheralManager()
     }
+    #endif
+
 }
 

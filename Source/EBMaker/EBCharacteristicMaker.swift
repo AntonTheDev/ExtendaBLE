@@ -51,7 +51,12 @@ public class EBCharacteristicMaker {
         return self
     }
     
-    func constructedCharacteristic() -> CBMutableCharacteristic {
-        return CBMutableCharacteristic(type: CBUUID(string: uuid), properties: properties, value: value, permissions: permissions)
+    func constructedCharacteristic() -> CBMutableCharacteristic? {
+        
+        #if os(tvOS)
+            return nil
+        #else
+            return CBMutableCharacteristic(type: CBUUID(string: uuid), properties: properties, value: value, permissions: permissions)
+        #endif
     }
 }

@@ -22,14 +22,17 @@ public class EBCentralManager : NSObject {
     
     internal var centralManager : CBCentralManager
     internal var peripheralName : String?
-    
     internal var mtuValue : Int16 = 23
     
-    internal var services = [CBMutableService]()
-    internal var connectedCharacteristics = [CBPeripheral : [CBCharacteristic]]()
+    #if os(OSX)
+    internal var _isScanning : Bool = false
+    #endif
     
+    internal var registeredServiceUUIDs = [CBUUID]()
     internal var chunkedCharacteristicUUIDS = [CBUUID]()
     internal var registeredCharacteristicUpdateCallbacks  = [CBUUID : EBTransactionCallback]()
+    
+    internal var connectedCharacteristics = [CBPeripheral : [CBCharacteristic]]()
     
     internal var activeWriteTransations = [CBPeripheral : [Transaction]]()
     internal var activeReadTransations  = [CBPeripheral : [Transaction]]()
@@ -37,10 +40,6 @@ public class EBCentralManager : NSObject {
     internal var stateChangeCallBack          : CentralManagerStateChangeCallback?
     internal var didDiscoverCallBack          : CentralManagerDidDiscoverCallback?
     internal var peripheralConnectionCallback : CentralManagerPeripheralConnectionCallback?
-    
-#if os(OSX)
-    internal var _isScanning : Bool = false
-#endif
     
     public required init(queue: DispatchQueue? = nil,  options: [String : Any]? = nil) {
         centralManager = CBCentralManager(delegate: nil, queue: queue, options: options)
@@ -53,11 +52,11 @@ extension EBCentralManager {
     
     #if os(OSX)
     public var isScanning: Bool {
-        get { return _isScanning }
+    get { return _isScanning }
     }
     #else
     public var isScanning: Bool {
-    get { return centralManager.isScanning }
+        get { return centralManager.isScanning }
     }
     #endif
     
@@ -65,16 +64,9 @@ extension EBCentralManager {
         if centralManager.state != .poweredOn {
             return self
         }
-
-        #if os(OSX)
-              _isScanning = true
-            let registeredServicesUUIDs = services.map { $0.uuid! }
-            centralManager.scanForPeripherals(withServices: registeredServicesUUIDs, options: nil)
-        #else
-            let registeredServicesUUIDs = services.map { $0.uuid }
-            centralManager.scanForPeripherals(withServices: registeredServicesUUIDs, options: nil)
-        #endif
-
+        
+        centralManager.scanForPeripherals(withServices: registeredServiceUUIDs, options: nil)
+        
         return self
     }
     
@@ -220,7 +212,7 @@ extension EBCentralManager: CBCentralManagerDelegate {
                                didDiscover peripheral: CBPeripheral,
                                advertisementData: [String : Any],
                                rssi RSSI: NSNumber) {
-
+        
         if let isConnectable = advertisementData[CBAdvertisementDataIsConnectable] as? Bool, isConnectable == true {
             
             if let localname = advertisementData[CBAdvertisementDataLocalNameKey] as? String, localname == peripheralName {
@@ -231,14 +223,10 @@ extension EBCentralManager: CBCentralManagerDelegate {
                 return
             } else if let peripheralUUIDs = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
                 
-                for service in services {
-                    if let _ = peripheralUUIDs.first(where: { $0 == service.uuid })  {
-                       
-                        #if os(OSX)
-                            print("\n Discovered BY UUID -  \(String(describing: service.uuid?.uuidString))")
-                        #else
-                            print("\n Discovered BY UUID -  \(service.uuid.uuidString)")
-                        #endif
+                for uuid in registeredServiceUUIDs {
+                    if let _ = peripheralUUIDs.first(where: { $0 == uuid })  {
+                        
+                        print("\n Discovered BY UUID -  \(uuid.uuidString)")
                         
                         connectedCharacteristics[peripheral] = [CBCharacteristic]()
                         centralManager.connect(peripheral, options: nil)
@@ -255,10 +243,8 @@ extension EBCentralManager: CBCentralManagerDelegate {
         
         connectedCharacteristics[peripheral] = [CBCharacteristic]()
         
-        let registeredServicesUUIDs = services.map { $0.uuid }
-        
         peripheral.delegate = self
-        peripheral.discoverServices(registeredServicesUUIDs as? [CBUUID])
+        peripheral.discoverServices(registeredServiceUUIDs)
         
         stopScan()
     }
@@ -329,7 +315,7 @@ extension EBCentralManager: CBPeripheralDelegate {
         
         if characteristic.uuid.uuidString == mtuCharacteristicUUIDKey &&
             chunkedCharacteristicUUIDS.count > 0 {
-           
+            
             var num: UInt8 = 0
             characteristic.value?.copyBytes(to: &num, count: MemoryLayout<Int>.size)
             
