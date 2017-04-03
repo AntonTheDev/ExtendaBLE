@@ -9,17 +9,7 @@
 import Foundation
 import CoreBluetooth
 
-#if os(OSX)
-    public typealias PeripheralManagerStateChangeCallBack = ((_ state: CBPeripheralManagerState) -> Void)
-#else
-    public typealias PeripheralManagerStateChangeCallBack = ((_ state: CBManagerState) -> Void)
-#endif
-
-public typealias PeripheralManagerDidStartAdvertisingCallBack = ((_ started : Bool, _ error: Error?) -> Void)
-public typealias PeripheralManagerDidAddServiceCallBack = ((_ service: CBService, _ error: Error?) -> Void)
-public typealias PeripheralManagerSubscriopnChangeToCallBack = ((_ subscribed : Bool, _ central: CBCentral, _ characteristic: CBCharacteristic) -> Void)
-public typealias PeripheralManagerIsReadyToUpdateCallBack = (() -> Void)
-
+@available(iOS 9.0, OSX 10.10, *)
 public class EBPeripheralManager : NSObject {
     
     internal var peripheralManager : CBPeripheralManager
@@ -41,6 +31,7 @@ public class EBPeripheralManager : NSObject {
     internal var subscriptionChangeCallBack : PeripheralManagerSubscriopnChangeToCallBack?
     internal var readyToUpdateSubscribersCallBack : PeripheralManagerIsReadyToUpdateCallBack?
     
+    @available(iOS 9.0, OSX 10.10, *)
     public required init(queue: DispatchQueue?) {
         #if os(tvOS)
             peripheralManager = CBPeripheralManager()
@@ -257,17 +248,29 @@ extension EBPeripheralManager {
 extension EBPeripheralManager: CBPeripheralManagerDelegate {
     
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        
-        switch peripheral.state {
-        case .poweredOn:
-            configureServices()
-            startAdvertising()
-        default:
-            break;
+        if #available(iOS 10.0, *) {
+            switch peripheral.state {
+            case .poweredOn:
+                configureServices()
+                startAdvertising()
+            default:
+                break
+            }
+            
+            print("\nPeripheral BLE state - \(peripheral.state.rawValue)")
+            stateChangeCallBack?(EBManagerState(rawValue: peripheral.state.rawValue)!)
+        } else {
+            switch peripheral.state{
+            case .poweredOn:
+                 configureServices()
+                startAdvertising()
+            default:
+                break
+            }
+            
+            print("\nPeripheral BLE state - \(peripheral.state.rawValue)")
+            stateChangeCallBack?(EBManagerState(rawValue: peripheral.state.rawValue)!)
         }
-        
-        print("\nPeripheral BLE state - \(peripheral.state.rawValue)")
-        stateChangeCallBack?(peripheral.state)
     }
     
     public func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {

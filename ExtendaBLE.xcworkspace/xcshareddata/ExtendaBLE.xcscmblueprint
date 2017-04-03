@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F2DB266004F95E4121850D9ED649EF444B7A5D14",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F2DB266004F95E4121850D9ED649EF444B7A5D14" : 9223372036854775807,
+    "DD616714F6B479D1A3C915CAD199CBBC6C2D1287" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "752AA8CE-26CD-40FE-8C3D-2E6FDDE4F0A4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F2DB266004F95E4121850D9ED649EF444B7A5D14" : "ExtendaBLE\/",
+    "DD616714F6B479D1A3C915CAD199CBBC6C2D1287" : "FlightAnimator\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ExtendaBLE",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ExtendaBLE.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AntonTheDev\/FlightAnimator.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DD616714F6B479D1A3C915CAD199CBBC6C2D1287"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AntonTheDev\/ExtendaBLE.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F2DB266004F95E4121850D9ED649EF444B7A5D14"
+    }
+  ]
+}

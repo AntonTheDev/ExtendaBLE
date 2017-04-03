@@ -9,14 +9,6 @@
 import Foundation
 import CoreBluetooth
 
-#if os(OSX)
-    public typealias CentralManagerStateChangeCallback = ((_ state: CBCentralManagerState) -> Void)
-#else
-    public typealias CentralManagerStateChangeCallback = ((_ state: CBManagerState) -> Void)
-#endif
-
-public typealias CentralManagerDidDiscoverCallback = ((_ peripheral: CBPeripheral, _ advertisementData: [String : Any], _ rssi: NSNumber) -> Void)
-public typealias CentralManagerPeripheralConnectionCallback = ((_ connected : Bool, _ peripheral: CBPeripheral, _ error: Error?) -> Void)
 
 public class EBCentralManager : NSObject {
     
@@ -195,19 +187,31 @@ extension EBCentralManager {
 
 extension EBCentralManager: CBCentralManagerDelegate {
     
+
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        
-        switch central.state {
-        case .poweredOn:
-            startScan()
-        default:
-            break;
+        if #available(iOS 10.0, *) {
+            switch central.state{
+            case .poweredOn:
+                startScan()
+            default:
+                break
+            }
+            
+            print("\nCentral BLE state - \(central.state.rawValue)")
+            stateChangeCallBack?(EBManagerState(rawValue: central.state.rawValue)!)
+        } else {
+            switch central.state{
+            case .poweredOn:
+                startScan()
+            default:
+                break
+            }
+            
+            print("\nCentral BLE state - \(central.state.rawValue)")
+            stateChangeCallBack?(EBManagerState(rawValue: central.state.rawValue)!)
         }
-        
-        print("\nCentral BLE state - \(central.state.rawValue)")
-        stateChangeCallBack?(central.state)
     }
-    
+
     public func centralManager(_ central: CBCentralManager,
                                didDiscover peripheral: CBPeripheral,
                                advertisementData: [String : Any],

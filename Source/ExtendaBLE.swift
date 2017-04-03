@@ -25,6 +25,5 @@ class ExtendaBLE {
         return newManager.constructedPeripheralManager()
     }
     #endif
-
 }
 

@@ -19,7 +19,6 @@
 		3AAD8A251E9016020013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A141E9016020013CE98 /* EBCharacteristicMaker.swift */; };
 		3AAD8A261E9016020013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A141E9016020013CE98 /* EBCharacteristicMaker.swift */; };
 		3AAD8A2A1E9016020013CE98 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A161E9016020013CE98 /* EBPeripheralManagerMaker.swift */; };
-		3AAD8A2B1E9016020013CE98 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A161E9016020013CE98 /* EBPeripheralManagerMaker.swift */; };
 		3AAD8A2C1E9016020013CE98 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A161E9016020013CE98 /* EBPeripheralManagerMaker.swift */; };
 		3AAD8A2D1E9016020013CE98 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A171E9016020013CE98 /* EBServiceMaker.swift */; };
 		3AAD8A2E1E9016020013CE98 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A171E9016020013CE98 /* EBServiceMaker.swift */; };
@@ -28,7 +27,6 @@
 		3AAD8A311E9016020013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A191E9016020013CE98 /* EBCentralManager.swift */; };
 		3AAD8A321E9016020013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A191E9016020013CE98 /* EBCentralManager.swift */; };
 		3AAD8A331E9016020013CE98 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A1A1E9016020013CE98 /* EBPeripheralManager.swift */; };
-		3AAD8A341E9016020013CE98 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A1A1E9016020013CE98 /* EBPeripheralManager.swift */; };
 		3AAD8A351E9016020013CE98 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A1A1E9016020013CE98 /* EBPeripheralManager.swift */; };
 		3AAD8A361E9016020013CE98 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A1C1E9016020013CE98 /* EBTransaction.swift */; };
 		3AAD8A371E9016020013CE98 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A1C1E9016020013CE98 /* EBTransaction.swift */; };
@@ -42,6 +40,9 @@
 		3AAD8A3F1E9016020013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A201E9016020013CE98 /* Data+BLEConversion.swift */; };
 		3AAD8A401E9016020013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A201E9016020013CE98 /* Data+BLEConversion.swift */; };
 		3AAD8A411E9016020013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A201E9016020013CE98 /* Data+BLEConversion.swift */; };
+		3AAD8A431E9292990013CE98 /* ExtendaBLE+Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A421E9292990013CE98 /* ExtendaBLE+Definitions.swift */; };
+		3AAD8A441E9292990013CE98 /* ExtendaBLE+Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A421E9292990013CE98 /* ExtendaBLE+Definitions.swift */; };
+		3AAD8A451E9292990013CE98 /* ExtendaBLE+Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A421E9292990013CE98 /* ExtendaBLE+Definitions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		3AAD8A1D1E9016020013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		3AAD8A1F1E9016020013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		3AAD8A201E9016020013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		3AAD8A421E9292990013CE98 /* ExtendaBLE+Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExtendaBLE+Definitions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAD8A1D1E9016020013CE98 /* ExtendaBLE.swift */,
+				3AAD8A421E9292990013CE98 /* ExtendaBLE+Definitions.swift */,
 				3AAD8A181E9016020013CE98 /* EBManager */,
 				3AAD8A121E9016020013CE98 /* EBMaker */,
 				3AAD8A1B1E9016020013CE98 /* EBTransaction */,
@@ -385,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAD8A241E9016020013CE98 /* EBCharacteristicMaker.swift in Sources */,
+				3AAD8A431E9292990013CE98 /* ExtendaBLE+Definitions.swift in Sources */,
 				3AAD8A3C1E9016020013CE98 /* Data+BLE.swift in Sources */,
 				3AAD8A331E9016020013CE98 /* EBPeripheralManager.swift in Sources */,
 				3AAD8A391E9016020013CE98 /* ExtendaBLE.swift in Sources */,
@@ -410,13 +414,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAD8A251E9016020013CE98 /* EBCharacteristicMaker.swift in Sources */,
+				3AAD8A441E9292990013CE98 /* ExtendaBLE+Definitions.swift in Sources */,
 				3AAD8A3D1E9016020013CE98 /* Data+BLE.swift in Sources */,
-				3AAD8A341E9016020013CE98 /* EBPeripheralManager.swift in Sources */,
 				3AAD8A3A1E9016020013CE98 /* ExtendaBLE.swift in Sources */,
 				3AAD8A401E9016020013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8A371E9016020013CE98 /* EBTransaction.swift in Sources */,
 				3AAD8A221E9016020013CE98 /* EBCentralManagerMaker.swift in Sources */,
-				3AAD8A2B1E9016020013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
 				3AAD8A311E9016020013CE98 /* EBCentralManager.swift in Sources */,
 				3AAD8A2E1E9016020013CE98 /* EBServiceMaker.swift in Sources */,
 			);
@@ -427,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAD8A261E9016020013CE98 /* EBCharacteristicMaker.swift in Sources */,
+				3AAD8A451E9292990013CE98 /* ExtendaBLE+Definitions.swift in Sources */,
 				3AAD8A3E1E9016020013CE98 /* Data+BLE.swift in Sources */,
 				3AAD8A351E9016020013CE98 /* EBPeripheralManager.swift in Sources */,
 				3AAD8A3B1E9016020013CE98 /* ExtendaBLE.swift in Sources */,
@@ -562,7 +566,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "ExtendaBLE/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-ios.ExtendaBLE-iOS";
 				PRODUCT_NAME = ExtendaBLE;
@@ -582,7 +586,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "ExtendaBLE/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-ios.ExtendaBLE-iOS";
 				PRODUCT_NAME = ExtendaBLE;
@@ -636,7 +640,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -659,7 +663,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.0;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -677,7 +681,7 @@
 				INFOPLIST_FILE = "ExtendaBLE/Info-OSX.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-OSX.ExtendaBLE-OSX";
 				PRODUCT_NAME = ExtendaBLE;
 				SDKROOT = macosx;
@@ -700,7 +704,7 @@
 				INFOPLIST_FILE = "ExtendaBLE/Info-OSX.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-OSX.ExtendaBLE-OSX";
 				PRODUCT_NAME = ExtendaBLE;
 				SDKROOT = macosx;

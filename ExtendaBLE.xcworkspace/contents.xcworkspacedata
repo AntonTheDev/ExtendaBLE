@@ -58,6 +58,9 @@
       location = "group:/Users/Anton/Developer/OpenSource/ExtendaBLE/ExtendaBLE-Demo/ExtendeBLE-iOS-Demo/ExtendaBLE-iOS-Demo.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:ExtendaBLE-Demo/ExtendaBLE-tvOS-Demo/ExtendaBLE-tvOS-Demo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ExtendaBLE-Demo/ExtendaBLE-OSX-Demo/ExtendaBLE-OSX-Demo.xcodeproj">
    </FileRef>
 </Workspace>
