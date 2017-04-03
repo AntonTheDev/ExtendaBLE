@@ -8,29 +8,32 @@
          location = "group:ExtendaBLE.swift">
       </FileRef>
       <Group
-         location = "group:EBManager"
-         name = "EBManager">
-         <FileRef
-            location = "group:EBCentralManager.swift">
-         </FileRef>
-         <FileRef
-            location = "group:EBPeripheralManager.swift">
-         </FileRef>
-      </Group>
-      <Group
          location = "group:EBMaker"
          name = "EBMaker">
          <FileRef
-            location = "group:/Users/Anton/Developer/OpenSource/ExtendaBLE/Source/EBMaker/EBCentralManagerMaker.swift">
+            location = "group:EBCentralManagerMaker.swift">
          </FileRef>
          <FileRef
-            location = "group:/Users/Anton/Developer/OpenSource/ExtendaBLE/Source/EBMaker/EBPeripheralManagerMaker.swift">
+            location = "group:EBPeripheralManagerMaker.swift">
          </FileRef>
          <FileRef
             location = "group:EBServiceMaker.swift">
          </FileRef>
          <FileRef
             location = "group:EBCharacteristicMaker.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:EBManager"
+         name = "EBManager">
+         <FileRef
+            location = "group:EBDefinitions.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBCentralManager.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBPeripheralManager.swift">
          </FileRef>
       </Group>
       <Group

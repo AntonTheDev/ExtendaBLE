@@ -11,15 +11,15 @@
 		3AAD8A951E9293DB0013CE98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A941E9293DB0013CE98 /* ViewController.swift */; };
 		3AAD8A981E9293DB0013CE98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AAD8A961E9293DB0013CE98 /* Main.storyboard */; };
 		3AAD8A9A1E9293DB0013CE98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAD8A991E9293DB0013CE98 /* Assets.xcassets */; };
-		3AAD8AB21E9294C00013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AA41E9294C00013CE98 /* EBCentralManagerMaker.swift */; };
-		3AAD8AB31E9294C00013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AA51E9294C00013CE98 /* EBCharacteristicMaker.swift */; };
-		3AAD8AB51E9294C00013CE98 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AA71E9294C00013CE98 /* EBServiceMaker.swift */; };
-		3AAD8AB61E9294C00013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AA91E9294C00013CE98 /* EBCentralManager.swift */; };
-		3AAD8AB81E9294C00013CE98 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AAC1E9294C00013CE98 /* EBTransaction.swift */; };
-		3AAD8AB91E9294C00013CE98 /* ExtendaBLE+Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AAD1E9294C00013CE98 /* ExtendaBLE+Definitions.swift */; };
-		3AAD8ABA1E9294C00013CE98 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AAE1E9294C00013CE98 /* ExtendaBLE.swift */; };
-		3AAD8ABB1E9294C00013CE98 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AB01E9294C00013CE98 /* Data+BLE.swift */; };
-		3AAD8ABC1E9294C00013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AB11E9294C00013CE98 /* Data+BLEConversion.swift */; };
+		3AAD8B191E929ABF0013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B0B1E929ABF0013CE98 /* EBCentralManagerMaker.swift */; };
+		3AAD8B1A1E929ABF0013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B0C1E929ABF0013CE98 /* EBCharacteristicMaker.swift */; };
+		3AAD8B1C1E929ABF0013CE98 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B0E1E929ABF0013CE98 /* EBServiceMaker.swift */; };
+		3AAD8B1D1E929ABF0013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B101E929ABF0013CE98 /* EBCentralManager.swift */; };
+		3AAD8B1E1E929ABF0013CE98 /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B111E929ABF0013CE98 /* EBDefinitions.swift */; };
+		3AAD8B201E929ABF0013CE98 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B141E929ABF0013CE98 /* EBTransaction.swift */; };
+		3AAD8B211E929ABF0013CE98 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B151E929ABF0013CE98 /* ExtendaBLE.swift */; };
+		3AAD8B221E929ABF0013CE98 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B171E929ABF0013CE98 /* Data+BLE.swift */; };
+		3AAD8B231E929ABF0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B181E929ABF0013CE98 /* Data+BLEConversion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,15 +29,15 @@
 		3AAD8A971E9293DB0013CE98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AAD8A991E9293DB0013CE98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AAD8A9B1E9293DB0013CE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3AAD8AA41E9294C00013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
-		3AAD8AA51E9294C00013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
-		3AAD8AA71E9294C00013CE98 /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
-		3AAD8AA91E9294C00013CE98 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
-		3AAD8AAC1E9294C00013CE98 /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
-		3AAD8AAD1E9294C00013CE98 /* ExtendaBLE+Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ExtendaBLE+Definitions.swift"; sourceTree = "<group>"; };
-		3AAD8AAE1E9294C00013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
-		3AAD8AB01E9294C00013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
-		3AAD8AB11E9294C00013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		3AAD8B0B1E929ABF0013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
+		3AAD8B0C1E929ABF0013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
+		3AAD8B0E1E929ABF0013CE98 /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
+		3AAD8B101E929ABF0013CE98 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
+		3AAD8B111E929ABF0013CE98 /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
+		3AAD8B141E929ABF0013CE98 /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
+		3AAD8B151E929ABF0013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
+		3AAD8B171E929ABF0013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
+		3AAD8B181E929ABF0013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +54,7 @@
 		3AAD8A861E9293DB0013CE98 = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AA21E9294C00013CE98 /* Source */,
+				3AAD8B091E929ABF0013CE98 /* Source */,
 				3AAD8A911E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo */,
 				3AAD8A901E9293DB0013CE98 /* Products */,
 			);
@@ -88,51 +88,51 @@
 			name = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		3AAD8AA21E9294C00013CE98 /* Source */ = {
+		3AAD8B091E929ABF0013CE98 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AA31E9294C00013CE98 /* EBMaker */,
-				3AAD8AA81E9294C00013CE98 /* EBManager */,
-				3AAD8AAB1E9294C00013CE98 /* EBTransaction */,
-				3AAD8AAD1E9294C00013CE98 /* ExtendaBLE+Definitions.swift */,
-				3AAD8AAE1E9294C00013CE98 /* ExtendaBLE.swift */,
-				3AAD8AAF1E9294C00013CE98 /* Extensions */,
+				3AAD8B151E929ABF0013CE98 /* ExtendaBLE.swift */,
+				3AAD8B0F1E929ABF0013CE98 /* EBManager */,
+				3AAD8B0A1E929ABF0013CE98 /* EBMaker */,
+				3AAD8B131E929ABF0013CE98 /* EBTransaction */,
+				3AAD8B161E929ABF0013CE98 /* Extensions */,
 			);
 			name = Source;
 			path = ../../Source;
 			sourceTree = "<group>";
 		};
-		3AAD8AA31E9294C00013CE98 /* EBMaker */ = {
+		3AAD8B0A1E929ABF0013CE98 /* EBMaker */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AA41E9294C00013CE98 /* EBCentralManagerMaker.swift */,
-				3AAD8AA51E9294C00013CE98 /* EBCharacteristicMaker.swift */,
-				3AAD8AA71E9294C00013CE98 /* EBServiceMaker.swift */,
+				3AAD8B0B1E929ABF0013CE98 /* EBCentralManagerMaker.swift */,
+				3AAD8B0E1E929ABF0013CE98 /* EBServiceMaker.swift */,
+				3AAD8B0C1E929ABF0013CE98 /* EBCharacteristicMaker.swift */,
 			);
 			path = EBMaker;
 			sourceTree = "<group>";
 		};
-		3AAD8AA81E9294C00013CE98 /* EBManager */ = {
+		3AAD8B0F1E929ABF0013CE98 /* EBManager */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AA91E9294C00013CE98 /* EBCentralManager.swift */,
+				3AAD8B111E929ABF0013CE98 /* EBDefinitions.swift */,
+				3AAD8B101E929ABF0013CE98 /* EBCentralManager.swift */,
 			);
 			path = EBManager;
 			sourceTree = "<group>";
 		};
-		3AAD8AAB1E9294C00013CE98 /* EBTransaction */ = {
+		3AAD8B131E929ABF0013CE98 /* EBTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AAC1E9294C00013CE98 /* EBTransaction.swift */,
+				3AAD8B141E929ABF0013CE98 /* EBTransaction.swift */,
 			);
 			path = EBTransaction;
 			sourceTree = "<group>";
 		};
-		3AAD8AAF1E9294C00013CE98 /* Extensions */ = {
+		3AAD8B161E929ABF0013CE98 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AB01E9294C00013CE98 /* Data+BLE.swift */,
-				3AAD8AB11E9294C00013CE98 /* Data+BLEConversion.swift */,
+				3AAD8B171E929ABF0013CE98 /* Data+BLE.swift */,
+				3AAD8B181E929ABF0013CE98 /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -210,16 +210,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AAD8A951E9293DB0013CE98 /* ViewController.swift in Sources */,
-				3AAD8AB61E9294C00013CE98 /* EBCentralManager.swift in Sources */,
-				3AAD8AB81E9294C00013CE98 /* EBTransaction.swift in Sources */,
-				3AAD8AB91E9294C00013CE98 /* ExtendaBLE+Definitions.swift in Sources */,
-				3AAD8ABB1E9294C00013CE98 /* Data+BLE.swift in Sources */,
-				3AAD8ABC1E9294C00013CE98 /* Data+BLEConversion.swift in Sources */,
+				3AAD8B201E929ABF0013CE98 /* EBTransaction.swift in Sources */,
+				3AAD8B1E1E929ABF0013CE98 /* EBDefinitions.swift in Sources */,
+				3AAD8B1D1E929ABF0013CE98 /* EBCentralManager.swift in Sources */,
+				3AAD8B221E929ABF0013CE98 /* Data+BLE.swift in Sources */,
+				3AAD8B231E929ABF0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8A931E9293DB0013CE98 /* AppDelegate.swift in Sources */,
-				3AAD8AB31E9294C00013CE98 /* EBCharacteristicMaker.swift in Sources */,
-				3AAD8ABA1E9294C00013CE98 /* ExtendaBLE.swift in Sources */,
-				3AAD8AB21E9294C00013CE98 /* EBCentralManagerMaker.swift in Sources */,
-				3AAD8AB51E9294C00013CE98 /* EBServiceMaker.swift in Sources */,
+				3AAD8B1A1E929ABF0013CE98 /* EBCharacteristicMaker.swift in Sources */,
+				3AAD8B211E929ABF0013CE98 /* ExtendaBLE.swift in Sources */,
+				3AAD8B191E929ABF0013CE98 /* EBCentralManagerMaker.swift in Sources */,
+				3AAD8B1C1E929ABF0013CE98 /* EBServiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
