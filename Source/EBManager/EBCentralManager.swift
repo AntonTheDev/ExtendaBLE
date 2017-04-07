@@ -139,11 +139,8 @@ extension EBCentralManager {
                     
                     activeReadTransations[peripheral]!.append(transaction)
                 }
-            }
-            
-            if let characteristic = connectedCharacteristics[peripheral]?.first(where: { $0.uuid.uuidString == uuid }) {
+                
                 peripheral.readValue(for: characteristic)
-                return
             }
         }
     }
@@ -230,7 +227,7 @@ extension EBCentralManager: CBCentralManagerDelegate {
                 for uuid in registeredServiceUUIDs {
                     if let _ = peripheralUUIDs.first(where: { $0 == uuid })  {
                         
-                        print("\n Discovered BY UUID -  \(uuid.uuidString)")
+                        print("\n Discovered UUID -  \(uuid.uuidString)")
                         
                         connectedCharacteristics[peripheral] = [CBCharacteristic]()
                         centralManager.connect(peripheral, options: nil)

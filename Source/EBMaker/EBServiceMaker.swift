@@ -60,3 +60,13 @@ public class EBServiceMaker {
         #endif
     }
 }
+
+extension EBServiceMaker {
+    
+    @discardableResult public func addProperty(_ UUID: String) -> EBCharacteristicMaker {
+        let characteristic = EBCharacteristicMaker(uuid : UUID)
+        characteristics.append(characteristic)
+        return characteristic
+    }
+}
+

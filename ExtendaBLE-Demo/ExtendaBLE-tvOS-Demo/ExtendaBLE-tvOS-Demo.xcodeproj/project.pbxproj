@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A6020D71E9750D000FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D61E9750D000FBE08C /* ViewController.swift */; };
 		3AAD8A931E9293DB0013CE98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */; };
-		3AAD8A951E9293DB0013CE98 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A941E9293DB0013CE98 /* ViewController.swift */; };
 		3AAD8A981E9293DB0013CE98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AAD8A961E9293DB0013CE98 /* Main.storyboard */; };
 		3AAD8A9A1E9293DB0013CE98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAD8A991E9293DB0013CE98 /* Assets.xcassets */; };
 		3AAD8B191E929ABF0013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B0B1E929ABF0013CE98 /* EBCentralManagerMaker.swift */; };
@@ -23,9 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A6020D61E9750D000FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
 		3AAD8A8F1E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-tvOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3AAD8A941E9293DB0013CE98 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3AAD8A971E9293DB0013CE98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3AAD8A991E9293DB0013CE98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3AAD8A9B1E9293DB0013CE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,7 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */,
-				3AAD8A941E9293DB0013CE98 /* ViewController.swift */,
+				3A6020D61E9750D000FBE08C /* ViewController.swift */,
 				3AAD8AA11E9294610013CE98 /* SupportingFiles */,
 			);
 			path = "ExtendaBLE-tvOS-Demo";
@@ -209,11 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAD8A951E9293DB0013CE98 /* ViewController.swift in Sources */,
 				3AAD8B201E929ABF0013CE98 /* EBTransaction.swift in Sources */,
 				3AAD8B1E1E929ABF0013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8B1D1E929ABF0013CE98 /* EBCentralManager.swift in Sources */,
 				3AAD8B221E929ABF0013CE98 /* Data+BLE.swift in Sources */,
+				3A6020D71E9750D000FBE08C /* ViewController.swift in Sources */,
 				3AAD8B231E929ABF0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8A931E9293DB0013CE98 /* AppDelegate.swift in Sources */,
 				3AAD8B1A1E929ABF0013CE98 /* EBCharacteristicMaker.swift in Sources */,
@@ -379,6 +379,7 @@
 				3AAD8AA01E9293DB0013CE98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

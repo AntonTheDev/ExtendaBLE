@@ -32,3 +32,31 @@ public class EBCharacteristicMaker {
         #endif
     }
 }
+
+extension EBCharacteristicMaker {
+    
+    @discardableResult public func properties(_ properties : CBCharacteristicProperties) -> EBCharacteristicMaker {
+        self.properties = properties
+        return self
+    }
+    
+    @discardableResult public func permissions(_ permissions : CBAttributePermissions) -> EBCharacteristicMaker {
+        self.permissions = permissions
+        return self
+    }
+    
+    @discardableResult public func chunkingEnabled(_ chunkingEnabled : Bool) -> EBCharacteristicMaker {
+        self.chunkingEnabled = chunkingEnabled
+        return self
+    }
+    
+    @discardableResult public func value(_ value : Data) -> EBCharacteristicMaker {
+        self.value = value
+        return self
+    }
+    
+    @discardableResult public func onUpdate(_ updateCallback : @escaping EBTransactionCallback) -> EBCharacteristicMaker {
+        self.updateCallback = updateCallback
+        return self
+    }
+}

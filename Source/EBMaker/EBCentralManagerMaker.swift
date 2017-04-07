@@ -39,3 +39,20 @@ public class EBCentralManagerMaker  {
         return newCentralManager
     }
 }
+
+extension EBCentralManagerMaker {
+    
+    @discardableResult public func peripheralName(_ peripheralName : String) -> EBCentralManagerMaker {
+        self.peripheralName = peripheralName
+        return self
+    }
+    
+    @discardableResult public func addService(_ uuid: String,
+                                              primary isPrimary: Bool = true,
+                                              service : (_ service : EBServiceMaker) -> Void) -> EBCentralManagerMaker {
+        let newService = EBServiceMaker(uuid, primary: isPrimary)
+        services.append(newService)
+        service(newService)
+        return self
+    }
+}

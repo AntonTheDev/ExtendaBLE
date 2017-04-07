@@ -8,22 +8,6 @@
          location = "group:ExtendaBLE.swift">
       </FileRef>
       <Group
-         location = "group:EBMaker"
-         name = "EBMaker">
-         <FileRef
-            location = "group:EBCentralManagerMaker.swift">
-         </FileRef>
-         <FileRef
-            location = "group:EBPeripheralManagerMaker.swift">
-         </FileRef>
-         <FileRef
-            location = "group:EBServiceMaker.swift">
-         </FileRef>
-         <FileRef
-            location = "group:EBCharacteristicMaker.swift">
-         </FileRef>
-      </Group>
-      <Group
          location = "group:EBManager"
          name = "EBManager">
          <FileRef
@@ -34,6 +18,22 @@
          </FileRef>
          <FileRef
             location = "group:EBPeripheralManager.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:EBMaker"
+         name = "EBMaker">
+         <FileRef
+            location = "group:EBCentralManagerMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBCharacteristicMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBPeripheralManagerMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBServiceMaker.swift">
          </FileRef>
       </Group>
       <Group
@@ -53,6 +53,13 @@
             location = "group:Data+BLEConversion.swift">
          </FileRef>
       </Group>
+   </Group>
+   <Group
+      location = "group:ExtendaBLE-Demo/Shared"
+      name = "Shared ViewController">
+      <FileRef
+         location = "group:ViewController.swift">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:ExtendaBLE/ExtendaBLE.xcodeproj">

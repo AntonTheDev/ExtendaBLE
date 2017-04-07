@@ -159,7 +159,7 @@ extension ViewController {
             
             self.central?.read(fromUUID: sensorValueCharacteristicUUID) { (returnedData, error) in
                 
-                print("\nRead Callback \n\n\(returnedData)  - \(String(describing: error))\n\n")
+                print("\nRead Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n\n")
                 
                 if let value = returnedData?.int16Value(0..<2) {
                     print("\nRead Callback \n\n\(value)\n\n")

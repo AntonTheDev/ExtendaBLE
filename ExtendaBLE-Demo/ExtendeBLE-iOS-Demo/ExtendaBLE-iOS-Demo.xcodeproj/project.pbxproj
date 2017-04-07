@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3A0322371E8DFFBD0080E13F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322361E8DFFBD0080E13F /* AppDelegate.swift */; };
-		3A0322391E8DFFBD0080E13F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322381E8DFFBD0080E13F /* ViewController.swift */; };
 		3A03223E1E8DFFBD0080E13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223D1E8DFFBD0080E13F /* Assets.xcassets */; };
 		3A0322411E8DFFBD0080E13F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223F1E8DFFBD0080E13F /* LaunchScreen.storyboard */; };
+		3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D81E9751EC00FBE08C /* ViewController.swift */; };
 		3AAD8AFE1E929AB60013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF01E929AB60013CE98 /* EBCentralManagerMaker.swift */; };
 		3AAD8AFF1E929AB60013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF11E929AB60013CE98 /* EBCharacteristicMaker.swift */; };
 		3AAD8B001E929AB60013CE98 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF21E929AB60013CE98 /* EBPeripheralManagerMaker.swift */; };
@@ -27,10 +27,10 @@
 /* Begin PBXFileReference section */
 		3A0322331E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-iOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0322361E8DFFBD0080E13F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A0322381E8DFFBD0080E13F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A03223D1E8DFFBD0080E13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A0322401E8DFFBD0080E13F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A0322421E8DFFBD0080E13F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A6020D81E9751EC00FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
 		3AAD8AF01E929AB60013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
 		3AAD8AF11E929AB60013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
 		3AAD8AF21E929AB60013CE98 /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				3A0322361E8DFFBD0080E13F /* AppDelegate.swift */,
-				3A0322381E8DFFBD0080E13F /* ViewController.swift */,
+				3A6020D81E9751EC00FBE08C /* ViewController.swift */,
 				3A0322481E8E00410080E13F /* Supporting Files */,
 			);
 			path = "ExtendaBLE-Demo";
@@ -215,7 +215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A0322391E8DFFBD0080E13F /* ViewController.swift in Sources */,
 				3AAD8B051E929AB60013CE98 /* EBTransaction.swift in Sources */,
 				3AAD8B031E929AB60013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8B021E929AB60013CE98 /* EBCentralManager.swift in Sources */,
@@ -224,6 +223,7 @@
 				3AAD8B081E929AB60013CE98 /* Data+BLEConversion.swift in Sources */,
 				3A0322371E8DFFBD0080E13F /* AppDelegate.swift in Sources */,
 				3AAD8AFF1E929AB60013CE98 /* EBCharacteristicMaker.swift in Sources */,
+				3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */,
 				3AAD8B001E929AB60013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
 				3AAD8B061E929AB60013CE98 /* ExtendaBLE.swift in Sources */,
 				3AAD8AFE1E929AB60013CE98 /* EBCentralManagerMaker.swift in Sources */,

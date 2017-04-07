@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A6020D51E974E8D00FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D41E974E8D00FBE08C /* ViewController.swift */; };
 		3A6F74811E8EA8CD00CDDE0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74801E8EA8CD00CDDE0B /* AppDelegate.swift */; };
-		3A6F74831E8EA8CD00CDDE0B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74821E8EA8CD00CDDE0B /* ViewController.swift */; };
 		3A6F74851E8EA8CD00CDDE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F74841E8EA8CD00CDDE0B /* Assets.xcassets */; };
 		3A6F74881E8EA8CD00CDDE0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F74861E8EA8CD00CDDE0B /* Main.storyboard */; };
 		3AAD8B341E929AC70013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B261E929AC70013CE98 /* EBCentralManagerMaker.swift */; };
@@ -25,9 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A6020D41E974E8D00FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
 		3A6F747D1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-OSX-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A6F74801E8EA8CD00CDDE0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A6F74821E8EA8CD00CDDE0B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A6F74841E8EA8CD00CDDE0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A6F74871E8EA8CD00CDDE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A6F74891E8EA8CD00CDDE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				3A6F74801E8EA8CD00CDDE0B /* AppDelegate.swift */,
-				3A6F74821E8EA8CD00CDDE0B /* ViewController.swift */,
+				3A6020D41E974E8D00FBE08C /* ViewController.swift */,
 				3A6F748F1E8EA8F800CDDE0B /* SupportingFiles */,
 			);
 			path = "ExtendaBLE-OSX-Demo";
@@ -215,7 +215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A6F74831E8EA8CD00CDDE0B /* ViewController.swift in Sources */,
 				3AAD8B3B1E929AC70013CE98 /* EBTransaction.swift in Sources */,
 				3AAD8B391E929AC70013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8B381E929AC70013CE98 /* EBCentralManager.swift in Sources */,
@@ -224,6 +223,7 @@
 				3AAD8B3E1E929AC70013CE98 /* Data+BLEConversion.swift in Sources */,
 				3A6F74811E8EA8CD00CDDE0B /* AppDelegate.swift in Sources */,
 				3AAD8B351E929AC70013CE98 /* EBCharacteristicMaker.swift in Sources */,
+				3A6020D51E974E8D00FBE08C /* ViewController.swift in Sources */,
 				3AAD8B361E929AC70013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
 				3AAD8B3C1E929AC70013CE98 /* ExtendaBLE.swift in Sources */,
 				3AAD8B341E929AC70013CE98 /* EBCentralManagerMaker.swift in Sources */,

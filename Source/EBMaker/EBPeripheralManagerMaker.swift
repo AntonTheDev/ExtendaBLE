@@ -48,3 +48,22 @@ public class EBPeripheralManagerMaker  {
         return newPeripheralManager
     }
 }
+
+#if !os(tvOS)
+    extension EBPeripheralManagerMaker {
+        
+        @discardableResult public func localName(_ localname : String) -> EBPeripheralManagerMaker {
+            self.localName = localname
+            return self
+        }
+        
+        @discardableResult public func addService(_ uuid: String,
+                                                  primary isPrimary: Bool = true,
+                                                  service : (_ service : EBServiceMaker) -> Void) -> EBPeripheralManagerMaker {
+            let newService = EBServiceMaker(uuid, primary: isPrimary)
+            services.append(newService)
+            service(newService)
+            return self
+        }
+    }
+#endif

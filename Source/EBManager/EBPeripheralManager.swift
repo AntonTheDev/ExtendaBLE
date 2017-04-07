@@ -129,7 +129,7 @@ extension EBPeripheralManager {
     }
     
     internal func handleWriteRequests(_ requests: [CBATTRequest]) {
-        
+        print("Handle Write Request")
         for request in requests {
             
             var activeWriteTransaction = activeWriteTransations[request.characteristic.uuid]
@@ -155,7 +155,6 @@ extension EBPeripheralManager {
             writeTransaction.sentReceipt()
             
             if let characteristic = characteristic(for : request) {
-                
                 peripheralManager.respond(to: request, withResult: .success)
                 
                 if writeTransaction.isComplete {
