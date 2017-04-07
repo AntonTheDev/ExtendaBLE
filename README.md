@@ -1,2 +1,2 @@
 # ExtendaBLE
-Blocks Based BLE On Crack
+BLE on crack for iOS/OSX/tvOS
