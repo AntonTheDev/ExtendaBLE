@@ -17,7 +17,6 @@ class ExtendaBLE {
         return newManager.constructedCentralManager()
     }
    
-    
     #if !os(tvOS)
     public class func newPeripheralManager(queue: DispatchQueue? = nil, peripheral : (_ peripheral : EBPeripheralManagerMaker) -> Void) -> EBPeripheralManager {
         let newManager = EBPeripheralManagerMaker(queue: queue)
