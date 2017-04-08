@@ -14,22 +14,24 @@ extension Data {
     
     var packetIndex : Int {
         get {
+            /*
             if count < 4 {
                 print("Chunk Index Not Found in \(self)")
                 return 0
             }
-            
+            */
             return bytes(0, 2) as Int
         }
     }
     
     var totalPackets : Int {
         get {
+            /*
             if count < 4 {
                 print("Chunk Total Not Found in \(self)")
                 return 0
             }
-            
+            */
             return bytes(2, 2) as Int }
     }
     
@@ -80,7 +82,7 @@ extension Data {
         
         for dataItem in dataArray {
             let packetIndex = dataItem.packetIndex
-            orderedPacketArray[Int(packetIndex - 1)] = dataItem.subdata(in: Int(packetHeaderSize)..<(dataItem.count - Int(packetHeaderSize)))
+            orderedPacketArray[Int(packetIndex - 1)] = dataItem.subdata(in: Int(packetHeaderSize)..<(dataItem.count))
         }
         
         let reconstructedData = NSMutableData()
@@ -127,12 +129,12 @@ extension NSMutableData {
 extension Data {
     
     public func bytes(_ range : Range<Data.Index>) -> Int {
-        
+        /*
         if (range.lowerBound + range.upperBound) > count {
             print("Byte Range outside of bounds \(self)")
             return 0
         }
-        
+        */
         return bytes(range.lowerBound, range.upperBound)
     }
 

@@ -57,6 +57,10 @@ extension EBCentralManager {
             return self
         }
         
+        #if os(OSX)
+            _isScanning = true
+        #endif
+        
         centralManager.scanForPeripherals(withServices: registeredServiceUUIDs, options: nil)
         
         return self
@@ -226,11 +230,10 @@ extension EBCentralManager: CBCentralManagerDelegate {
                 
                 for uuid in registeredServiceUUIDs {
                     if let _ = peripheralUUIDs.first(where: { $0 == uuid })  {
-                        
                         print("\n Discovered UUID -  \(uuid.uuidString)")
+                        centralManager.connect(peripheral, options: nil)
                         
                         connectedCharacteristics[peripheral] = [CBCharacteristic]()
-                        centralManager.connect(peripheral, options: nil)
                         didDiscoverCallBack?(peripheral, advertisementData, RSSI)
                         return
                     }

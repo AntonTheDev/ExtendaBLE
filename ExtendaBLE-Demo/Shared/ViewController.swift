@@ -16,8 +16,11 @@ enum ControllerConfig : Int {
             #if os(OSX)
                 return .central
             #elseif os(tvOS)
-                return .central
+                return .peripheral
             #else
+                if UIDevice.current.name == "iPhone 6Plus" {
+                    return .central
+                }
                 return .peripheral
             #endif
         }
@@ -40,6 +43,7 @@ extension ViewController {
     }
     
     func configureServices() {
+        
         switch ControllerConfig.configForOS {
         case .central:
             configureDataServiceCentalManager()
@@ -74,7 +78,14 @@ extension ViewController {
                 
                 service.addProperty(dataServiceCharacteristicUUIDKey).onUpdate { (data, error) in
     
+                    let valueString = String(data: data!, encoding: .utf8)
+                    
+                    if self.testValueString == valueString {
+                        print("\nVALUES MATCHED \n")
+                    }
+                    
                     /* Callback whenever the value is updated by the CENTRAL */
+                    print("\nPreripheral Received read Value with : \n\n\(String(describing: valueString))\n")
                     
                     }.properties([.read, .write, .notify]).permissions([.readable, .writeable]).chunkingEnabled(true)
             }

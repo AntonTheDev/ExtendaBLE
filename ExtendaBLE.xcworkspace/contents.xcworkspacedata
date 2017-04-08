@@ -56,7 +56,7 @@
    </Group>
    <Group
       location = "group:ExtendaBLE-Demo/Shared"
-      name = "Shared ViewController">
+      name = "Shared VC">
       <FileRef
          location = "group:ViewController.swift">
       </FileRef>

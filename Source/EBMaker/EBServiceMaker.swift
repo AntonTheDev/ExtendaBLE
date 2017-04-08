@@ -15,8 +15,13 @@ public class EBServiceMaker {
     var primary : Bool
     
     var characteristics             = [EBCharacteristicMaker]()
-    var chunkedCharacteristicUUIDS  = [CBUUID]()
     
+    var chunkedCharacteristicUUIDS  : [CBUUID] {
+        get {
+            return characteristics.filter { $0.chunkingEnabled == true }.map {CBUUID(string: $0.uuid) }
+        }
+    }
+
     var characteristicUpdateCallbacks = [CBUUID : EBTransactionCallback]()
     
     required public init(_ uuid: String, primary isPrimary: Bool = true) {
@@ -50,10 +55,6 @@ public class EBServiceMaker {
                 #endif
                 
                 characteristicUpdateCallbacks[characteristicUUID] = characteristic.updateCallback
-                
-                if characteristic.chunkingEnabled {
-                    chunkedCharacteristicUUIDS.append(characteristicUUID)
-                }
             }
             
             return newService
