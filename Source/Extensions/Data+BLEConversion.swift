@@ -1,6 +1,6 @@
 //
 //  Data+BLEConvertable.swift
-//  CameraApp
+//  ExtendaBLE
 //
 //  Created by Anton Doudarev on 3/30/17.
 //  Copyright © 2017 Anton Doudarev. All rights reserved.
@@ -11,43 +11,57 @@ import Foundation
 extension Data {
 
     public func int8Value(_ range : Range<Data.Index>) -> Int8? {
-        return numericValue(range)
+        let value =  subdata(in:range).withUnsafeBytes { (ptr: UnsafePointer<Int8>) -> Int8 in
+            return ptr.pointee
+        }
+        return value
     }
     
     public func int16Value(_ range : Range<Data.Index>) -> Int16? {
-        return numericValue(range)
+        return Int16(bigEndian: subdata(in:range).withUnsafeBytes { $0.pointee })
     }
     
     public func int32Value(_ range : Range<Data.Index>) -> Int32? {
-        return numericValue(range)
+        return Int32(bigEndian: subdata(in:range).withUnsafeBytes { $0.pointee })
     }
     
     public func int64Value(_ range : Range<Data.Index>) -> Int64? {
-        return numericValue(range)
+        return Int64(bigEndian: subdata(in:range).withUnsafeBytes { $0.pointee })
     }
     
     public func uint8Value(_ range : Range<Data.Index>) -> UInt8? {
-        return numericValue(range)
+        let value =  subdata(in:range).withUnsafeBytes { (ptr: UnsafePointer<UInt8>) -> UInt8 in
+            return ptr.pointee
+        }
+        return value
     }
     
     public func uint16Value(_ range : Range<Data.Index>) -> UInt16? {
-        return numericValue(range)
+        return UInt16(bigEndian: subdata(in:range).withUnsafeBytes { $0.pointee })
     }
     
     public func uint32Value(_ range : Range<Data.Index>) -> UInt32? {
-        return numericValue(range)
+        return UInt32(bigEndian: subdata(in:range).withUnsafeBytes { $0.pointee })
     }
     
     public func uint64Value(_ range : Range<Data.Index>) -> UInt64? {
-        return numericValue(range)
+        return UInt64(bigEndian: subdata(in:range).withUnsafeBytes { $0.pointee })
     }
     
     public func doubleValue(_ range : Range<Data.Index>) -> Double? {
-        return numericValue(range)
+        let value = subdata(in:range).withUnsafeBytes { (ptr: UnsafePointer<Double>) -> Double in
+            return ptr.pointee
+        }
+        
+        return value
     }
     
     public func floatValue(_ range : Range<Data.Index>) -> Float? {
-        return numericValue(range)
+        let value = subdata(in:range).withUnsafeBytes { (ptr: UnsafePointer<Float>) -> Float in
+            return ptr.pointee
+        }
+        
+        return value
     }
     
     public func stringValue(_ range : Range<Data.Index>) -> String? {
@@ -59,16 +73,4 @@ extension Data {
         return String(data:  subdata(in:range), encoding: .utf8)
     }
 
-    private func numericValue<T> (_ range : Range<Data.Index>) -> T? {
-        
-        if range.lowerBound + range.upperBound > count {
-            print("\(range) outside of bounds for numeric value in \(self)")
-            return nil
-        }
-        
-        let value =  subdata(in:range).withUnsafeBytes { (ptr: UnsafePointer<T>) -> T in
-            return ptr.pointee
-        }
-        return value
-    }
 }

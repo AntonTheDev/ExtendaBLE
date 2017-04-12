@@ -1,6 +1,6 @@
 //
 //  Data+BLE.swift
-//  CameraApp
+//  ExtendaBLE
 //
 //  Created by Anton Doudarev on 3/27/17.
 //  Copyright © 2017 Anton Doudarev. All rights reserved.

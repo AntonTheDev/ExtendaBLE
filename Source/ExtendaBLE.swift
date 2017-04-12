@@ -1,6 +1,6 @@
 //
 //  ExtendaBLE.swift
-//  CameraApp
+//  ExtendaBLE
 //
 //  Created by Anton Doudarev on 3/29/17.
 //  Copyright © 2017 Anton Doudarev. All rights reserved.

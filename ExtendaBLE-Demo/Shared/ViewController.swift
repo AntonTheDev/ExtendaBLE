@@ -85,11 +85,13 @@ extension ViewController {
                     }
                     
                     /* Callback whenever the value is updated by the CENTRAL */
-                    print("\nPreripheral Received read Value with : \n\n\(String(describing: valueString))\n")
+                    print("\nPreripheral Updated With Value with : \n\n\(String(describing: valueString))\n")
                     
                     }.properties([.read, .write, .notify]).permissions([.readable, .writeable]).chunkingEnabled(true)
             }
-        }.startAdvertising()
+        }
+            
+            peripheral?.startAdvertising()
         
         #endif
     }
@@ -100,6 +102,7 @@ extension ViewController {
             
             manager.addService(dataServiceUUIDKey) {(service) in
                 service.addProperty(dataServiceCharacteristicUUIDKey).onUpdate { (data, error) in
+                    
                     
                     /* Callback when ever the value is updated by the PERIPHERAL */
                     
@@ -125,13 +128,16 @@ extension ViewController {
             
             let valueString = String(data: writtenData!, encoding: .utf8)
             print("\nCentral Wrote Value : \n\n\(String(describing: valueString))\n")
-
             
             /* Callback when write is Complete, Next Perform Read From Peripheral as an Example */
             
             self.central?.read(fromUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
-               
                 let valueString = String(data: returnedData!, encoding: .utf8)
+                
+                if self.testValueString == valueString {
+                    print("\nCentral read VALUES MATCHED \n")
+                }
+                
                 print("\nCentral read Value with : \n\n\(String(describing: valueString))\n")
             }
         }

@@ -1,6 +1,6 @@
 //
 //  EBTransaction.swift
-//  CameraApp
+//  ExtendaBLE
 //
 //  Created by Anton Doudarev on 3/29/17.
 //  Copyright © 2017 Anton Doudarev. All rights reserved.
@@ -81,7 +81,6 @@ public class Transaction {
         activeResponseCount = activeResponseCount + 1
     }
     
-    
     func appendPacket(_ dataPacket : Data?) {
         
         guard let dataPacket = dataPacket else {
@@ -97,9 +96,12 @@ public class Transaction {
     
     var isComplete : Bool {
         get {
-            print( activeResponseCount, "/ ",  totalPackets)
-            if type == .readChunkable || type == .writeChunkable {
+            if type == .readChunkable {
                 return totalPackets == activeResponseCount
+            } else if type == .writeChunkable {
+                return totalPackets == activeResponseCount
+                
+              //  return self.dataPackets.count == totalPackets
             }
             
             return (activeResponseCount == 1)
