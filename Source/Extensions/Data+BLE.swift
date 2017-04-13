@@ -16,7 +16,7 @@ extension Data {
         get {
             /*
             if count < 4 {
-                print("Chunk Index Not Found in \(self)")
+                Log(.debug, logString: "Chunk Index Not Found in \(self)")
                 return 0
             }
             */
@@ -28,7 +28,7 @@ extension Data {
         get {
             /*
             if count < 4 {
-                print("Chunk Total Not Found in \(self)")
+                Log(.debug, logString: "Chunk Total Not Found in \(self)")
                 return 0
             }
             */
@@ -131,7 +131,7 @@ extension Data {
     public func bytes(_ range : Range<Data.Index>) -> Int {
         /*
         if (range.lowerBound + range.upperBound) > count {
-            print("Byte Range outside of bounds \(self)")
+            Log(.debug, logString: "Byte Range outside of bounds \(self)")
             return 0
         }
         */

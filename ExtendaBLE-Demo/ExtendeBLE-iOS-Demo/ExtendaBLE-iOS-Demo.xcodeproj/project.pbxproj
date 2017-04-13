@@ -11,6 +11,7 @@
 		3A03223E1E8DFFBD0080E13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223D1E8DFFBD0080E13F /* Assets.xcassets */; };
 		3A0322411E8DFFBD0080E13F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223F1E8DFFBD0080E13F /* LaunchScreen.storyboard */; };
 		3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D81E9751EC00FBE08C /* ViewController.swift */; };
+		3A6020DB1E9E0C6B00FBE08C /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020DA1E9E0C6B00FBE08C /* EBTransaction.swift */; };
 		3AAD8AFE1E929AB60013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF01E929AB60013CE98 /* EBCentralManagerMaker.swift */; };
 		3AAD8AFF1E929AB60013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF11E929AB60013CE98 /* EBCharacteristicMaker.swift */; };
 		3AAD8B001E929AB60013CE98 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF21E929AB60013CE98 /* EBPeripheralManagerMaker.swift */; };
@@ -18,10 +19,10 @@
 		3AAD8B021E929AB60013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF51E929AB60013CE98 /* EBCentralManager.swift */; };
 		3AAD8B031E929AB60013CE98 /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF61E929AB60013CE98 /* EBDefinitions.swift */; };
 		3AAD8B041E929AB60013CE98 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF71E929AB60013CE98 /* EBPeripheralManager.swift */; };
-		3AAD8B051E929AB60013CE98 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF91E929AB60013CE98 /* EBTransaction.swift */; };
 		3AAD8B061E929AB60013CE98 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AFA1E929AB60013CE98 /* ExtendaBLE.swift */; };
 		3AAD8B071E929AB60013CE98 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AFC1E929AB60013CE98 /* Data+BLE.swift */; };
 		3AAD8B081E929AB60013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AFD1E929AB60013CE98 /* Data+BLEConversion.swift */; };
+		3AD483531E9FD9AB00505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483521E9FD9AB00505FDA /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		3A0322401E8DFFBD0080E13F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A0322421E8DFFBD0080E13F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A6020D81E9751EC00FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
+		3A6020DA1E9E0C6B00FBE08C /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBTransaction.swift; path = ../../Source/EBTransaction/EBTransaction.swift; sourceTree = "<group>"; };
 		3AAD8AF01E929AB60013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
 		3AAD8AF11E929AB60013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
 		3AAD8AF21E929AB60013CE98 /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
@@ -38,10 +40,10 @@
 		3AAD8AF51E929AB60013CE98 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
 		3AAD8AF61E929AB60013CE98 /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
 		3AAD8AF71E929AB60013CE98 /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
-		3AAD8AF91E929AB60013CE98 /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
 		3AAD8AFA1E929AB60013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		3AAD8AFC1E929AB60013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		3AAD8AFD1E929AB60013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		3AD483521E9FD9AB00505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				3AAD8AEF1E929AB60013CE98 /* EBMaker */,
 				3AAD8AF81E929AB60013CE98 /* EBTransaction */,
 				3AAD8AFB1E929AB60013CE98 /* Extensions */,
+				3AD483511E9FD9AB00505FDA /* Logger */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -129,9 +132,10 @@
 		3AAD8AF81E929AB60013CE98 /* EBTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AF91E929AB60013CE98 /* EBTransaction.swift */,
+				3A6020DA1E9E0C6B00FBE08C /* EBTransaction.swift */,
 			);
-			path = EBTransaction;
+			name = EBTransaction;
+			path = "../ExtendaBLE-Demo/Shared";
 			sourceTree = "<group>";
 		};
 		3AAD8AFB1E929AB60013CE98 /* Extensions */ = {
@@ -141,6 +145,14 @@
 				3AAD8AFD1E929AB60013CE98 /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3AD483511E9FD9AB00505FDA /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				3AD483521E9FD9AB00505FDA /* Logger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +189,11 @@
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = WQAUP4LZJV;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -215,9 +232,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAD8B051E929AB60013CE98 /* EBTransaction.swift in Sources */,
 				3AAD8B031E929AB60013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8B021E929AB60013CE98 /* EBCentralManager.swift in Sources */,
+				3A6020DB1E9E0C6B00FBE08C /* EBTransaction.swift in Sources */,
 				3AAD8B041E929AB60013CE98 /* EBPeripheralManager.swift in Sources */,
 				3AAD8B071E929AB60013CE98 /* Data+BLE.swift in Sources */,
 				3AAD8B081E929AB60013CE98 /* Data+BLEConversion.swift in Sources */,
@@ -226,6 +243,7 @@
 				3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */,
 				3AAD8B001E929AB60013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
 				3AAD8B061E929AB60013CE98 /* ExtendaBLE.swift in Sources */,
+				3AD483531E9FD9AB00505FDA /* Logger.swift in Sources */,
 				3AAD8AFE1E929AB60013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8B011E929AB60013CE98 /* EBServiceMaker.swift in Sources */,
 			);
@@ -290,7 +308,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "-DDebug";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -348,6 +366,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-ios.ExtendaBLE-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "-DDebug";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;

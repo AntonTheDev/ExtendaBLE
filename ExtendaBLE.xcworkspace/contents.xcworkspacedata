@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <FileRef
+      location = "group:ExtendaBLE-Demo/Shared/ViewController.swift">
+   </FileRef>
    <Group
       location = "group:Source"
       name = "Source">
@@ -53,13 +56,13 @@
             location = "group:Data+BLEConversion.swift">
          </FileRef>
       </Group>
-   </Group>
-   <Group
-      location = "group:ExtendaBLE-Demo/Shared"
-      name = "Shared VC">
-      <FileRef
-         location = "group:ViewController.swift">
-      </FileRef>
+      <Group
+         location = "group:Logger"
+         name = "Logger">
+         <FileRef
+            location = "group:/Users/Anton/Developer/OpenSource/ExtendaBLE/Source/Logger/Logger.swift">
+         </FileRef>
+      </Group>
    </Group>
    <FileRef
       location = "group:ExtendaBLE/ExtendaBLE.xcodeproj">

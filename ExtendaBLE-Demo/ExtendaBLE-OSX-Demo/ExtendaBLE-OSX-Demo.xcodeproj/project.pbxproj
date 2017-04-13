@@ -22,6 +22,7 @@
 		3AAD8B3C1E929AC70013CE98 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B301E929AC70013CE98 /* ExtendaBLE.swift */; };
 		3AAD8B3D1E929AC70013CE98 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B321E929AC70013CE98 /* Data+BLE.swift */; };
 		3AAD8B3E1E929AC70013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B331E929AC70013CE98 /* Data+BLEConversion.swift */; };
+		3AD483561E9FD9D100505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483551E9FD9D100505FDA /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		3AAD8B301E929AC70013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		3AAD8B321E929AC70013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		3AAD8B331E929AC70013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		3AD483551E9FD9D100505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				3AAD8B251E929AC70013CE98 /* EBMaker */,
 				3AAD8B2E1E929AC70013CE98 /* EBTransaction */,
 				3AAD8B311E929AC70013CE98 /* Extensions */,
+				3AD483541E9FD9D100505FDA /* Logger */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -141,6 +144,14 @@
 				3AAD8B331E929AC70013CE98 /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3AD483541E9FD9D100505FDA /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				3AD483551E9FD9D100505FDA /* Logger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +237,7 @@
 				3A6020D51E974E8D00FBE08C /* ViewController.swift in Sources */,
 				3AAD8B361E929AC70013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
 				3AAD8B3C1E929AC70013CE98 /* ExtendaBLE.swift in Sources */,
+				3AD483561E9FD9D100505FDA /* Logger.swift in Sources */,
 				3AAD8B341E929AC70013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8B371E929AC70013CE98 /* EBServiceMaker.swift in Sources */,
 			);
@@ -289,6 +301,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDebug";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -347,6 +360,7 @@
 				INFOPLIST_FILE = "ExtendaBLE-OSX-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DDebug";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-OSX.ExtendaBLE-OSX-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -364,6 +378,7 @@
 				INFOPLIST_FILE = "ExtendaBLE-OSX-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-OSX.ExtendaBLE-OSX-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -32,7 +32,7 @@ public class EBPeripheralManagerMaker  {
             }
         
             for (uuid, updateCallback) in service.characteristicUpdateCallbacks {
-                newPeripheralManager.registeredCharacteristicUpdateCallbacks[uuid] = updateCallback
+                newPeripheralManager.registeredCharacteristicCallbacks[uuid] = updateCallback
             }
             
             newPeripheralManager.registeredServices.append(constructedService)

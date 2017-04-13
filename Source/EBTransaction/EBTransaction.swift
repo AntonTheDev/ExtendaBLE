@@ -63,22 +63,29 @@ public class Transaction {
         }
     }
     
-    public required init(_ type : TransactionType , _ direction : TransactionDirection, mtuSize : Int16 = 23) {
+    public required init(_ type : TransactionType ,
+                         _ direction : TransactionDirection,
+                         characteristic : CBCharacteristic? = nil,
+                         mtuSize : Int16 = 23,
+                         completion : EBTransactionCallback? = nil) {
+        
         self.direction = direction
         self.type = type
         self.mtuSize = mtuSize
+        self.characteristic = characteristic
+        self.completion = completion
+        
+        if type != .writeChunkable && type != .readChunkable {
+             totalPackets = 1
+        }
     }
 
-    func receivedReceipt() {
+    func processTransaction() {
         activeResponseCount = activeResponseCount + 1
     }
     
     func nextPacket() -> Data? {
         return dataPackets[activeResponseCount - 1]
-    }
-    
-    func sentReceipt() {
-        activeResponseCount = activeResponseCount + 1
     }
     
     func appendPacket(_ dataPacket : Data?) {

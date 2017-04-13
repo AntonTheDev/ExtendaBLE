@@ -11,6 +11,10 @@ import CoreBluetooth
 
 class ExtendaBLE {
     
+    public class func setLogLevel(_ logLevel : LogLevel) {
+        ExtendableLoggingConfig.logLevel = logLevel
+    }
+    
     public class func newCentralManager(queue: DispatchQueue? = nil, central : (_ central : EBCentralManagerMaker) -> Void) -> EBCentralManager {
         let newManager = EBCentralManagerMaker(queue: queue)
         central(newManager)

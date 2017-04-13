@@ -14,30 +14,28 @@ public class EBPeripheralManager : NSObject {
     
     internal var peripheralManager : CBPeripheralManager
     internal var localName : String?
-    internal var registeredServices = [CBMutableService]()
     
-    internal var chunkedCharacteristicUUIDS = [CBUUID]()
-    internal var registeredCharacteristicUpdateCallbacks = [CBUUID : EBTransactionCallback]()
-
-    internal var activeWriteTransations = [CBCentral : [Transaction]]()
-    internal var activeReadTransations = [CBCentral : [Transaction]]()
+    internal var registeredServices                 = [CBMutableService]()
+    internal var registeredCharacteristicCallbacks  = [CBUUID : EBTransactionCallback]()
+    internal var chunkedCharacteristicUUIDS         = [CBUUID]()
     
-    internal var stateChangeCallBack : PeripheralManagerStateChangeCallBack?
-    internal var didStartAdvertisingCallBack : PeripheralManagerDidStartAdvertisingCallBack?
-    internal var didAddServiceCallBack : PeripheralManagerDidAddServiceCallBack?
-    internal var subscriptionChangeCallBack : PeripheralManagerSubscriopnChangeToCallBack?
-    internal var readyToUpdateSubscribersCallBack : PeripheralManagerIsReadyToUpdateCallBack?
+    internal var activeWriteTransations             = [CBCentral : [Transaction]]()
+    internal var activeReadTransations              = [CBCentral : [Transaction]]()
     
-    internal var defaultQueue = DispatchQueue(label: "CentralManagerQueue", qos: .default)
-    internal var dataQueue = DispatchQueue(label: "DataOperationQueue", qos: .userInitiated)
+    internal var operationQueue                     = DispatchQueue(label: "PeripheralManagerQueue", qos: .default)
+    internal var dataQueue                          = DispatchQueue(label: "PeripheralOperationQueue", qos: .userInitiated)
     
+    internal var stateChangeCallBack                : PeripheralManagerStateChangeCallBack?
+    internal var didStartAdvertisingCallBack        : PeripheralManagerDidStartAdvertisingCallBack?
+    
+    internal var advertisingRequested : Bool        = false
     
     @available(iOS 9.0, OSX 10.10, *)
     public required init(queue: DispatchQueue?) {
         #if os(tvOS)
             peripheralManager = CBPeripheralManager()
         #else
-            peripheralManager = CBPeripheralManager(delegate: nil, queue: queue != nil ? queue : defaultQueue)
+            peripheralManager = CBPeripheralManager(delegate: nil, queue: queue != nil ? queue : operationQueue)
         #endif
         
         super.init()
@@ -50,7 +48,14 @@ extension EBPeripheralManager {
     @discardableResult public func startAdvertising() -> EBPeripheralManager {
         
         if peripheralManager.state != .poweredOn {
+            advertisingRequested = true
             return self
+        }
+        
+        peripheralManager.removeAllServices()
+        
+        for service in registeredServices {
+            peripheralManager.add(service)
         }
         
         var advertisementData = [String : Any]()
@@ -66,6 +71,7 @@ extension EBPeripheralManager {
         }
         
         peripheralManager.startAdvertising(advertisementData)
+        
         return self
     }
     
@@ -73,24 +79,6 @@ extension EBPeripheralManager {
         peripheralManager.stopAdvertising()
         return self
     }
-    
-    internal func configureServices() {
-        for service in registeredServices {
-            peripheralManager.add(service)
-        }
-    }
-    
-    internal func clearServices() {
-        for service in registeredServices {
-            peripheralManager.remove(service)
-        }
-    }
-}
-
-
-// MARK: - Recursive Delegate Callback Setters
-
-extension EBPeripheralManager {
     
     @discardableResult public func onStateChange(_ callback : @escaping PeripheralManagerStateChangeCallBack) -> EBPeripheralManager {
         stateChangeCallBack = callback
@@ -101,21 +89,6 @@ extension EBPeripheralManager {
         didStartAdvertisingCallBack = callback
         return self
     }
-    
-    @discardableResult public func onDidAddService(_ callback : @escaping PeripheralManagerDidAddServiceCallBack) -> EBPeripheralManager {
-        didAddServiceCallBack = callback
-        return self
-    }
-    
-    @discardableResult public func onSubscriptionChange(_ callback : @escaping PeripheralManagerSubscriopnChangeToCallBack) -> EBPeripheralManager {
-        subscriptionChangeCallBack = callback
-        return self
-    }
-    
-    @discardableResult public func onReadyToUpdateSubscribers(_ callback : @escaping PeripheralManagerIsReadyToUpdateCallBack) -> EBPeripheralManager {
-        readyToUpdateSubscribersCallBack = callback
-        return self
-    }
 }
 
 
@@ -124,50 +97,46 @@ extension EBPeripheralManager {
 extension EBPeripheralManager: CBPeripheralManagerDelegate {
     
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
-        switch peripheral.state {
-        case .poweredOn:
-            configureServices()
-            startAdvertising()
-        default:
-            break
+        operationQueue.async { [unowned self] in
+            self.handleStateChange(on : peripheral)
         }
-        
-        print("\nPeripheral BLE state - \(peripheral.state.rawValue)")
-        stateChangeCallBack?(EBManagerState(rawValue: peripheral.state.rawValue)!)
+    }
+    
+    public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
+        dataQueue.async { [unowned self] in
+            self.handleReadRequest(request)
+        }
+    }
+    
+    public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
+        dataQueue.async { [unowned self] in
+            self.handleWriteRequests(requests)
+        }
+    }
+    
+    public func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
+        operationQueue.async { [unowned self] in
+            self.handleSubscription(for : central, on: characteristic)
+        }
+    }
+    
+    public func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
+        operationQueue.async { [unowned self] in
+            self.handleUnSubscription(for : central, on: characteristic)
+        }
     }
     
     public func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
-        print("\nStarted Advertising - Error: \(String(describing: error))\n")
+        Log(.debug, logString: "Started Advertising - Error: \(String(describing: error))")
         didStartAdvertisingCallBack?((error != nil ? false : true), error)
     }
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
-        print("\nAdded Service \(service.uuid.uuidString) - Error: \(String(describing: error))")
-        didAddServiceCallBack?(service, error)
-    }
-    
-    public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
-        handleReadRequest(request)
-    }
-    
-    public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        handleWriteRequests(requests)
-    }
-    
-    public func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didSubscribeTo characteristic: CBCharacteristic) {
-        print("Central MTU : ", central.maximumUpdateValueLength, "\n")
-        
-        handleMTUSubscription(for: central)
-        subscriptionChangeCallBack?(true, central, characteristic)
-    }
-    
-    public func peripheralManager(_ peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFrom characteristic: CBCharacteristic) {
-        subscriptionChangeCallBack?(false, central, characteristic)
+        Log(.debug, logString: "Added Service \(service.uuid.uuidString) - Error: \(String(describing: error))")
     }
     
     public func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {
-        print("onReadyToUpdateSubscribers")
-        readyToUpdateSubscribersCallBack?()
+        Log(.debug, logString: "onReadyToUpdateSubscribers")
     }
 }
 
@@ -175,149 +144,220 @@ extension EBPeripheralManager: CBPeripheralManagerDelegate {
 
 extension EBPeripheralManager {
     
+    internal func handleStateChange(on peripheral: CBPeripheralManager) {
+        
+        switch peripheral.state {
+        case .poweredOn:
+            if advertisingRequested {
+                advertisingRequested = false
+                startAdvertising()
+            }
+        default:
+            break
+        }
+        
+        Log(.debug, logString: "Peripheral BLE state - \(peripheral.state.rawValue)")
+        stateChangeCallBack?(EBManagerState(rawValue: peripheral.state.rawValue)!)
+    }
+    
     internal func handleReadRequest(_ request: CBATTRequest) {
         
-        guard let data = dataValue(for : request.characteristic) else {
+        guard let data = localValue(for : request.characteristic) else {
             peripheralManager.respond(to: request, withResult: .attributeNotFound)
             return
         }
         
-        let triggerBlock = { (activeReadTransaction : Transaction)-> () in
-            
-            activeReadTransaction.sentReceipt()
-            request.value = activeReadTransaction.nextPacket()
-            
-            self.peripheralManager.respond(to: request, withResult: .success)
-            
-            print("Peripheral Read Packet ", activeReadTransaction.activeResponseCount, " / ",  activeReadTransaction.totalPackets)
-            
-            if activeReadTransaction.isComplete {
-                print("Peripheral Read Complete")
-                
-                if let index = self.activeReadTransations[request.central]?.index(where: { $0.characteristic == request.characteristic }) {
-                    self.activeReadTransations[request.central]?.remove(at: index)
-                }
-                
-                return
-            }
+        guard let activeReadTransaction = readTransaction(data, for: request.characteristic, from: request.central) else {
+            return
         }
         
-        if let activeReadTransaction = activeReadTransations[request.central]?.first(where: { $0.characteristic == request.characteristic }) {
-            triggerBlock(activeReadTransaction)
-        } else {
-            
-            if activeReadTransations[request.central] == nil {
-                activeReadTransations[request.central] = [Transaction]()
-            }
-            
-            var transactionType : TransactionType = .read
-            
-            if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == request.characteristic.uuid }) {
-                transactionType = .readChunkable
-            }
-            
-            let activeReadTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize:  Int16(request.central.maximumUpdateValueLength))
-            activeReadTransaction.data = data
-            activeReadTransaction.characteristic = characteristic(for: request)
-            
-            activeReadTransations[request.central]?.append(activeReadTransaction)
-            triggerBlock(activeReadTransaction)
+        activeReadTransaction.processTransaction()
+        request.value = activeReadTransaction.nextPacket()
+        
+        peripheralManager.respond(to: request, withResult: .success)
+        
+        Log(.debug, logString: "Peripheral Sent Read Packet \(activeReadTransaction.activeResponseCount) / \( activeReadTransaction.totalPackets)")
+        
+        if activeReadTransaction.isComplete {
+            Log(.debug, logString: "Peripheral Sent Read Complete")
+            clearReadTransaction(from: request.central, on: request.characteristic)
         }
     }
     
     internal func handleWriteRequests(_ requests: [CBATTRequest]) {
         
-        let triggerBlock = { [weak self] (_ writeTransaction : Transaction, _ request: CBATTRequest)-> ()  in
-            
-            writeTransaction.appendPacket(request.value)
-            writeTransaction.sentReceipt()
-            
-            print("Peripheral Write Packet ", writeTransaction.activeResponseCount, " / ",  writeTransaction.totalPackets)
-            
-            if let characteristic = self?.characteristic(for : request) {
-                self?.peripheralManager.respond(to: request, withResult: .success)
-                
-                if writeTransaction.isComplete {
-                    
-                    print("Peripheral Write Complete")
-                    characteristic.value = writeTransaction.data
-                    
-                    if let index = self?.activeWriteTransations[request.central]?.index(where: { $0.characteristic == request.characteristic }) {
-                        self?.activeWriteTransations[request.central]?.remove(at: index)
-                    }
-                    
-                    self?.registeredCharacteristicUpdateCallbacks[request.characteristic.uuid]?(writeTransaction.data, nil)
-                }
-            }
-        }
-        
         for request in requests {
             
-            var activeWriteTransaction = activeWriteTransations[request.central]?.first(where: { $0.characteristic?.uuid == request.characteristic.uuid })
+            guard let activeWriteTransaction = writeTransaction(for: request.characteristic, from: request.central) else {
+                continue
+            }
             
-            if activeWriteTransaction != nil  {
-                triggerBlock(activeWriteTransaction!, request)
-            } else {
+            activeWriteTransaction.appendPacket(request.value)
+            activeWriteTransaction.processTransaction()
+            
+            Log(.debug, logString: "Peripheral Received Write Packet \(activeWriteTransaction.activeResponseCount) / \(activeWriteTransaction.totalPackets)")
+            
+            peripheralManager.respond(to: request, withResult: .success)
+            
+            if activeWriteTransaction.isComplete {
+                Log(.debug, logString: "Peripheral Received Write Complete")
                 
-                if activeWriteTransations[request.central] == nil {
-                    activeWriteTransations[request.central] = [Transaction]()
-                }
-                
-                var transactionType : TransactionType = .write
-                
-                if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == request.characteristic.uuid }) {
-                    transactionType = .writeChunkable
-                }
-                
-                activeWriteTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize: Int16(request.central.maximumUpdateValueLength))
-                activeWriteTransaction?.characteristic = characteristic(for: request)
-                activeWriteTransations[request.central]?.append(activeWriteTransaction!)
-                triggerBlock(activeWriteTransaction!, request)
+                finalizeLocalValue(for: activeWriteTransaction)
+                registeredCharacteristicCallbacks[request.characteristic.uuid]?(activeWriteTransaction.data, nil)
+                clearWriteTransaction(from: request.central, on: request.characteristic)
             }
         }
     }
     
-    internal func handleMTUSubscription(for central: CBCentral) {
+    internal func handleSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
+        Log(.debug, logString: "Central \(central.identifier) Subscribed tp \(characteristic.uuid.uuidString)")
         
+        if characteristic.uuid.uuidString == mtuCharacteristicUUIDKey {
+            processMTUSubscription(for: central)
+        }
+    }
+    
+    internal func handleUnSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
+        Log(.debug, logString: "Central \(central.identifier) Unsubscribed for \(characteristic.uuid.uuidString)")
+    }
+    
+    internal func processMTUSubscription(for central: CBCentral) {
         for service in registeredServices {
+            
             if let characteristic =  service.characteristics?.first(where: { $0.uuid.uuidString == mtuCharacteristicUUIDKey }) as? CBMutableCharacteristic {
+                
                 let messageData = NSMutableData()
                 messageData.appendInt16(Int16(central.maximumUpdateValueLength))
                 characteristic.value = (messageData as Data)
+                
+                Log(.debug, logString: "Peripheral Notified Central w/ MTU value: \(central.maximumUpdateValueLength)")
                 
                 peripheralManager.updateValue((messageData as Data), for:  characteristic, onSubscribedCentrals: [central])
             }
         }
     }
+}
+
+extension EBPeripheralManager {
     
-    internal func dataValue(for characteristic: CBCharacteristic?) -> Data? {
+    internal func writeTransaction(for characteristic : CBCharacteristic,
+                                   from central : CBCentral) -> Transaction? {
+        
+        var activeWriteTransaction = activeWriteTransations[central]?.first(where: { $0.characteristic?.uuid == characteristic.uuid })
+        
+        if activeWriteTransaction != nil  {
+            return activeWriteTransaction
+        }
+        
+        if activeWriteTransations[central] == nil {
+            activeWriteTransations[central] = [Transaction]()
+        }
+        
+        var transactionType : TransactionType = .write
+        
+        if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
+            transactionType = .writeChunkable
+        }
+        
+        activeWriteTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize: Int16(central.maximumUpdateValueLength))
+        
+        for service in registeredServices {
+            
+            if  let index =  service.characteristics?.index(of : characteristic),
+                let characteristic = service.characteristics?[index] as? CBMutableCharacteristic
+            {
+                activeWriteTransaction?.characteristic = characteristic
+            }
+        }
+        
+        activeWriteTransations[central]?.append(activeWriteTransaction!)
+        
+        return activeWriteTransaction
+    }
+    
+    internal func readTransaction(_ data : Data,
+                                  for characteristic : CBCharacteristic,
+                                  from central : CBCentral) -> Transaction? {
+        
+        var activeReadTransaction = activeReadTransations[central]?.first(where: { $0.characteristic?.uuid == characteristic.uuid })
+        
+        if activeReadTransaction != nil  {
+            return activeReadTransaction
+        }
+        
+        if activeReadTransations[central] == nil {
+            activeReadTransations[central] = [Transaction]()
+        }
+        
+        var transactionType : TransactionType = .read
+        
+        if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
+            transactionType = .readChunkable
+        }
+        
+        activeReadTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize:  Int16(central.maximumUpdateValueLength))
+        
+        for service in registeredServices {
+            
+            if  let index =  service.characteristics?.index(of : characteristic),
+                let characteristic = service.characteristics?[index] as? CBMutableCharacteristic
+            {
+                activeReadTransaction?.characteristic = characteristic
+            }
+        }
+        
+        activeReadTransaction?.data = data
+        
+        activeReadTransations[central]?.append(activeReadTransaction!)
+        
+        return activeReadTransaction
+    }
+    
+    internal func localValue(for characteristic: CBCharacteristic?) -> Data? {
         
         guard let characteristic = characteristic  else {
             return nil
         }
         
         for service in registeredServices {
-            
             if let index =  service.characteristics?.index(of : characteristic),
                 let data = (service.characteristics![index] as! CBMutableCharacteristic).value {
-                
                 return data
             }
         }
-        
         return nil
     }
+
+    internal func clearReadTransaction(from central: CBCentral, on characteristic : CBCharacteristic) {
+        if let index = self.activeReadTransations[central]?.index(where: {
+            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
+        {
+            activeReadTransations[central]?.remove(at: index)
+        }
+    }
     
-    internal func characteristic(for request: CBATTRequest) -> CBMutableCharacteristic? {
+    internal func clearWriteTransaction(from central: CBCentral, on characteristic : CBCharacteristic) {
+        if let index = self.activeWriteTransations[central]?.index(where: {
+            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
+        {
+            activeWriteTransations[central]?.remove(at: index)
+        }
+    }
+    
+    internal func finalizeLocalValue(for transaction : Transaction) {
         
-        for service in registeredServices {
-            if  let index =  service.characteristics?.index(of : request.characteristic),
-                let characteristic = service.characteristics?[index] as? CBMutableCharacteristic {
-                return characteristic
-            }
+        guard let characteristic = transaction.characteristic else {
+            Log(.error, logString: "Could not Find Local Characteristic to Update")
+            return
         }
         
-        return nil
+        for service in registeredServices {
+            if  let index =  service.characteristics?.index(of : characteristic),
+                let characteristic = service.characteristics?[index] as? CBMutableCharacteristic {
+                
+                characteristic.value = transaction.data
+            }
+        }
     }
 }
 

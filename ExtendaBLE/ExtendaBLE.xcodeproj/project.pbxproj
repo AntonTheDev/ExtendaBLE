@@ -43,6 +43,9 @@
 		3AAD8AEB1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
 		3AAD8AEC1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
 		3AAD8AED1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
+		3AD483591E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
+		3AD4835A1E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
+		3AD4835B1E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,7 @@
 		3AAD8AC91E9299BB0013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		3AAD8ACB1E9299BB0013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		3AD483581E9FF54500505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +153,7 @@
 		3AAD8ABD1E9299BB0013CE98 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3AD483571E9FF54500505FDA /* Logger */,
 				3AAD8AC91E9299BB0013CE98 /* ExtendaBLE.swift */,
 				3AAD8AC31E9299BB0013CE98 /* EBManager */,
 				3AAD8ABE1E9299BB0013CE98 /* EBMaker */,
@@ -195,6 +200,14 @@
 				3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3AD483571E9FF54500505FDA /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				3AD483581E9FF54500505FDA /* Logger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,6 +407,7 @@
 				3AAD8ADC1E9299BB0013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8AEB1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8AE21E9299BB0013CE98 /* EBTransaction.swift in Sources */,
+				3AD483591E9FF54500505FDA /* Logger.swift in Sources */,
 				3AAD8AD01E9299BB0013CE98 /* EBCharacteristicMaker.swift in Sources */,
 				3AAD8ACD1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8AD61E9299BB0013CE98 /* EBServiceMaker.swift in Sources */,
@@ -418,6 +432,7 @@
 				3AAD8ADD1E9299BB0013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8AEC1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8AE31E9299BB0013CE98 /* EBTransaction.swift in Sources */,
+				3AD4835A1E9FF54500505FDA /* Logger.swift in Sources */,
 				3AAD8AD11E9299BB0013CE98 /* EBCharacteristicMaker.swift in Sources */,
 				3AAD8ACE1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8AD71E9299BB0013CE98 /* EBServiceMaker.swift in Sources */,
@@ -436,6 +451,7 @@
 				3AAD8ADE1E9299BB0013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8AED1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8AE41E9299BB0013CE98 /* EBTransaction.swift in Sources */,
+				3AD4835B1E9FF54500505FDA /* Logger.swift in Sources */,
 				3AAD8AD21E9299BB0013CE98 /* EBCharacteristicMaker.swift in Sources */,
 				3AAD8ACF1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8AD81E9299BB0013CE98 /* EBServiceMaker.swift in Sources */,

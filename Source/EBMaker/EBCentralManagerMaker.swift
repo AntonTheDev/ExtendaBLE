@@ -14,20 +14,21 @@ public class EBCentralManagerMaker  {
     internal var queue: DispatchQueue?
     internal var services = [EBServiceMaker]()
     internal var peripheralName : String?
+    internal var peripheralCacheKey: String?
     
     required public init(queue: DispatchQueue?) {
         self.queue = queue
     }
-        
+    
     public func constructedCentralManager() -> EBCentralManager {
         
-        let newCentralManager = EBCentralManager(queue: queue)
-        
+        let newCentralManager = EBCentralManager(queue: queue, options : nil, peripheralCacheKey : peripheralCacheKey)
+        newCentralManager.peripheralName = peripheralName
         for service in services {
             for (uuid, updateCallback) in service.characteristicUpdateCallbacks {
-                newCentralManager.registeredCharacteristicUpdateCallbacks[uuid] = updateCallback
+                newCentralManager.registeredCharacteristicCallbacks[uuid] = updateCallback
             }
-
+            
             newCentralManager.registeredServiceUUIDs.append(CBUUID(string: service.serviceUUID))
             newCentralManager.chunkedCharacteristicUUIDS += service.chunkedCharacteristicUUIDS
         }
@@ -35,7 +36,7 @@ public class EBCentralManagerMaker  {
         if  newCentralManager.chunkedCharacteristicUUIDS.count > 0 {
             newCentralManager.registeredServiceUUIDs.append(CBUUID(string: mtuServiceUUIDKey))
         }
-
+        
         return newCentralManager
     }
 }
@@ -53,6 +54,11 @@ extension EBCentralManagerMaker {
         let newService = EBServiceMaker(uuid, primary: isPrimary)
         services.append(newService)
         service(newService)
+        return self
+    }
+
+    @discardableResult public func peripheralCacheKey(_ peripheralCacheKey : String) -> EBCentralManagerMaker {
+        self.peripheralCacheKey = peripheralCacheKey
         return self
     }
 }
