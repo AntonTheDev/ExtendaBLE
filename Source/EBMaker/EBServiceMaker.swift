@@ -11,22 +11,20 @@ import CoreBluetooth
 
 public class EBServiceMaker {
     
-    var serviceUUID : String
-    var primary : Bool
-    
-    var characteristics             = [EBCharacteristicMaker]()
+    internal var serviceUUID  : String
+    private var primary      : Bool = true
+    private var characteristics             = [EBCharacteristicMaker]()
     
     var chunkedCharacteristicUUIDS  : [CBUUID] {
         get {
             return characteristics.filter { $0.chunkingEnabled == true }.map {CBUUID(string: $0.uuid) }
         }
     }
-
-    var characteristicUpdateCallbacks = [CBUUID : EBTransactionCallback]()
     
-    required public init(_ uuid: String, primary isPrimary: Bool = true) {
+    internal var characteristicUpdateCallbacks = [CBUUID : EBTransactionCallback]()
+    
+    required public init(_ uuid: String) {
         serviceUUID = uuid
-        primary = isPrimary
     }
     
     func constructedService() -> CBMutableService? {
@@ -35,7 +33,7 @@ public class EBServiceMaker {
             return nil
         #else
             let newService = CBMutableService(type: CBUUID(string: serviceUUID), primary: primary)
-        
+            
             for characteristic in characteristics {
                 
                 guard let newCharacteristic = characteristic.constructedCharacteristic() else {
@@ -60,14 +58,66 @@ public class EBServiceMaker {
             return newService
         #endif
     }
+
+    @discardableResult public func addCharacteristic(_ UUID: String, maker : (_ characteristic : EBCharacteristicMaker) -> Void) -> EBServiceMaker {
+        let characteristic = EBCharacteristicMaker(uuid : UUID)
+        maker(characteristic)
+        characteristics.append(characteristic)
+        return self
+    }
+    
+    @discardableResult public func primary(_ primary : Bool) -> EBServiceMaker {
+        self.primary = primary
+        return self
+    }
 }
 
-extension EBServiceMaker {
+public class EBCharacteristicMaker {
     
-    @discardableResult public func addProperty(_ UUID: String) -> EBCharacteristicMaker {
-        let characteristic = EBCharacteristicMaker(uuid : UUID)
-        characteristics.append(characteristic)
-        return characteristic
+    fileprivate var uuid : String
+    fileprivate var value : Data?
+    fileprivate var updateCallback : EBTransactionCallback?
+    fileprivate var chunkingEnabled : Bool = false
+    
+    fileprivate var permissions : CBAttributePermissions = [.readable, .writeable]
+    fileprivate var properties : CBCharacteristicProperties =  [.read, .write, .notify]
+    
+    required public init(uuid UUID: String, primary isPrimary: Bool = true) {
+        uuid = UUID
+    }
+    
+    func constructedCharacteristic() -> CBMutableCharacteristic? {
+        
+        #if os(tvOS)
+            return nil
+        #else
+            return CBMutableCharacteristic(type: CBUUID(string: uuid), properties: properties, value: value, permissions: permissions)
+        #endif
+    }
+    
+    @discardableResult public func properties(_ properties : CBCharacteristicProperties) -> EBCharacteristicMaker {
+        self.properties = properties
+        return self
+    }
+    
+    @discardableResult public func permissions(_ permissions : CBAttributePermissions) -> EBCharacteristicMaker {
+        self.permissions = permissions
+        return self
+    }
+    
+    @discardableResult public func chunkingEnabled(_ chunkingEnabled : Bool) -> EBCharacteristicMaker {
+        self.chunkingEnabled = chunkingEnabled
+        return self
+    }
+    
+    @discardableResult public func value(_ value : Data) -> EBCharacteristicMaker {
+        self.value = value
+        return self
+    }
+    
+    @discardableResult public func onUpdate(_ updateCallback : @escaping EBTransactionCallback) -> EBCharacteristicMaker {
+        self.updateCallback = updateCallback
+        return self
     }
 }
 

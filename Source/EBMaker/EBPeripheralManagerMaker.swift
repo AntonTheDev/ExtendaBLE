@@ -9,17 +9,28 @@
 import Foundation
 import CoreBluetooth
 
+extension ExtendaBLE {
+    
+    #if !os(tvOS)
+    public class func newPeripheralManager(queue: DispatchQueue? = nil, peripheral : (_ peripheral : EBPeripheralManagerMaker) -> Void) -> EBPeripheralManager {
+        let newManager = EBPeripheralManagerMaker(queue: queue)
+        peripheral(newManager)
+        return newManager.constructedPeripheralManager()
+    }
+    #endif
+}
+
 public class EBPeripheralManagerMaker  {
 
-    internal var queue: DispatchQueue?
-    internal var services = [EBServiceMaker]()
-    var localName : String?
+    private var queue: DispatchQueue?
+    private var services = [EBServiceMaker]()
+    private var localName : String?
 
     required public init(queue: DispatchQueue?) {
         self.queue = queue
     }
         
-    public func constructedPeripheralManager() -> EBPeripheralManager {
+    fileprivate func constructedPeripheralManager() -> EBPeripheralManager {
         
         let newPeripheralManager = EBPeripheralManager(queue: queue)
 
@@ -35,6 +46,7 @@ public class EBPeripheralManagerMaker  {
                 newPeripheralManager.registeredCharacteristicCallbacks[uuid] = updateCallback
             }
             
+            
             newPeripheralManager.registeredServices.append(constructedService)
             newPeripheralManager.chunkedCharacteristicUUIDS += service.chunkedCharacteristicUUIDS
         }
@@ -47,23 +59,20 @@ public class EBPeripheralManagerMaker  {
         
         return newPeripheralManager
     }
-}
-
+    
 #if !os(tvOS)
-    extension EBPeripheralManagerMaker {
-        
         @discardableResult public func localName(_ localname : String) -> EBPeripheralManagerMaker {
             self.localName = localname
             return self
         }
         
         @discardableResult public func addService(_ uuid: String,
-                                                  primary isPrimary: Bool = true,
                                                   service : (_ service : EBServiceMaker) -> Void) -> EBPeripheralManagerMaker {
-            let newService = EBServiceMaker(uuid, primary: isPrimary)
+            let newService = EBServiceMaker(uuid)
             services.append(newService)
             service(newService)
             return self
         }
-    }
 #endif
+
+}

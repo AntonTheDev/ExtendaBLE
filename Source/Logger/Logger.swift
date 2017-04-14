@@ -21,42 +21,42 @@ public enum LogLevel : Int {
     case verbose = 5
 }
 
-func logError(_ logString:  String) {
+public func logError(_ logString:  String) {
     Log(.error, logString: logString)
 }
 
-func ad_logWarning(_ logString:  String) {
+public func ad_logWarning(_ logString:  String) {
     Log(.warning, logString: logString)
 }
 
-func ad_logInfo(_ logString:  String) {
+public func ad_logInfo(_ logString:  String) {
     Log(.info, logString: logString)
 }
 
-func ad_logDebug(_ logString:  String) {
+public func ad_logDebug(_ logString:  String) {
     Log(.debug, logString: logString)
 }
 
-func ad_logVerbose(_ logString:  String) {
+public func ad_logVerbose(_ logString:  String) {
     Log(.verbose, logString: logString)
 }
 
-func ENTRY_LOG(functionName:  String = #function) {
+public func ENTRY_LOG(functionName:  String = #function) {
     ad_logVerbose("ENTRY " + functionName)
 }
 
-func EXIT_LOG(functionName:  String = #function) {
+public func EXIT_LOG(functionName:  String = #function) {
     ad_logVerbose("EXIT " + functionName)
 }
 
-func Log(_ currentLogLevel: LogLevel, logString:  String) {
+public func Log(_ currentLogLevel: LogLevel, logString:  String) {
 	if currentLogLevel.rawValue <= ExtendableLoggingConfig.logLevel.rawValue {
 		let log = stringForLogLevel(ExtendableLoggingConfig.logLevel) + " - " + logString
 		print(log)
 	}
 }
 
-func stringForLogLevel(_ logLevel:  LogLevel) -> String {
+public func stringForLogLevel(_ logLevel:  LogLevel) -> String {
     switch logLevel {
     case .debug:
         return "D"

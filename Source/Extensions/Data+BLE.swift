@@ -14,24 +14,24 @@ extension Data {
     
     var packetIndex : Int {
         get {
-            /*
+            
             if count < 4 {
                 Log(.debug, logString: "Chunk Index Not Found in \(self)")
                 return 0
             }
-            */
+            
             return bytes(0, 2) as Int
         }
     }
     
     var totalPackets : Int {
         get {
-            /*
+            
             if count < 4 {
                 Log(.debug, logString: "Chunk Total Not Found in \(self)")
                 return 0
             }
-            */
+            
             return bytes(2, 2) as Int }
     }
     

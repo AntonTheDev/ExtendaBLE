@@ -8,13 +8,14 @@
 
 import CoreBluetooth
 
+
 enum ControllerConfig : Int {
     case central, peripheral, both, sensor, bluebean
     
     public static var configForOS : ControllerConfig {
         get {
             #if os(OSX)
-                return .bluebean
+                return .peripheral
             #elseif os(tvOS)
                 return .central
             #else
@@ -90,22 +91,24 @@ extension ViewController {
             
             /* Create Peripheral Manager advertise device as central */
             
-            peripheral = ExtendaBLE.newPeripheralManager() { (manager) in
+            peripheral = ExtendaBLE.newPeripheralManager { (manager) in
                 
-                manager.localName("Test Peripheral")
-                manager.addService(dataServiceUUIDKey) {(service) in
-                    
-                    service.addProperty(dataServiceCharacteristicUUIDKey).onUpdate { (data, error) in
+                manager.addService(dataServiceUUIDKey) { (service) in
+
+                    service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
                         
-                        let valueString = String(data: data!, encoding: .utf8)
-                        
-                        if self.testValueString == valueString {
-                            Log(.debug, logString: "Successful Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
-                        } else {
-                            Log(.debug, logString: "Failed Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
+                        characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
+                        characteristic.chunkingEnabled(true)
+                        characteristic.onUpdate { (data, error) in
+                            let valueString = String(data: data!, encoding: .utf8)
+                            
+                            if self.testValueString == valueString {
+                                Log(.debug, logString: "Successful Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
+                            } else {
+                                Log(.debug, logString: "Failed Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
+                            }
                         }
-                        
-                        }.properties([.read, .write, .notify]).permissions([.readable, .writeable]).chunkingEnabled(true)
+                    }
                 }
                 }.startAdvertising()
             
@@ -114,26 +117,26 @@ extension ViewController {
     
     func configureDataServiceCentalManager() {
         
-        central = ExtendaBLE.newCentralManager() { (manager) in
+        central = ExtendaBLE.newCentralManager { (manager) in
             
-            #if !os(OSX)
-                manager.peripheralCacheKey("Peripheral Key")
-            #endif
-            manager.peripheralName = "Bean"
             manager.addService(dataServiceUUIDKey) {(service) in
-                service.addProperty(dataServiceCharacteristicUUIDKey).onUpdate { (data, error) in
-                    
-                    
-                    /* Callback when ever the value is updated by the PERIPHERAL */
-                    
-                    }.properties([.read, .write, .notify]).permissions([.readable, .writeable]).chunkingEnabled(true)
-            }
-            
-            }.onPeripheralConnectionChange{ (connected, peripheral, error) in
-                if connected {
-                    self.performSliceServiceReadWrite()
+                
+                service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
+                    characteristic.properties([.read, .write, .notify])
+                    characteristic.permissions([.readable, .writeable])
+                    characteristic.chunkingEnabled(true)
+                    characteristic.onUpdate { (data, error) in
+                        /* Callback when ever the value is updated by the PERIPHERAL */
+                    }
                 }
+                
+                }.onPeripheralConnectionChange{ (connected, peripheral, error) in
+                    if connected {
+                        self.performSliceServiceReadWrite()
+                    }
+            }
             }.startScan()
+        
     }
     
     func performSliceServiceReadWrite() {
@@ -169,20 +172,23 @@ extension ViewController {
 extension ViewController {
     
     func configureSensorCentralManager() {
-        
-        central = ExtendaBLE.newCentralManager() { (manager) in
+        central = ExtendaBLE.newCentralManager { (manager) in
             
             manager.addService(sensorServiceUUID) {(service) in
-                service.addProperty(sensorValueCharacteristicUUID).properties([.read]).permissions([.readable])
-                service.addProperty(sensorConfigCharacteristicUUID).properties([.write]).permissions([.writeable])
-            }
-            
-            }.onPeripheralConnectionChange{ (connected, peripheral, error) in
                 
-                if connected {
-                    self.performSensorReadWrite()
+                service.addCharacteristic(sensorValueCharacteristicUUID) { (characteristic) in
+                    characteristic.properties([.read]).permissions([.readable])
+                    
+                    }.addCharacteristic(sensorConfigCharacteristicUUID) { (characteristic) in
+                        characteristic.properties([.write]).permissions([.writeable])
                 }
-            }.startScan()
+                
+                }.onPeripheralConnectionChange{ (connected, peripheral, error) in
+                    if connected {
+                        self.performSensorReadWrite()
+                    }
+            }
+        }.startScan()
     }
     
     func performSensorReadWrite() {
@@ -201,6 +207,7 @@ extension ViewController {
                 }
             }
         }
+        
     }
 }
 
@@ -211,26 +218,33 @@ extension ViewController {
     
     func configureBlueBeanCentralManager() {
         
-        central = ExtendaBLE.newCentralManager() { (manager) in
+        central = ExtendaBLE.newCentralManager { (manager) in
             
-            manager.peripheralName = "Bean"
             manager.addService(beanScratchServiceUUIDKey) {(service) in
-                service.addProperty(beanScratchCharacteristic1UUIDKey).properties([.read, .write, .notify,.writeWithoutResponse]).permissions([.readable, .writeable])
-                service.addProperty(beanScratchCharacteristic2UUIDKey).properties([.read, .write, .notify,.writeWithoutResponse]).permissions([.readable, .writeable])
                 
-                service.addProperty(beanScratchCharacteristic3UUIDKey).properties([.read, .write, .notify,.writeWithoutResponse]).permissions([.readable, .writeable])
+                service.addCharacteristic(beanScratchCharacteristic1UUIDKey) { (characteristic) in
+                        characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
+                        characteristic.permissions([.readable, .writeable])
+                    }.addCharacteristic(beanScratchCharacteristic2UUIDKey) { (characteristic) in
+                        characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
+                        characteristic.permissions([.readable, .writeable])
+                    }.addCharacteristic(beanScratchCharacteristic3UUIDKey) { (characteristic) in
+                        characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
+                        characteristic.permissions([.readable, .writeable])
+                    }.addCharacteristic(beanScratchCharacteristic4UUIDKey) { (characteristic) in
+                        characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
+                        characteristic.permissions([.readable, .writeable])
+                    }.addCharacteristic(beanScratchCharacteristic5UUIDKey) { (characteristic) in
+                        characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
+                        characteristic.permissions([.readable, .writeable])
+                    }
                 
-                service.addProperty(beanScratchCharacteristic4UUIDKey).properties([.read, .write, .notify,.writeWithoutResponse]).permissions([.readable, .writeable])
-                service.addProperty(beanScratchCharacteristic5UUIDKey).properties([.read, .write, .notify,. writeWithoutResponse]).permissions([.readable, .writeable])
-                
-            }
-            
             }.onPeripheralConnectionChange{ (connected, peripheral, error) in
-                
                 if connected {
-                    self.performBlueBeanReadWrite()
+                    self.self.performBlueBeanReadWrite()
                 }
-            }.startScan()
+            }
+        }.startScan()
     }
     
     func performBlueBeanReadWrite() {

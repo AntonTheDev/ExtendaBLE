@@ -11,18 +11,18 @@
 		3A03223E1E8DFFBD0080E13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223D1E8DFFBD0080E13F /* Assets.xcassets */; };
 		3A0322411E8DFFBD0080E13F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223F1E8DFFBD0080E13F /* LaunchScreen.storyboard */; };
 		3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D81E9751EC00FBE08C /* ViewController.swift */; };
-		3A6020DB1E9E0C6B00FBE08C /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020DA1E9E0C6B00FBE08C /* EBTransaction.swift */; };
-		3AAD8AFE1E929AB60013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF01E929AB60013CE98 /* EBCentralManagerMaker.swift */; };
-		3AAD8AFF1E929AB60013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF11E929AB60013CE98 /* EBCharacteristicMaker.swift */; };
-		3AAD8B001E929AB60013CE98 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF21E929AB60013CE98 /* EBPeripheralManagerMaker.swift */; };
-		3AAD8B011E929AB60013CE98 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF31E929AB60013CE98 /* EBServiceMaker.swift */; };
-		3AAD8B021E929AB60013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF51E929AB60013CE98 /* EBCentralManager.swift */; };
-		3AAD8B031E929AB60013CE98 /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF61E929AB60013CE98 /* EBDefinitions.swift */; };
-		3AAD8B041E929AB60013CE98 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AF71E929AB60013CE98 /* EBPeripheralManager.swift */; };
-		3AAD8B061E929AB60013CE98 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AFA1E929AB60013CE98 /* ExtendaBLE.swift */; };
-		3AAD8B071E929AB60013CE98 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AFC1E929AB60013CE98 /* Data+BLE.swift */; };
-		3AAD8B081E929AB60013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AFD1E929AB60013CE98 /* Data+BLEConversion.swift */; };
-		3AD483531E9FD9AB00505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483521E9FD9AB00505FDA /* Logger.swift */; };
+		3AE59EF11EA15C0F00DA8811 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE11EA15C0F00DA8811 /* EBCentralManagerMaker.swift */; };
+		3AE59EF21EA15C0F00DA8811 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE21EA15C0F00DA8811 /* EBCharacteristicMaker.swift */; };
+		3AE59EF31EA15C0F00DA8811 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE31EA15C0F00DA8811 /* EBPeripheralManagerMaker.swift */; };
+		3AE59EF41EA15C0F00DA8811 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE41EA15C0F00DA8811 /* EBServiceMaker.swift */; };
+		3AE59EF51EA15C0F00DA8811 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE61EA15C0F00DA8811 /* EBCentralManager.swift */; };
+		3AE59EF61EA15C0F00DA8811 /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE71EA15C0F00DA8811 /* EBDefinitions.swift */; };
+		3AE59EF71EA15C0F00DA8811 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE81EA15C0F00DA8811 /* EBPeripheralManager.swift */; };
+		3AE59EF81EA15C0F00DA8811 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EEA1EA15C0F00DA8811 /* EBTransaction.swift */; };
+		3AE59EF91EA15C0F00DA8811 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EEB1EA15C0F00DA8811 /* ExtendaBLE.swift */; };
+		3AE59EFA1EA15C0F00DA8811 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EED1EA15C0F00DA8811 /* Data+BLE.swift */; };
+		3AE59EFB1EA15C0F00DA8811 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EEE1EA15C0F00DA8811 /* Data+BLEConversion.swift */; };
+		3AE59EFC1EA15C0F00DA8811 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EF01EA15C0F00DA8811 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,18 +32,18 @@
 		3A0322401E8DFFBD0080E13F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A0322421E8DFFBD0080E13F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A6020D81E9751EC00FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
-		3A6020DA1E9E0C6B00FBE08C /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EBTransaction.swift; path = ../../Source/EBTransaction/EBTransaction.swift; sourceTree = "<group>"; };
-		3AAD8AF01E929AB60013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
-		3AAD8AF11E929AB60013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
-		3AAD8AF21E929AB60013CE98 /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
-		3AAD8AF31E929AB60013CE98 /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
-		3AAD8AF51E929AB60013CE98 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
-		3AAD8AF61E929AB60013CE98 /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
-		3AAD8AF71E929AB60013CE98 /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
-		3AAD8AFA1E929AB60013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
-		3AAD8AFC1E929AB60013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
-		3AAD8AFD1E929AB60013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
-		3AD483521E9FD9AB00505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		3AE59EE11EA15C0F00DA8811 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
+		3AE59EE21EA15C0F00DA8811 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
+		3AE59EE31EA15C0F00DA8811 /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
+		3AE59EE41EA15C0F00DA8811 /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
+		3AE59EE61EA15C0F00DA8811 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
+		3AE59EE71EA15C0F00DA8811 /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
+		3AE59EE81EA15C0F00DA8811 /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
+		3AE59EEA1EA15C0F00DA8811 /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
+		3AE59EEB1EA15C0F00DA8811 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
+		3AE59EED1EA15C0F00DA8811 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
+		3AE59EEE1EA15C0F00DA8811 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		3AE59EF01EA15C0F00DA8811 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 		3A03222A1E8DFFBD0080E13F = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AEE1E929AB60013CE98 /* Source */,
+				3AE59EDF1EA15C0F00DA8811 /* Source */,
 				3A0322351E8DFFBD0080E13F /* ExtendaBLE-Demo */,
 				3A0322341E8DFFBD0080E13F /* Products */,
 			);
@@ -94,63 +94,62 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3AAD8AEE1E929AB60013CE98 /* Source */ = {
+		3AE59EDF1EA15C0F00DA8811 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AFA1E929AB60013CE98 /* ExtendaBLE.swift */,
-				3AAD8AF41E929AB60013CE98 /* EBManager */,
-				3AAD8AEF1E929AB60013CE98 /* EBMaker */,
-				3AAD8AF81E929AB60013CE98 /* EBTransaction */,
-				3AAD8AFB1E929AB60013CE98 /* Extensions */,
-				3AD483511E9FD9AB00505FDA /* Logger */,
+				3AE59EE01EA15C0F00DA8811 /* EBMaker */,
+				3AE59EE51EA15C0F00DA8811 /* EBManager */,
+				3AE59EE91EA15C0F00DA8811 /* EBTransaction */,
+				3AE59EEB1EA15C0F00DA8811 /* ExtendaBLE.swift */,
+				3AE59EEC1EA15C0F00DA8811 /* Extensions */,
+				3AE59EEF1EA15C0F00DA8811 /* Logger */,
 			);
 			name = Source;
 			path = ../../Source;
 			sourceTree = "<group>";
 		};
-		3AAD8AEF1E929AB60013CE98 /* EBMaker */ = {
+		3AE59EE01EA15C0F00DA8811 /* EBMaker */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AF01E929AB60013CE98 /* EBCentralManagerMaker.swift */,
-				3AAD8AF21E929AB60013CE98 /* EBPeripheralManagerMaker.swift */,
-				3AAD8AF31E929AB60013CE98 /* EBServiceMaker.swift */,
-				3AAD8AF11E929AB60013CE98 /* EBCharacteristicMaker.swift */,
+				3AE59EE11EA15C0F00DA8811 /* EBCentralManagerMaker.swift */,
+				3AE59EE21EA15C0F00DA8811 /* EBCharacteristicMaker.swift */,
+				3AE59EE31EA15C0F00DA8811 /* EBPeripheralManagerMaker.swift */,
+				3AE59EE41EA15C0F00DA8811 /* EBServiceMaker.swift */,
 			);
 			path = EBMaker;
 			sourceTree = "<group>";
 		};
-		3AAD8AF41E929AB60013CE98 /* EBManager */ = {
+		3AE59EE51EA15C0F00DA8811 /* EBManager */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AF61E929AB60013CE98 /* EBDefinitions.swift */,
-				3AAD8AF51E929AB60013CE98 /* EBCentralManager.swift */,
-				3AAD8AF71E929AB60013CE98 /* EBPeripheralManager.swift */,
+				3AE59EE61EA15C0F00DA8811 /* EBCentralManager.swift */,
+				3AE59EE71EA15C0F00DA8811 /* EBDefinitions.swift */,
+				3AE59EE81EA15C0F00DA8811 /* EBPeripheralManager.swift */,
 			);
 			path = EBManager;
 			sourceTree = "<group>";
 		};
-		3AAD8AF81E929AB60013CE98 /* EBTransaction */ = {
+		3AE59EE91EA15C0F00DA8811 /* EBTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				3A6020DA1E9E0C6B00FBE08C /* EBTransaction.swift */,
+				3AE59EEA1EA15C0F00DA8811 /* EBTransaction.swift */,
 			);
-			name = EBTransaction;
-			path = "../ExtendaBLE-Demo/Shared";
+			path = EBTransaction;
 			sourceTree = "<group>";
 		};
-		3AAD8AFB1E929AB60013CE98 /* Extensions */ = {
+		3AE59EEC1EA15C0F00DA8811 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8AFC1E929AB60013CE98 /* Data+BLE.swift */,
-				3AAD8AFD1E929AB60013CE98 /* Data+BLEConversion.swift */,
+				3AE59EED1EA15C0F00DA8811 /* Data+BLE.swift */,
+				3AE59EEE1EA15C0F00DA8811 /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3AD483511E9FD9AB00505FDA /* Logger */ = {
+		3AE59EEF1EA15C0F00DA8811 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				3AD483521E9FD9AB00505FDA /* Logger.swift */,
+				3AE59EF01EA15C0F00DA8811 /* Logger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -232,20 +231,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAD8B031E929AB60013CE98 /* EBDefinitions.swift in Sources */,
-				3AAD8B021E929AB60013CE98 /* EBCentralManager.swift in Sources */,
-				3A6020DB1E9E0C6B00FBE08C /* EBTransaction.swift in Sources */,
-				3AAD8B041E929AB60013CE98 /* EBPeripheralManager.swift in Sources */,
-				3AAD8B071E929AB60013CE98 /* Data+BLE.swift in Sources */,
-				3AAD8B081E929AB60013CE98 /* Data+BLEConversion.swift in Sources */,
 				3A0322371E8DFFBD0080E13F /* AppDelegate.swift in Sources */,
-				3AAD8AFF1E929AB60013CE98 /* EBCharacteristicMaker.swift in Sources */,
+				3AE59EF81EA15C0F00DA8811 /* EBTransaction.swift in Sources */,
+				3AE59EF61EA15C0F00DA8811 /* EBDefinitions.swift in Sources */,
+				3AE59EF51EA15C0F00DA8811 /* EBCentralManager.swift in Sources */,
+				3AE59EF71EA15C0F00DA8811 /* EBPeripheralManager.swift in Sources */,
+				3AE59EFA1EA15C0F00DA8811 /* Data+BLE.swift in Sources */,
+				3AE59EFB1EA15C0F00DA8811 /* Data+BLEConversion.swift in Sources */,
 				3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */,
-				3AAD8B001E929AB60013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
-				3AAD8B061E929AB60013CE98 /* ExtendaBLE.swift in Sources */,
-				3AD483531E9FD9AB00505FDA /* Logger.swift in Sources */,
-				3AAD8AFE1E929AB60013CE98 /* EBCentralManagerMaker.swift in Sources */,
-				3AAD8B011E929AB60013CE98 /* EBServiceMaker.swift in Sources */,
+				3AE59EF21EA15C0F00DA8811 /* EBCharacteristicMaker.swift in Sources */,
+				3AE59EF31EA15C0F00DA8811 /* EBPeripheralManagerMaker.swift in Sources */,
+				3AE59EF91EA15C0F00DA8811 /* ExtendaBLE.swift in Sources */,
+				3AE59EFC1EA15C0F00DA8811 /* Logger.swift in Sources */,
+				3AE59EF11EA15C0F00DA8811 /* EBCentralManagerMaker.swift in Sources */,
+				3AE59EF41EA15C0F00DA8811 /* EBServiceMaker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +360,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "ExtendaBLE-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -376,6 +379,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "ExtendaBLE-Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -85,6 +85,10 @@ public class Transaction {
     }
     
     func nextPacket() -> Data? {
+        if activeResponseCount > dataPackets.count {
+            return nil
+        }
+        
         return dataPackets[activeResponseCount - 1]
     }
     

@@ -30,13 +30,13 @@
             location = "group:EBCentralManagerMaker.swift">
          </FileRef>
          <FileRef
-            location = "group:EBCharacteristicMaker.swift">
-         </FileRef>
-         <FileRef
             location = "group:EBPeripheralManagerMaker.swift">
          </FileRef>
          <FileRef
             location = "group:EBServiceMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBCharacteristicMaker.swift">
          </FileRef>
       </Group>
       <Group

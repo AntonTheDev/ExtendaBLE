@@ -8,16 +8,16 @@
 
 import Foundation
 import CoreBluetooth
-
+/*
 public class EBCharacteristicMaker {
     
-    var uuid : String
-    var value : Data?
-    var updateCallback : EBTransactionCallback?
-    var chunkingEnabled : Bool = false
+    private var uuid : String
+    private var value : Data?
+    private var updateCallback : EBTransactionCallback?
+    private var chunkingEnabled : Bool = false
     
-    var permissions : CBAttributePermissions = [.readable, .writeable]
-    var properties : CBCharacteristicProperties =  [.read, .write, .notify]
+    private var permissions : CBAttributePermissions = [.readable, .writeable]
+    private var properties : CBCharacteristicProperties =  [.read, .write, .notify]
     
     required public init(uuid UUID: String, primary isPrimary: Bool = true) {
         uuid = UUID
@@ -31,10 +31,7 @@ public class EBCharacteristicMaker {
             return CBMutableCharacteristic(type: CBUUID(string: uuid), properties: properties, value: value, permissions: permissions)
         #endif
     }
-}
 
-extension EBCharacteristicMaker {
-    
     @discardableResult public func properties(_ properties : CBCharacteristicProperties) -> EBCharacteristicMaker {
         self.properties = properties
         return self
@@ -60,3 +57,4 @@ extension EBCharacteristicMaker {
         return self
     }
 }
+*/
