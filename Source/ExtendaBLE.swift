@@ -13,4 +13,18 @@ public class ExtendaBLE {
     public class func setLogLevel(_ logLevel : LogLevel) {
         ExtendableLoggingConfig.logLevel = logLevel
     }
+    
+    public class func newCentralManager(queue: DispatchQueue? = nil, _ central : (_ central : EBCentralManagerMaker) -> Void) -> EBCentralManager {
+        let newManager = EBCentralManagerMaker(queue: queue)
+        central(newManager)
+        return newManager.constructedCentralManager()
+    }
+    
+    #if !os(tvOS)
+    public class func newPeripheralManager(queue: DispatchQueue? = nil, peripheral : (_ peripheral : EBPeripheralManagerMaker) -> Void) -> EBPeripheralManager {
+        let newManager = EBPeripheralManagerMaker(queue: queue)
+        peripheral(newManager)
+        return newManager.constructedPeripheralManager()
+    }
+    #endif
 }

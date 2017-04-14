@@ -9,14 +9,6 @@
 import Foundation
 import CoreBluetooth
 
-extension ExtendaBLE {
-    
-    public class func newCentralManager(queue: DispatchQueue? = nil, _ central : (_ central : EBCentralManagerMaker) -> Void) -> EBCentralManager {
-        let newManager = EBCentralManagerMaker(queue: queue)
-        central(newManager)
-        return newManager.constructedCentralManager()
-    }
-}
 
 public class EBCentralManagerMaker  {
     
@@ -56,7 +48,7 @@ public class EBCentralManagerMaker  {
         self.queue = queue
     }
     
-    fileprivate func constructedCentralManager() -> EBCentralManager {
+    internal func constructedCentralManager() -> EBCentralManager {
         
         let options = configurationOptions()
         

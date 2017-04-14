@@ -27,7 +27,7 @@ public class EBServiceMaker {
         serviceUUID = uuid
     }
     
-    func constructedService() -> CBMutableService? {
+    internal func constructedService() -> CBMutableService? {
         
         #if os(tvOS)
             return nil
@@ -68,55 +68,6 @@ public class EBServiceMaker {
     
     @discardableResult public func primary(_ primary : Bool) -> EBServiceMaker {
         self.primary = primary
-        return self
-    }
-}
-
-public class EBCharacteristicMaker {
-    
-    fileprivate var uuid : String
-    fileprivate var value : Data?
-    fileprivate var updateCallback : EBTransactionCallback?
-    fileprivate var chunkingEnabled : Bool = false
-    
-    fileprivate var permissions : CBAttributePermissions = [.readable, .writeable]
-    fileprivate var properties : CBCharacteristicProperties =  [.read, .write, .notify]
-    
-    required public init(uuid UUID: String, primary isPrimary: Bool = true) {
-        uuid = UUID
-    }
-    
-    func constructedCharacteristic() -> CBMutableCharacteristic? {
-        
-        #if os(tvOS)
-            return nil
-        #else
-            return CBMutableCharacteristic(type: CBUUID(string: uuid), properties: properties, value: value, permissions: permissions)
-        #endif
-    }
-    
-    @discardableResult public func properties(_ properties : CBCharacteristicProperties) -> EBCharacteristicMaker {
-        self.properties = properties
-        return self
-    }
-    
-    @discardableResult public func permissions(_ permissions : CBAttributePermissions) -> EBCharacteristicMaker {
-        self.permissions = permissions
-        return self
-    }
-    
-    @discardableResult public func chunkingEnabled(_ chunkingEnabled : Bool) -> EBCharacteristicMaker {
-        self.chunkingEnabled = chunkingEnabled
-        return self
-    }
-    
-    @discardableResult public func value(_ value : Data) -> EBCharacteristicMaker {
-        self.value = value
-        return self
-    }
-    
-    @discardableResult public func onUpdate(_ updateCallback : @escaping EBTransactionCallback) -> EBCharacteristicMaker {
-        self.updateCallback = updateCallback
         return self
     }
 }

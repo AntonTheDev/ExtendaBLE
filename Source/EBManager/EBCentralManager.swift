@@ -166,9 +166,9 @@ extension EBCentralManager: CBCentralManagerDelegate {
                                didDiscover peripheral: CBPeripheral,
                                advertisementData: [String : Any],
                                rssi RSSI: NSNumber) {
-       // operationQueue.async { [unowned self] in
+        operationQueue.async { [unowned self] in
             self.handleDiscoveryEvent(didDiscover: peripheral, advertisementData: advertisementData, rssi: RSSI)
-       // }
+        }
     }
     
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
@@ -207,9 +207,9 @@ extension EBCentralManager: CBCentralManagerDelegate {
         
         switch central.state {
         case .poweredOn:
-       //     operationQueue.async { [unowned self] in
+            operationQueue.async { [unowned self] in
                 self.startScan()
-       //     }
+            }
         default:
             break
         }

@@ -9,17 +9,6 @@
 import Foundation
 import CoreBluetooth
 
-extension ExtendaBLE {
-    
-    #if !os(tvOS)
-    public class func newPeripheralManager(queue: DispatchQueue? = nil, peripheral : (_ peripheral : EBPeripheralManagerMaker) -> Void) -> EBPeripheralManager {
-        let newManager = EBPeripheralManagerMaker(queue: queue)
-        peripheral(newManager)
-        return newManager.constructedPeripheralManager()
-    }
-    #endif
-}
-
 public class EBPeripheralManagerMaker  {
 
     private var queue: DispatchQueue?
@@ -30,7 +19,7 @@ public class EBPeripheralManagerMaker  {
         self.queue = queue
     }
         
-    fileprivate func constructedPeripheralManager() -> EBPeripheralManager {
+    internal func constructedPeripheralManager() -> EBPeripheralManager {
         
         let newPeripheralManager = EBPeripheralManager(queue: queue)
 
