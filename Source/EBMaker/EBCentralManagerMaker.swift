@@ -12,37 +12,37 @@ import CoreBluetooth
 
 public class EBCentralManagerMaker  {
     
-    private var queue              : DispatchQueue?
+    internal var queue              : DispatchQueue?
 
     // The peripheral name to search for, the central will attempt to connect if defined
     // otherwise it will scan for registered services defined during constructions only
-    private var peripheralName             : String?
+    internal var peripheralName             : String?
 
     // Reconnect on start stores devices we haev connected to prior
-    private var reconnectOnStart           = true
-    private var reconnectTimeout           = 2.0
-    private var reconnectCacheKey          = "EBCentralManagerDefaultPeripheralCacheKey"
+    internal var reconnectOnStart           = true
+    internal var reconnectTimeout           = 2.0
+    internal var reconnectCacheKey          = "EBCentralManagerDefaultPeripheralCacheKey"
 
     // If no devices are found it will rescan after the internal specified if 
     // supportMutiplePeripherals property is set to false, and the interval is greater than 0.
     // The scanTimeout will stop scanning after the default 10 seconds, and restart if 
     // the configuration meets the criteria in the prior statement.
-    private var rescanInterval             = 0.0
-    private var scanTimeout                = 10.0
+    internal var rescanInterval             = 0.0
+    internal var scanTimeout                = 10.0
 
     // Manager, Scan, Connection Options
-    private var supportMutiplePeripherals  = false
-    private var enablePowerAlert           = true
-    private var notifyOnConnection         = false
-    private var notifyOnDisconnect         = false
-    private var notifyOnNotification       = false
+    internal var supportMutiplePeripherals  = false
+    internal var enablePowerAlert           = true
+    internal var notifyOnConnection         = false
+    internal var notifyOnDisconnect         = false
+    internal var notifyOnNotification       = false
 
     // Delegate Callbacks
-    private var stateChangeCallBack                : CentralManagerStateChangeCallback?
-    private var didDiscoverCallBack                : CentralManagerDidDiscoverCallback?
-    private var peripheralConnectionCallback       : CentralManagerPeripheralConnectionCallback?
+    internal var stateChangeCallBack                : CentralManagerStateChangeCallback?
+    internal var didDiscoverCallBack                : CentralManagerDidDiscoverCallback?
+    internal var peripheralConnectionCallback       : CentralManagerPeripheralConnectionCallback?
     
-    private var services = [EBServiceMaker]()
+    internal var services = [EBServiceMaker]()
     
     required public init(queue: DispatchQueue?) {
         self.queue = queue
@@ -61,10 +61,10 @@ public class EBCentralManagerMaker  {
             }
             
             newCentralManager.registeredServiceUUIDs.append(CBUUID(string: service.serviceUUID))
-            newCentralManager.chunkedCharacteristicUUIDS += service.chunkedCharacteristicUUIDS
+            newCentralManager.packetBasedCharacteristicUUIDS += service.packetBasedCharacteristicUUIDS
         }
         
-        if  newCentralManager.chunkedCharacteristicUUIDS.count > 0 {
+        if newCentralManager.packetBasedCharacteristicUUIDS.count > 0 {
             newCentralManager.registeredServiceUUIDs.append(CBUUID(string: mtuServiceUUIDKey))
         }
         
@@ -92,36 +92,23 @@ public class EBCentralManagerMaker  {
         return self
     }
     
-    private func configurationOptions() -> (managerOptions : [String : Any], scanOptions : [String : Any], connectionOptions: [String : Any]) {
+    internal func configurationOptions() -> (managerOptions : [String : Any], scanOptions : [String : Any], connectionOptions: [String : Any]) {
        
         var managerOptions      = [String : Any]()
         var scanOptions         = [String : Any]()
         var connectionOptions   = [String : Any]()
         
-        if enablePowerAlert {
-            managerOptions[CBCentralManagerOptionShowPowerAlertKey] = NSNumber(booleanLiteral: true)
-        }
+        managerOptions[CBCentralManagerOptionShowPowerAlertKey] = NSNumber(booleanLiteral: enablePowerAlert)
+ 
+        scanOptions[CBCentralManagerScanOptionAllowDuplicatesKey] = NSNumber(booleanLiteral: supportMutiplePeripherals)
+        
+        connectionOptions[CBConnectPeripheralOptionNotifyOnDisconnectionKey] = NSNumber(booleanLiteral: notifyOnDisconnect)
 
-        if supportMutiplePeripherals {
-            scanOptions[CBCentralManagerScanOptionAllowDuplicatesKey] = NSNumber(booleanLiteral: true)
-        }
-        
-        #if !os(OSX)
-            if notifyOnConnection {
-                connectionOptions[CBConnectPeripheralOptionNotifyOnConnectionKey] = NSNumber(booleanLiteral: true)
-            }
-            
-            if notifyOnNotification {
-                connectionOptions[CBConnectPeripheralOptionNotifyOnNotificationKey] = NSNumber(booleanLiteral: true)
-            }
-        #endif
-        
-       
-        
-        if notifyOnDisconnect {
-            connectionOptions[CBConnectPeripheralOptionNotifyOnDisconnectionKey] = NSNumber(booleanLiteral: true)
-        }
-        
+    #if !os(OSX)
+        connectionOptions[CBConnectPeripheralOptionNotifyOnConnectionKey] = NSNumber(booleanLiteral: notifyOnConnection)
+        connectionOptions[CBConnectPeripheralOptionNotifyOnNotificationKey] = NSNumber(booleanLiteral: notifyOnNotification)
+    #endif
+    
         return (managerOptions, scanOptions, connectionOptions)
     }
     

@@ -92,13 +92,14 @@ extension ViewController {
             /* Create Peripheral Manager advertise device as central */
             
             peripheral = ExtendaBLE.newPeripheralManager { (manager) in
-                
+                manager.localName("A495FF10")
                 manager.addService(dataServiceUUIDKey) { (service) in
-
+                    
+   
                     service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
                         
                         characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
-                        characteristic.chunkingEnabled(true)
+                        characteristic.packetsEnabled(true)
                         characteristic.onUpdate { (data, error) in
                             let valueString = String(data: data!, encoding: .utf8)
                             
@@ -118,13 +119,13 @@ extension ViewController {
     func configureDataServiceCentalManager() {
         
         central = ExtendaBLE.newCentralManager { (manager) in
-            
+            manager.reconnectOnStart(false)
             manager.addService(dataServiceUUIDKey) {(service) in
                 
                 service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
                     characteristic.properties([.read, .write, .notify])
                     characteristic.permissions([.readable, .writeable])
-                    characteristic.chunkingEnabled(true)
+                    characteristic.packetsEnabled(true)
                     characteristic.onUpdate { (data, error) in
                         /* Callback when ever the value is updated by the PERIPHERAL */
                     }
@@ -153,14 +154,14 @@ extension ViewController {
             
             Log(.debug, logString: "Central Wrote Value : \n\n\(String(describing: valueString))\n\n")
             
-            self.central?.read(fromUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
+            self.central?.read(characteristicUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
                 
-                let valueString = String(data: returnedData!, encoding: .utf8)
+                let valueString = String(data: returnedData!, encoding: .utf8)!
                 
                 if self.testValueString == valueString {
-                    Log(.debug, logString: "Successful Central Read w/ value : \n\n\(String(describing: valueString))\n\n")
+                    Log(.debug, logString: "Successful Central Read w/ value : \n\n\(valueString)\n\n")
                 } else {
-                    Log(.debug, logString: "Failed Central Read w/ value : \n\n\(String(describing: valueString))\n\n")
+                    Log(.debug, logString: "Failed Central Read w/ value : \n\n\(valueString)\n\n")
                 }
             }
         }
@@ -172,8 +173,8 @@ extension ViewController {
 extension ViewController {
     
     func configureSensorCentralManager() {
+        
         central = ExtendaBLE.newCentralManager { (manager) in
-            
             manager.addService(sensorServiceUUID) {(service) in
                 
                 service.addCharacteristic(sensorValueCharacteristicUUID) { (characteristic) in
@@ -197,17 +198,15 @@ extension ViewController {
         
         central?.write(data: Data(bytes : configBytes), toUUID: sensorConfigCharacteristicUUID) { (writtenData, error) in
             
-            self.central?.read(fromUUID: sensorValueCharacteristicUUID) { (returnedData, error) in
+            self.central?.read(characteristicUUID: sensorValueCharacteristicUUID) { (returnedData, error) in
                 
                 Log(.debug, logString: "\nRead Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n\n")
                 
                 if let value = returnedData?.int16Value(inRange: 0..<2) {
-                    
                     Log(.debug, logString: "\nRead Callback \n\n\(value)\n\n")
                 }
             }
         }
-        
     }
 }
 
@@ -223,8 +222,8 @@ extension ViewController {
             manager.addService(beanScratchServiceUUIDKey) {(service) in
                 
                 service.addCharacteristic(beanScratchCharacteristic1UUIDKey) { (characteristic) in
-                        characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
-                        characteristic.permissions([.readable, .writeable])
+                    characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
+                    characteristic.permissions([.readable, .writeable])
                     }.addCharacteristic(beanScratchCharacteristic2UUIDKey) { (characteristic) in
                         characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
                         characteristic.permissions([.readable, .writeable])
@@ -237,39 +236,39 @@ extension ViewController {
                     }.addCharacteristic(beanScratchCharacteristic5UUIDKey) { (characteristic) in
                         characteristic.properties([.read, .write, .notify,.writeWithoutResponse])
                         characteristic.permissions([.readable, .writeable])
-                    }
-                
-            }.onPeripheralConnectionChange{ (connected, peripheral, error) in
-                if connected {
-                    self.self.performBlueBeanReadWrite()
                 }
+                
+                }.onPeripheralConnectionChange{ (connected, peripheral, error) in
+                    if connected {
+                        self.self.performBlueBeanReadWrite()
+                    }
             }
-        }.startScan()
+            }.startScan()
     }
     
     func performBlueBeanReadWrite() {
         
-        self.central?.read(fromUUID: beanScratchCharacteristic1UUIDKey) { (returnedData, error) in
+        self.central?.read(characteristicUUID: beanScratchCharacteristic1UUIDKey) { (returnedData, error) in
             if let value = returnedData?.int8Value(atIndex: 0) {
                 Log(.debug, logString: "Read beanScratchCharacteristic1UUIDKey Callback \n\n\(String(describing: value))  - \(String(describing: error))\n")
             }
         }
         
-        self.central?.read(fromUUID: beanScratchCharacteristic2UUIDKey) { (returnedData, error) in
+        self.central?.read(characteristicUUID: beanScratchCharacteristic2UUIDKey) { (returnedData, error) in
             Log(.debug, logString: "Read beanScratchCharacteristic2UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }
         
-        self.central?.read(fromUUID: beanScratchCharacteristic3UUIDKey) { (returnedData, error) in
+        self.central?.read(characteristicUUID: beanScratchCharacteristic3UUIDKey) { (returnedData, error) in
             
             Log(.debug, logString: "Read beanScratchCharacteristic3UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }
         
-        self.central?.read(fromUUID: beanScratchCharacteristic4UUIDKey) { (returnedData, error) in
+        self.central?.read(characteristicUUID: beanScratchCharacteristic4UUIDKey) { (returnedData, error) in
             
             Log(.debug, logString: "Read beanScratchCharacteristic4UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }
         
-        self.central?.read(fromUUID: beanScratchCharacteristic5UUIDKey) { (returnedData, error) in
+        self.central?.read(characteristicUUID: beanScratchCharacteristic5UUIDKey) { (returnedData, error) in
             
             Log(.debug, logString: "Read beanScratchCharacteristic5UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }

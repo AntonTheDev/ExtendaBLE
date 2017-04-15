@@ -10,6 +10,7 @@
 		3A0322371E8DFFBD0080E13F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322361E8DFFBD0080E13F /* AppDelegate.swift */; };
 		3A03223E1E8DFFBD0080E13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223D1E8DFFBD0080E13F /* Assets.xcassets */; };
 		3A0322411E8DFFBD0080E13F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223F1E8DFFBD0080E13F /* LaunchScreen.storyboard */; };
+		3A41B1E31EA203A800121F69 /* EBCentralManager+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A41B1E21EA203A800121F69 /* EBCentralManager+Delegates.swift */; };
 		3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D81E9751EC00FBE08C /* ViewController.swift */; };
 		3AE59EF11EA15C0F00DA8811 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE11EA15C0F00DA8811 /* EBCentralManagerMaker.swift */; };
 		3AE59EF21EA15C0F00DA8811 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EE21EA15C0F00DA8811 /* EBCharacteristicMaker.swift */; };
@@ -31,6 +32,7 @@
 		3A03223D1E8DFFBD0080E13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A0322401E8DFFBD0080E13F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A0322421E8DFFBD0080E13F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A41B1E21EA203A800121F69 /* EBCentralManager+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBCentralManager+Delegates.swift"; sourceTree = "<group>"; };
 		3A6020D81E9751EC00FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
 		3AE59EE11EA15C0F00DA8811 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
 		3AE59EE21EA15C0F00DA8811 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				3AE59EE61EA15C0F00DA8811 /* EBCentralManager.swift */,
+				3A41B1E21EA203A800121F69 /* EBCentralManager+Delegates.swift */,
 				3AE59EE71EA15C0F00DA8811 /* EBDefinitions.swift */,
 				3AE59EE81EA15C0F00DA8811 /* EBPeripheralManager.swift */,
 			);
@@ -237,6 +240,7 @@
 				3AE59EF51EA15C0F00DA8811 /* EBCentralManager.swift in Sources */,
 				3AE59EF71EA15C0F00DA8811 /* EBPeripheralManager.swift in Sources */,
 				3AE59EFA1EA15C0F00DA8811 /* Data+BLE.swift in Sources */,
+				3A41B1E31EA203A800121F69 /* EBCentralManager+Delegates.swift in Sources */,
 				3AE59EFB1EA15C0F00DA8811 /* Data+BLEConversion.swift in Sources */,
 				3A6020D91E9751EC00FBE08C /* ViewController.swift in Sources */,
 				3AE59EF21EA15C0F00DA8811 /* EBCharacteristicMaker.swift in Sources */,

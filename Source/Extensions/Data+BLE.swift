@@ -16,7 +16,7 @@ extension Data {
         get {
             
             if count < 4 {
-                Log(.debug, logString: "Chunk Index Not Found in \(self)")
+                Log(.debug, logString: "Packet Index Not Found in \(self)")
                 return 0
             }
             
@@ -28,7 +28,7 @@ extension Data {
         get {
             
             if count < 4 {
-                Log(.debug, logString: "Chunk Total Not Found in \(self)")
+                Log(.debug, logString: "Packer Total Not Found in \(self)")
                 return 0
             }
             

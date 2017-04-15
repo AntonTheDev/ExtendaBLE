@@ -11,13 +11,13 @@ import CoreBluetooth
 
 public class EBServiceMaker {
     
-    internal var serviceUUID  : String
-    private var primary      : Bool = true
-    private var characteristics             = [EBCharacteristicMaker]()
+    internal var serviceUUID        : String
+    internal var primary            : Bool = true
+    internal var characteristics    = [EBCharacteristicMaker]()
     
-    var chunkedCharacteristicUUIDS  : [CBUUID] {
+    internal var packetBasedCharacteristicUUIDS  : [CBUUID] {
         get {
-            return characteristics.filter { $0.chunkingEnabled == true }.map {CBUUID(string: $0.uuid) }
+            return characteristics.filter { $0.packetsEnabled == true }.map {CBUUID(string: $0.uuid) }
         }
     }
     

@@ -31,12 +31,13 @@ public class EBCentralManager : NSObject {
     internal var scanTimeout                = 10.0
     
     // Options defined during creation
+    internal var managerOptions             = [String : Any]()
     internal var scanOptions                = [String : Any]()
     internal var connectionOptions          = [String : Any]()
     
     // Services Defined during creation
     internal var registeredServiceUUIDs             = [CBUUID]()
-    internal var chunkedCharacteristicUUIDS         = [CBUUID]()
+    internal var packetBasedCharacteristicUUIDS     = [CBUUID]()
     internal var registeredCharacteristicCallbacks  = [CBUUID : EBTransactionCallback]()
     
     // TODO: Make sure to remove the peripheral on disconnect and set the delegate to nill
@@ -63,233 +64,122 @@ public class EBCentralManager : NSObject {
     
     public required init(queue: DispatchQueue? = nil, options: [String : Any]? = nil, scanOptions : [String : Any]? = nil) {
         super.init()
-        centralManager = CBCentralManager(delegate: self, queue:  (queue == nil ? queue : operationQueue), options: options)
+        
+        if let options = options  {
+            managerOptions = options
+        }
+        
+        centralManager = CBCentralManager(delegate: self, queue:  (queue == nil ? queue : operationQueue), options: managerOptions)
     }
 }
 
+// MARK: - Peripheral Discovery
+
 extension EBCentralManager {
     
-    #if os(OSX)
     public var isScanning: Bool {
-        get { return _isScanning }
+        get {
+            #if os(OSX)
+                return _isScanning
+            #else
+                return centralManager.isScanning
+            #endif
+        }
+        set {
+            #if os(OSX)
+                _isScanning = false
+            #endif
+        }
     }
-    #else
-    public var isScanning: Bool {
-    get { return centralManager.isScanning }
-    }
-    #endif
     
     @discardableResult public func startScan() -> EBCentralManager {
         
-        if centralManager.state != .poweredOn {
-            return self
-        }
+        if centralManager.state != .poweredOn { return self }
         
-        let triggerScan : (() -> ()) = { [unowned self] in
-            
-            Log(.debug, logString: "Started Scan")
-            
-            self.rescanTimer?.invalidate()
-            self.centralManager.scanForPeripherals(withServices: self.registeredServiceUUIDs,
-                                                   options: self.scanOptions)
-            
-            #if os(OSX)
-                self._isScanning = true
-            #endif
-        }
-        
-        if reconnectOnStart == false {
-            triggerScan()
-            return self
-        }
-        
-        guard let cachedPeripherals = cachedPeripherals() else {
-            triggerScan()
-            return self
-        }
-        
-        for peripheral in cachedPeripherals {
-            
-            Log(.debug, logString: "Central Found Cached Peripheral \(String(describing: peripheral.name)), Attempting to Connect")
-            
-            connect(to: peripheral)
-            
-            DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + reconnectTimeout, execute: { [unowned self] in
-                if peripheral.state != .connected {
-                    Log(.debug, logString: "Failed to Reconnect To \(String(describing: peripheral.name)), Attempting to Scan")
-                    self.unCachedPeripheral(peripheral.identifier)
-                    triggerScan()
-                }
-            })
+        if reconnectOnStart {
+            pairConnectedPeripherals()
+        } else {
+            scanForPeripherals()
         }
         
         return self
     }
     
     @discardableResult public func stopScan() -> EBCentralManager {
-        
         Log(.debug, logString: "Stopped Scan")
-        centralManager.stopScan()
         
-        if  supportMutiplePeripherals == false &&
-            rescanInterval > 0 &&
-            connectedPeripherals.count == 0
+        centralManager.stopScan()
+        isScanning = false
+        
+        scheduleRescanIfNeeded()
+        
+        return self
+    }
+    
+    internal func scanForPeripherals() {
+        Log(.debug, logString: "Started Scan")
+        
+        invalidateScheduledRescan()
+        centralManager.scanForPeripherals(withServices: self.registeredServiceUUIDs,
+                                          options: self.scanOptions)
+        isScanning = true
+    }
+    
+    func scheduleRescanIfNeeded() {
+        
+        if (rescanInterval > 0 && supportMutiplePeripherals) ||
+            (connectedPeripherals.count == 0 && !supportMutiplePeripherals)
         {
             rescanTimer?.invalidate()
-            
             rescanTimer =   Timer(fireAt: Date().addingTimeInterval(rescanInterval),
                                   interval: 0.0,
                                   target: self,
-                                  selector: #selector(startScan),
+                                  selector: #selector(scanForPeripherals),
                                   userInfo: nil,
                                   repeats: false)
-            
         }
+    }
     
-    #if os(OSX)
-    _isScanning = false
-    #endif
-    
-    return self
+    func invalidateScheduledRescan() {
+        rescanTimer?.invalidate()
+        rescanTimer = nil
     }
 }
 
-extension EBCentralManager: CBCentralManagerDelegate {
+// MARK: - Peripheral Connection
+
+extension EBCentralManager {
     
-    public func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        operationQueue.async { [unowned self] in
-            self.handleStateChange(central)
-        }
-    }
-    
-    public func centralManager(_ central: CBCentralManager,
-                               didDiscover peripheral: CBPeripheral,
-                               advertisementData: [String : Any],
-                               rssi RSSI: NSNumber) {
-        operationQueue.async { [unowned self] in
-            self.handleDiscoveryEvent(didDiscover: peripheral, advertisementData: advertisementData, rssi: RSSI)
-        }
-    }
-    
-    public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        operationQueue.async { [unowned self] in
+    func connect(to peripheral : CBPeripheral,
+                 _ advertisementData: [String : Any]? = nil,
+                 _ RSSI: NSNumber? = nil) {
+        
+        if isValidPeripheral(peripheral, advertisementData, RSSI) {
             
-            Log(.debug, logString: "Connected to \(String(describing: peripheral.name))")
+            Log(.debug, logString: "Connecting to \(String(describing: peripheral.name))")
             
-            self.cachePeripheral(peripheral.identifier)
+            connectedPeripherals.append(peripheral)
+            peripheralCharacteristics[peripheral.identifier] = [CBCharacteristic]()
             
-            peripheral.delegate = self
-            peripheral.discoverServices(self.registeredServiceUUIDs)
-        }
-    }
-    
-    public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        operationQueue.async { [unowned self] in
-            self.disconnect(peripheral.identifier, error)
-        }
-    }
-    
-    public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        operationQueue.async { [unowned self] in
-            self.disconnect(peripheral.identifier, error)
-        }
-    }
-    /*
-    #if os(iOS) || os(tvOS)
-    public func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-    
-    }
-    #endif
-    */
-    internal func handleStateChange(_ central: CBCentralManager) {
-        Log(.debug, logString: "Central BLE state - \(central.state.rawValue)")
-        
-        
-        switch central.state {
-        case .poweredOn:
-            operationQueue.async { [unowned self] in
-                self.startScan()
-            }
-        default:
-            break
-        }
-        
-        stateChangeCallBack?(EBManagerState(rawValue: central.state.rawValue)!)
-    }
-    
-    internal func handleDiscoveryEvent(didDiscover peripheral: CBPeripheral,
-                                       advertisementData: [String : Any],
-                                       rssi RSSI: NSNumber) {
-        
-        if peripheral.state == .connected {
-            return
-        }
-        
-        if shouldConnect(to : peripheral, with: advertisementData, RSSI) {
-            connect(to : peripheral)
-        }
-    }
-    
-    func connect(to peripheral : CBPeripheral) {
-        
-        if peripheral.state == .connected {
-            return
-        }
-        
-        connectedPeripherals.append(peripheral)
-        
-        Log(.debug, logString: "Connecting to \(String(describing: peripheral.name))")
-        
-        peripheralCharacteristics[peripheral.identifier] = [CBCharacteristic]()
-        centralManager.connect(peripheral, options: connectionOptions)
-        
-        if supportMutiplePeripherals == false {
-            stopScan()
-        }
-    }
-    
-    private func shouldConnect(to peripheral : CBPeripheral,
-                               with advertisementData: [String : Any],
-                               _ RSSI: NSNumber) -> Bool {
-        
-        guard let isConnectable = advertisementData[CBAdvertisementDataIsConnectable] as? Bool, isConnectable else {
-            return false
-        }
-        
-        guard connectedPeripherals.contains(peripheral) == false else {
-            return false
-        }
-        
-        if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String, name == peripheralName {
-            return true
-        }
-        
-        if let peripheralUUIDs = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
+            centralManager.connect(peripheral, options: connectionOptions)
             
-            let upperCasedServiceIDS = peripheralUUIDs.map { $0.uuidString.uppercased()}
-            let upperCasedRegisteredIDS = registeredServiceUUIDs.map { $0.uuidString.uppercased()}
-            
-            for uuid in upperCasedRegisteredIDS {
-                if let _ = upperCasedServiceIDS.first(where: { $0 == uuid })  {
-                    return true
-                }
+            if supportMutiplePeripherals == false {
+                stopScan()
             }
         }
-        
-        return false
     }
     
-    func disconnect(_ peripheralUUID : UUID, _ error: Error?) {
+    internal func disconnect(from peripheralUUID : UUID, _ error: Error?) {
         
         Log(.debug, logString: "Disconnect from \(String(describing: peripheralUUID)) - \(String(describing: error))")
         
-        activeWriteTransations[peripheralUUID]      = nil
-        activeReadTransations[peripheralUUID]       = nil
+        activeWriteTransations      = [UUID : [Transaction]]()
+        activeReadTransations       = [UUID : [Transaction]]()
         
-        peripheralMTUValues[peripheralUUID]         = nil
-        peripheralCharacteristics[peripheralUUID]   = nil
+        peripheralMTUValues         = [UUID : Int16]()
+        peripheralCharacteristics   = [UUID : [CBCharacteristic]]()
         
-        unCachedPeripheral(peripheralUUID)
+        unpairPeripheral(peripheralUUID)
         
         guard let peripheral = connectedPeripherals.first(where: { $0.identifier == peripheralUUID}) else {
             return
@@ -307,70 +197,149 @@ extension EBCentralManager: CBCentralManagerDelegate {
         centralManager.cancelPeripheralConnection(peripheral)
         peripheralConnectionCallback?(false, peripheral, error)
     }
+    
+    internal func isValidPeripheral(_ peripheral : CBPeripheral,
+                                    _ advertisementData: [String : Any]? = nil,
+                                    _ RSSI: NSNumber? = nil) -> Bool {
+        if peripheral.state == .connected {
+            return false
+        }
+        
+        guard let isConnectable = advertisementData?[CBAdvertisementDataIsConnectable] as? Bool, isConnectable else {
+            return false
+        }
+        
+        guard connectedPeripherals.contains(peripheral) == false else {
+            return false
+        }
+        
+        Log(.debug, logString: "Advertisement Name \(String(describing: advertisementData?[CBAdvertisementDataLocalNameKey]))")
+        
+        if let name = advertisementData?[CBAdvertisementDataLocalNameKey] as? String, name == peripheralName {
+            return true
+        }
+        
+        if let peripheralUUIDs = advertisementData?[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID] {
+            
+            let upperCasedServiceIDS = peripheralUUIDs.map { $0.uuidString.uppercased()}
+            let upperCasedRegisteredIDS = registeredServiceUUIDs.map { $0.uuidString.uppercased()}
+            
+            for uuid in upperCasedRegisteredIDS {
+                if let _ = upperCasedServiceIDS.first(where: { $0 == uuid })  {
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }
 
-extension EBCentralManager: CBPeripheralDelegate {
+// MARK: - Caching Peripherals
+
+extension EBCentralManager {
     
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        operationQueue.async { [unowned self] in
-            self.handleServicesDiscovered(for : peripheral, error)
+    internal var pairedPeripherals : [CBPeripheral]? {
+        get {
+            guard reconnectOnStart else {
+                return nil
+            }
+            
+            guard let uuids = UserDefaults.standard.array(forKey: reconnectCacheKey) as? [String],
+                let uuidArray = uuids.map({ UUID(uuidString: $0) }) as? [UUID] else {
+                    return nil
+            }
+            
+            let peripherals = centralManager.retrievePeripherals(withIdentifiers:uuidArray)
+            
+            guard peripherals.count != 0 else {
+                return nil
+            }
+            
+            for peripheral in peripherals {
+                peripheralCharacteristics[peripheral.identifier] = [CBCharacteristic]()
+            }
+            
+            return peripherals
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-        operationQueue.async { [unowned self] in
-            self.handleCharacteristicsDiscovered(for : service, on : peripheral, error)
+    
+    internal func pairConnectedPeripherals() {
+        
+        let peripherals = pairedPeripherals
+        
+        if reconnectOnStart == false || peripherals != nil {
+            scanForPeripherals()
+            return
+        }
+        
+        for peripheral in peripherals! {
+            
+            Log(.debug, logString: "Central Found Cached Peripheral \(String(describing: peripheral.name)), Attempting to Connect")
+            
+            connect(to: peripheral)
+            
+            DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + reconnectTimeout, execute: { [unowned self] in
+                if peripheral.state != .connected {
+                    Log(.debug, logString: "Failed to Reconnect To \(String(describing: peripheral.name)), Attempting to Scan")
+                    self.unpairPeripheral(peripheral.identifier)
+                    self.scanForPeripherals()
+                }
+            })
         }
     }
     
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        dataQueue.async { [unowned self] in
-            self.processReadTransationResponse(forCharacteristic: characteristic, from: peripheral.identifier, error: error)
+    internal func pairPeripheral(_ peripheralUUID : UUID) {
+        
+        guard reconnectOnStart else {
+            return
+        }
+        
+        let defaults = UserDefaults.standard
+        
+        if var uuids = defaults.array(forKey: reconnectCacheKey) as? [String], !uuids.contains(peripheralUUID.uuidString) {
+            
+            uuids.append(peripheralUUID.uuidString)
+            defaults.set(uuids, forKey : reconnectCacheKey)
+            
+        } else {
+            defaults.set([peripheralUUID.uuidString], forKey : reconnectCacheKey)
+        }
+        
+        defaults.synchronize()
+    }
+    
+    internal func unpairPeripheral(_ peripheralUUID : UUID) {
+        
+        guard reconnectOnStart else {
+            return
+        }
+        
+        let defaults = UserDefaults.standard
+        
+        if var uuids = defaults.array(forKey: reconnectCacheKey) as? [String] {
+            
+            if let index = uuids.index(of: peripheralUUID.uuidString) {
+                uuids.remove(at: index)
+            }
+            
+            defaults.set(uuids, forKey : reconnectCacheKey)
+            defaults.synchronize()
         }
     }
+}
+
+// MARK: - Service Discovery
+
+extension EBCentralManager {
     
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        dataQueue.async { [unowned self] in
-            self.processWriteTransationResponse(forCharacteristic : characteristic, from : peripheral.identifier)
-        }
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-        dataQueue.async { [unowned self] in
-            self.handleNotificationStateUpdate(peripheral, characteristic, error)
-        }
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverIncludedServicesFor service: CBService, error: Error?) {
-        Log(.debug, logString: "didDiscoverIncludedServicesFor \(peripheral) \(service)")
-    }
-    
-    public func peripheralDidUpdateName(_ peripheral: CBPeripheral) {
-        Log(.debug, logString: "peripheralDidUpdateName \(peripheral)")
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
-        Log(.debug, logString: "didModifyServices \(peripheral)")
-    }
-    
-    public func peripheralDidUpdateRSSI(_ peripheral: CBPeripheral, error: Error?) {
-        Log(.debug, logString: "peripheralDidUpdateRSSI \(peripheral)")
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        Log(.debug, logString: "didReadRSSI \(peripheral)")
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
-        Log(.debug, logString: "didDiscoverDescriptorsFor uuid: \(characteristic.uuid), value: \(String(describing: characteristic.value))")
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor descriptor: CBDescriptor, error: Error?) {
-        Log(.debug, logString: "didUpdateValueFor uuid: \(descriptor.uuid), value: \(String(describing: descriptor.value))")
-    }
-    
-    public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor descriptor: CBDescriptor, error: Error?) {
-        Log(.debug, logString: "didWriteValueFor descriptor uuid: \(descriptor.uuid), value: \(String(describing: descriptor.value))")
+    internal func discoverRegisteredServices(on peripheral : CBPeripheral) {
+        
+        Log(.debug, logString: "Connected to \(String(describing: peripheral.name))")
+        Log(.debug, logString: "Discovering Services")
+        
+        peripheral.delegate = self
+        peripheral.discoverServices(registeredServiceUUIDs)
     }
     
     internal func handleServicesDiscovered(for peripheral : CBPeripheral, _ error : Error?) {
@@ -388,7 +357,7 @@ extension EBCentralManager: CBPeripheralDelegate {
     }
     
     // TODO: Break Up This Method and Test It
-    internal func handleCharacteristicsDiscovered(for service: CBService, on peripheral: CBPeripheral, _ error: Error?) {
+    internal func discoveredCharactetistics(forService service: CBService, from peripheral: CBPeripheral, _ error: Error?) {
         
         guard let characteristics = service.characteristics else {
             return
@@ -401,10 +370,10 @@ extension EBCentralManager: CBPeripheralDelegate {
             Log(.debug, logString: "             - \(characteristic.uuid.uuidString)")
             
             if !(peripheralCharacteristics[peripheral.identifier]?.contains(characteristic))! {
-                
                 peripheralCharacteristics[peripheral.identifier]!.append(characteristic)
                 
                 if characteristic.uuid.uuidString.uppercased() == mtuCharacteristicUUIDKey {
+                   
                     if characteristic.properties.contains(.notify) {
                         Log(.debug, logString: "Triggered Notification Registration for: \(characteristic.uuid.uuidString)")
                         peripheral.setNotifyValue(true, for: characteristic)
@@ -413,31 +382,25 @@ extension EBCentralManager: CBPeripheralDelegate {
             }
         }
         
-        if chunkedCharacteristicUUIDS.count == 0 {
+        if packetBasedCharacteristicUUIDS.count == 0 {
             peripheralConnectionCallback?(true, peripheral, nil)
         }
     }
-    
-    internal func handleNotificationStateUpdate(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) {
-        let notificationState  = characteristic.isNotifying ? "Registered" : "Unregistered"
-        Log(.debug, logString: "\(notificationState) Notification for characteristic")
-        Log(.debug, logString: "        -  \(characteristic.uuid)")
-    }
 }
+
+// MARK: - Write
 
 extension EBCentralManager {
     
     public func write(data : Data, toUUID uuid: String, completion : EBTransactionCallback? = nil) {
         
         dataQueue.async { [unowned self] in
-            
             for (peripheralUUID, _) in self.peripheralCharacteristics {
                 
                 if let characteristic = self.characteristic(for: uuid, on: peripheralUUID) {
                     
-                    guard let transaction = self.writeTransaction(for : characteristic,
-                                                                  to  : peripheralUUID) else {
-                                                                    return
+                    guard let transaction = self.writeTransaction(for : characteristic, to : peripheralUUID) else {
+                        return
                     }
                     
                     transaction.data = data
@@ -456,7 +419,72 @@ extension EBCentralManager {
         }
     }
     
-    public func read(fromUUID uuid: String, completion : EBTransactionCallback? = nil) {
+    // Test This Method
+    internal func receivedWriteResponse(forCharacteristic characteristic: CBCharacteristic, from peripheralUUID: UUID) {
+        
+        guard let transaction = writeTransaction(for : characteristic, to  : peripheralUUID) else {
+            return
+        }
+        
+        transaction.processTransaction()
+        
+        Log(.debug, logString: "Central Send Write Packet  \(transaction.activeResponseCount)  / \(transaction.totalPackets)")
+        
+        if transaction.isComplete {
+            Log(.debug, logString: "Central Write Compelete")
+            transaction.completion?(transaction.data!, nil)
+            clearWriteTransaction(from: peripheralUUID, on: characteristic)
+        }
+    }
+    
+    // Test This Method
+    internal func writeTransaction(for characteristic : CBCharacteristic,
+                                   to peripheralUUID : UUID) -> Transaction? {
+        
+        var activeWriteTransation = activeWriteTransations[peripheralUUID]?.first(where: {
+            $0.characteristic?.uuid == characteristic.uuid
+        })
+        
+        if activeWriteTransation != nil  {
+            return activeWriteTransation
+        }
+        
+        var transactionType : TransactionType = .write
+        
+        if let _  = packetBasedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
+            transactionType = .writePackets
+        }
+        
+        guard let mtuValue = self.peripheralMTUValues[peripheralUUID] else {
+            Log(.debug, logString: "Central to Peripheral MTU Value Not Found")
+            return nil
+        }
+        
+        activeWriteTransation = Transaction(transactionType,
+                                            .centralToPeripheral,
+                                            characteristic : characteristic,
+                                            mtuSize : mtuValue)
+        
+        activeWriteTransations[peripheralUUID]!.append(activeWriteTransation!)
+        
+        return activeWriteTransation
+    }
+    
+    // Test This Method
+    internal func clearWriteTransaction(from peripheralUUID: UUID, on characteristic : CBCharacteristic) {
+        if let index = self.activeWriteTransations[peripheralUUID]?.index(where: {
+            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
+        {
+            activeWriteTransations[peripheralUUID]?.remove(at: index)
+        }
+    }
+}
+
+// MARK: - Read
+
+extension EBCentralManager {
+    
+    public func read(characteristicUUID uuid: String, completion : EBTransactionCallback? = nil) {
         
         dataQueue.async { [unowned self] in
             for (peripheralUUID, _) in self.peripheralCharacteristics {
@@ -479,36 +507,9 @@ extension EBCentralManager {
             }
         }
     }
-}
-
-extension EBCentralManager {
     
-    // TODO: Test This Method
-    internal func processWriteTransationResponse(forCharacteristic characteristic: CBCharacteristic, from peripheralUUID: UUID) {
-        
-        guard let transaction = writeTransaction(for : characteristic, to  : peripheralUUID) else {
-            return
-        }
-        
-        transaction.processTransaction()
-        
-        Log(.debug, logString: "Central Send Write Packet  \(transaction.activeResponseCount)  / \(transaction.totalPackets)")
-        
-        if transaction.isComplete {
-            Log(.debug, logString: "Central Write Compelete")
-            transaction.completion?(transaction.data!, nil)
-            clearWriteTransaction(from: peripheralUUID, on: characteristic)
-        }
-    }
-    
-    // TODO: Test This Method
-    internal func processReadTransationResponse(forCharacteristic characteristic: CBCharacteristic, from peripheralUUID: UUID, error: Error?) {
-        
-        if characteristic.uuid.uuidString == mtuCharacteristicUUIDKey &&
-            chunkedCharacteristicUUIDS.count > 0 {
-            handleMTUValueUpdate(for: characteristic, on: peripheralUUID)
-            return
-        }
+    // Test This Method
+    internal func receivedReadResponse(forCharacteristic characteristic: CBCharacteristic, from peripheralUUID: UUID, error: Error?) {
         
         guard let transaction = readTransaction(for: characteristic, from: peripheralUUID) else {
             return
@@ -524,72 +525,13 @@ extension EBCentralManager {
             
             transaction.completion?(transaction.data!, nil)
             clearReadTransaction(from: peripheralUUID, on: characteristic)
+            
         } else {
-            read(fromUUID : characteristic.uuid.uuidString)
+            read(characteristicUUID : characteristic.uuid.uuidString)
         }
     }
-}
-
-extension EBCentralManager {
     
-    internal func handleMTUValueUpdate(for characteristic : CBCharacteristic, on peripheralUUID : UUID) {
-        
-        guard let value =  characteristic.value?.int16Value(inRange: 0..<2) else {
-            return
-        }
-        
-        Log(.debug, logString: "Received MTU \(value)\n");
-        
-        peripheralMTUValues[peripheralUUID] = value
-        
-        guard let peripheral = connectedPeripherals.first(where: { $0.identifier == peripheralUUID}) else {
-            return
-        }
-        
-        peripheralConnectionCallback?(true, peripheral, nil)
-    }
-}
-
-extension EBCentralManager {
-    
-    // TODO: Test This Method
-    internal func writeTransaction(for characteristic : CBCharacteristic,
-                                   to peripheralUUID : UUID) -> Transaction? {
-        
-        var activeWriteTransation = activeWriteTransations[peripheralUUID]?.first(where: {
-            $0.characteristic?.uuid == characteristic.uuid
-        })
-        
-        if activeWriteTransation != nil  {
-            return activeWriteTransation
-        }
-        
-        if activeWriteTransations[peripheralUUID] == nil {
-            activeWriteTransations[peripheralUUID] = [Transaction]()
-        }
-        
-        var transactionType : TransactionType = .write
-        
-        if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
-            transactionType = .writeChunkable
-        }
-        
-        guard let mtuValue = self.peripheralMTUValues[peripheralUUID] else {
-            Log(.debug, logString: "Central to Peripheral MTU Value Not Found")
-            return nil
-        }
-        
-        activeWriteTransation = Transaction(transactionType,
-                                            .centralToPeripheral,
-                                            characteristic : characteristic,
-                                            mtuSize : mtuValue)
-        
-        activeWriteTransations[peripheralUUID]!.append(activeWriteTransation!)
-        
-        return activeWriteTransation
-    }
-    
-    // TODO: Test This Method
+    // Test This Method
     internal func readTransaction(for characteristic : CBCharacteristic,
                                   from peripheralUUID : UUID) -> Transaction? {
         
@@ -601,14 +543,10 @@ extension EBCentralManager {
             return activeReadTransation
         }
         
-        if self.activeReadTransations[peripheralUUID] == nil {
-            self.activeReadTransations[peripheralUUID] = [Transaction]()
-        }
-        
         var transactionType : TransactionType = .read
         
-        if let _  = self.chunkedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
-            transactionType = .readChunkable
+        if let _  = self.packetBasedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
+            transactionType = .readPackets
         }
         
         activeReadTransation = Transaction(transactionType, .centralToPeripheral,
@@ -618,6 +556,62 @@ extension EBCentralManager {
         
         return activeReadTransation
     }
+    
+    // Test This Method
+    internal func clearReadTransaction(from peripheralUUID: UUID, on characteristic : CBCharacteristic) {
+        if let index = self.activeReadTransations[peripheralUUID]?.index(where: {
+            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
+        {
+            activeReadTransations[peripheralUUID]?.remove(at: index)
+        }
+    }
+}
+
+// MARK: - Read / Write Response
+
+extension EBCentralManager {
+    
+    internal func respondToManagerStateChange(_ central: CBCentralManager) {
+        Log(.debug, logString: "Central BLE state - \(central.state.rawValue)")
+        
+        switch central.state {
+        case .poweredOn:
+            operationQueue.async { [unowned self] in
+                self.startScan()
+            }
+        default:
+            break
+        }
+        
+        stateChangeCallBack?(EBManagerState(rawValue: central.state.rawValue)!)
+    }
+    
+    internal func handleMTUValueUpdate(for characteristic : CBCharacteristic, from peripheral: CBPeripheral) {
+        
+        guard let value = characteristic.value?.int16Value(inRange: 0..<2) else {
+            return
+        }
+        
+        Log(.debug, logString: "Received MTU \(value)\n");
+        
+        if let _ = peripheralMTUValues[peripheral.identifier] {
+            peripheralMTUValues[peripheral.identifier] = value
+            return
+        }
+        
+        peripheralMTUValues[peripheral.identifier] = value
+        
+        guard let peripheral = connectedPeripherals.first(where: { $0.identifier == peripheral.identifier}) else {
+            return
+        }
+        
+        peripheralConnectionCallback?(true, peripheral, nil)
+    }
+}
+
+extension EBCentralManager {
+    
+
     
     // TODO: Test This Method
     internal func characteristic(for uuid: String, on peripheralUUID : UUID) -> CBCharacteristic? {
@@ -631,87 +625,9 @@ extension EBCentralManager {
         return nil
     }
     
-    // TODO: Test This Method
-    internal func clearReadTransaction(from peripheralUUID: UUID, on characteristic : CBCharacteristic) {
-        if let index = self.activeReadTransations[peripheralUUID]?.index(where: {
-            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
-        {
-            activeReadTransations[peripheralUUID]?.remove(at: index)
-        }
-    }
-    
-    // TODO: Test This Method
-    internal func clearWriteTransaction(from peripheralUUID: UUID, on characteristic : CBCharacteristic) {
-        if let index = self.activeWriteTransations[peripheralUUID]?.index(where: {
-            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
-        {
-            activeWriteTransations[peripheralUUID]?.remove(at: index)
-        }
-    }
-}
-
-extension EBCentralManager {
-    
-    internal func cachePeripheral(_ peripheralUUID : UUID) {
-        
-        guard reconnectOnStart else {
-            return
-        }
-        
-        let defaults = UserDefaults.standard
-        
-        if var uuids = defaults.array(forKey: reconnectCacheKey) as? [String], !uuids.contains(peripheralUUID.uuidString) {
-            
-            uuids.append(peripheralUUID.uuidString)
-            defaults.set(uuids, forKey : reconnectCacheKey)
-            
-        } else {
-            defaults.set([peripheralUUID.uuidString], forKey : reconnectCacheKey)
-        }
-        
-        defaults.synchronize()
-    }
-    
-    internal func unCachedPeripheral(_ peripheralUUID : UUID) {
-        
-        guard reconnectOnStart else {
-            return
-        }
-        
-        let defaults = UserDefaults.standard
-        
-        if var uuids = defaults.array(forKey: reconnectCacheKey) as? [String] {
-            
-            if let index = uuids.index(of: peripheralUUID.uuidString) {
-                uuids.remove(at: index)
-            }
-            
-            defaults.set(uuids, forKey : reconnectCacheKey)
-            defaults.synchronize()
-        }
-    }
-    
-    internal func cachedPeripherals() -> [CBPeripheral]? {
-        
-        guard reconnectOnStart else {
-            return nil
-        }
-        
-        guard let uuids = UserDefaults.standard.array(forKey: reconnectCacheKey) as? [String],
-            let uuidArray = uuids.map({ UUID(uuidString: $0) }) as? [UUID] else {
-                return nil
-        }
-        
-        let peripherals = centralManager.retrievePeripherals(withIdentifiers:uuidArray)
-        
-        guard peripherals.count != 0 else {
-            return nil
-        }
-        
-        for peripheral in peripherals {
-            peripheralCharacteristics[peripheral.identifier] = [CBCharacteristic]()
-        }
-        
-        return peripherals
+    internal func handleNotificationStateUpdate(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) {
+        let notificationState  = characteristic.isNotifying ? "Registered" : "Unregistered"
+        Log(.debug, logString: "\(notificationState) Notification for characteristic")
+        Log(.debug, logString: "        -  \(characteristic.uuid)")
     }
 }

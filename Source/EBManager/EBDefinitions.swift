@@ -41,9 +41,9 @@ public typealias CharacteristicUpdateCallback = ((_ data: Data) -> Void)
 
 /***
  *  Service added to the central and peripheral if one of the
- *  chracteristics in the definition is chunkable. This will
- *  communicate the preferred mtu (chunk size) to split the 
- *  data into chunks when communicating large data
+ *  chracteristics in the definition is packet based. This will
+ *  communicate the preferred mtu (packet size) to split the 
+ *  data into packets when communicating large data
  ***/
 
 public let mtuServiceUUIDKey = "F80A41CA-8B71-47BE-8A92-E05BB5F1F862"

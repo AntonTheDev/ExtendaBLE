@@ -17,14 +17,14 @@ public class EBPeripheralManager : NSObject {
     
     internal var registeredServices                 = [CBMutableService]()
     internal var registeredCharacteristicCallbacks  = [CBUUID : EBTransactionCallback]()
-    internal var chunkedCharacteristicUUIDS         = [CBUUID]()
+    internal var packetBasedCharacteristicUUIDS     = [CBUUID]()
     
     internal var activeWriteTransations             = [UUID : [Transaction]]()
     internal var activeReadTransations              = [UUID : [Transaction]]()
     
-    internal var operationQueue                     = DispatchQueue(label: "PeripheralManagerQueue", qos: .default)
-    internal var dataQueue                          = DispatchQueue(label: "PeripheralOperationQueue", qos: .userInitiated)
-    
+    internal var operationQueue                     = DispatchQueue(label: "PeripheralManagerQueue", qos: .userInitiated)
+    internal var dataQueue                          = DispatchQueue(label: "PeripheralOperationQueue", qos: .default )
+
     internal var stateChangeCallBack                : PeripheralManagerStateChangeCallBack?
     internal var didStartAdvertisingCallBack        : PeripheralManagerDidStartAdvertisingCallBack?
     
@@ -48,6 +48,7 @@ extension EBPeripheralManager {
     @discardableResult public func startAdvertising() -> EBPeripheralManager {
         
         if peripheralManager.state != .poweredOn {
+            peripheralManager.delegate = self
             advertisingRequested = true
             return self
         }
@@ -63,8 +64,8 @@ extension EBPeripheralManager {
         if let localName = localName {
             advertisementData[CBAdvertisementDataLocalNameKey] = localName
         }
-        
-        advertisementData[CBAdvertisementDataServiceUUIDsKey] = registeredServices.map { $0.uuid }
+        let uuid = registeredServices.filter { $0.isPrimary }.map { $0.uuid }
+        advertisementData[CBAdvertisementDataServiceUUIDsKey] = uuid // registeredServices.filter { $0.isPrimary }.map { $0.uuid }
         
         peripheralManager.startAdvertising(advertisementData)
         
@@ -75,18 +76,7 @@ extension EBPeripheralManager {
         peripheralManager.stopAdvertising()
         return self
     }
-    
-    @discardableResult public func onStateChange(_ callback : @escaping PeripheralManagerStateChangeCallBack) -> EBPeripheralManager {
-        stateChangeCallBack = callback
-        return self
-    }
-    
-    @discardableResult public func onDidStartAdvertising(_ callback : @escaping PeripheralManagerDidStartAdvertisingCallBack) -> EBPeripheralManager {
-        didStartAdvertisingCallBack = callback
-        return self
-    }
 }
-
 
 // MARK: - CBPeripheralManagerDelegate
 
@@ -99,13 +89,13 @@ extension EBPeripheralManager: CBPeripheralManagerDelegate {
     }
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveRead request: CBATTRequest) {
-        dataQueue.async { [unowned self] in
+        dataQueue.sync { [unowned self] in
             self.handleReadRequest(request)
         }
     }
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didReceiveWrite requests: [CBATTRequest]) {
-        dataQueue.async { [unowned self] in
+        dataQueue.sync { [unowned self] in
             self.handleWriteRequests(requests)
         }
     }
@@ -172,13 +162,17 @@ extension EBPeripheralManager {
     internal func handleWriteRequests(_ requests: [CBATTRequest]) {
         
         for request in requests {
-            
             if processWriteRequest(packet: request.value,
                                    from: request.central.identifier,
                                    for: request.characteristic,
                                    mtuSize: Int16(request.central.maximumUpdateValueLength)) {
                 
                 peripheralManager.respond(to: request, withResult: .success)
+  
+                if activeWriteTransations[request.central.identifier]?
+                    .first(where: { $0.characteristic?.uuid == request.characteristic.uuid }) == nil {
+                     processMTUSubscription(for: request.central)
+                }
             }
         }
     }
@@ -225,9 +219,11 @@ extension EBPeripheralManager {
             setLocalValue(for: activeWriteTransaction)
             registeredCharacteristicCallbacks[characteristic.uuid]?(activeWriteTransaction.data, nil)
             clearWriteTransaction(from: centralUUID, on: characteristic)
+    
         }
         
         return true
+
     }
 }
 
@@ -249,8 +245,7 @@ extension EBPeripheralManager {
         
         for service in registeredServices {
             if let characteristic =  service.characteristics?.first(where: {
-                $0.uuid.uuidString == mtuCharacteristicUUIDKey
-            }) as? CBMutableCharacteristic {
+                $0.uuid.uuidString == mtuCharacteristicUUIDKey }) as? CBMutableCharacteristic {
                 
                 let messageData = NSMutableData()
                 messageData.appendInt16(Int16(central.maximumUpdateValueLength))
@@ -283,8 +278,8 @@ extension EBPeripheralManager {
         
         var transactionType : TransactionType = .write
         
-        if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
-            transactionType = .writeChunkable
+        if let _  = packetBasedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
+            transactionType = .writePackets
         }
         
         activeWriteTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize: mtuSize)
@@ -321,8 +316,8 @@ extension EBPeripheralManager {
         
         var transactionType : TransactionType = .read
         
-        if let _  = chunkedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
-            transactionType = .readChunkable
+        if let _  = packetBasedCharacteristicUUIDS.first(where: { $0 == characteristic.uuid }) {
+            transactionType = .readPackets
         }
         
         activeReadTransaction = Transaction(transactionType, .peripheralToCentral, mtuSize: mtuSize)

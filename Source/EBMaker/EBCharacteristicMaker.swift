@@ -12,12 +12,12 @@ import CoreBluetooth
 public class EBCharacteristicMaker {
     
     internal var uuid : String
-    fileprivate var value : Data?
+    internal var value : Data?
     internal var updateCallback : EBTransactionCallback?
-    internal var chunkingEnabled : Bool = false
+    internal var packetsEnabled : Bool = false
     
-    fileprivate var permissions : CBAttributePermissions = [.readable, .writeable]
-    fileprivate var properties : CBCharacteristicProperties =  [.read, .write, .notify]
+    internal var permissions : CBAttributePermissions = [.readable, .writeable]
+    internal var properties : CBCharacteristicProperties =  [.read, .write, .notify]
     
     required public init(uuid UUID: String, primary isPrimary: Bool = true) {
         uuid = UUID
@@ -42,8 +42,8 @@ public class EBCharacteristicMaker {
         return self
     }
     
-    @discardableResult public func chunkingEnabled(_ chunkingEnabled : Bool) -> EBCharacteristicMaker {
-        self.chunkingEnabled = chunkingEnabled
+    @discardableResult public func packetsEnabled(_ packetsEnabled : Bool) -> EBCharacteristicMaker {
+        self.packetsEnabled = packetsEnabled
         return self
     }
     

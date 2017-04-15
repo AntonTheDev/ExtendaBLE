@@ -18,9 +18,9 @@ public enum TransactionDirection : Int {
 
 public enum TransactionType : Int {
     case read
-    case readChunkable
+    case readPackets
     case write
-    case writeChunkable
+    case writePackets
 }
 
 public class Transaction {
@@ -39,7 +39,7 @@ public class Transaction {
     
     var data : Data? {
         get {
-            if type == .readChunkable || type == .writeChunkable {
+            if type == .readPackets || type == .writePackets {
                 return  Data.reconstructedData(withArray: dataPackets)!
             } else {
                 
@@ -50,7 +50,7 @@ public class Transaction {
             }
         }
         set {
-            if type == .readChunkable || type == .writeChunkable {
+            if type == .readPackets || type == .writePackets {
                 dataPackets = newValue?.packetArray(withMTUSize: mtuSize) ?? [Data]()
                 totalPackets = newValue?.packetArray(withMTUSize: mtuSize).count ?? 1
             } else {
@@ -75,7 +75,7 @@ public class Transaction {
         self.characteristic = characteristic
         self.completion = completion
         
-        if type != .writeChunkable && type != .readChunkable {
+        if type != .writePackets && type != .readPackets {
              totalPackets = 1
         }
     }
@@ -98,7 +98,7 @@ public class Transaction {
             return
         }
         
-        if type == .writeChunkable || type == .readChunkable {
+        if type == .writePackets || type == .readPackets {
             totalPackets = dataPacket.totalPackets
         }
         
@@ -107,9 +107,9 @@ public class Transaction {
     
     var isComplete : Bool {
         get {
-            if type == .readChunkable {
+            if type == .readPackets {
                 return totalPackets == activeResponseCount
-            } else if type == .writeChunkable {
+            } else if type == .writePackets {
                 return totalPackets == activeResponseCount
                 
               //  return self.dataPackets.count == totalPackets

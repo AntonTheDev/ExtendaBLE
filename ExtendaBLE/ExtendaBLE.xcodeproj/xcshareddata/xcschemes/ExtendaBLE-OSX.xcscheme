@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3A0322181E8DFF260080E13F"
+               BuildableName = "ExtendaBLE-Tests.xctest"
+               BlueprintName = "ExtendaBLE-Tests"
+               ReferencedContainer = "container:ExtendaBLE.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3A0322731E8E01130080E13F"
+            BuildableName = "ExtendaBLE.framework"
+            BlueprintName = "ExtendaBLE-OSX"
+            ReferencedContainer = "container:ExtendaBLE.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
