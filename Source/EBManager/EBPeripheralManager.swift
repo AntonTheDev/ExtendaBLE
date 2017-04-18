@@ -43,41 +43,6 @@ public class EBPeripheralManager : NSObject {
     }
 }
 
-extension EBPeripheralManager {
-    
-    @discardableResult public func startAdvertising() -> EBPeripheralManager {
-        
-        if peripheralManager.state != .poweredOn {
-            peripheralManager.delegate = self
-            advertisingRequested = true
-            return self
-        }
-        
-        peripheralManager.removeAllServices()
-        
-        for service in registeredServices {
-            peripheralManager.add(service)
-        }
-        
-        var advertisementData = [String : Any]()
-        
-        if let localName = localName {
-            advertisementData[CBAdvertisementDataLocalNameKey] = localName
-        }
-        let uuid = registeredServices.filter { $0.isPrimary }.map { $0.uuid }
-        advertisementData[CBAdvertisementDataServiceUUIDsKey] = uuid // registeredServices.filter { $0.isPrimary }.map { $0.uuid }
-        
-        peripheralManager.startAdvertising(advertisementData)
-        
-        return self
-    }
-    
-    @discardableResult public func stopAdvertising() -> EBPeripheralManager {
-        peripheralManager.stopAdvertising()
-        return self
-    }
-}
-
 // MARK: - CBPeripheralManagerDelegate
 
 extension EBPeripheralManager: CBPeripheralManagerDelegate {
@@ -127,41 +92,52 @@ extension EBPeripheralManager: CBPeripheralManagerDelegate {
 }
 
 
-// MARK: Transaction Handlers
+// MARK: - Advertising
 
 extension EBPeripheralManager {
     
-    internal func handleStateChange(on peripheral: CBPeripheralManager) {
+    @discardableResult public func startAdvertising() -> EBPeripheralManager {
         
-        switch peripheral.state {
-        case .poweredOn:
-            if advertisingRequested {
-                advertisingRequested = false
-                startAdvertising()
-            }
-        default:
-            break
+        if peripheralManager.state != .poweredOn {
+            peripheralManager.delegate = self
+            advertisingRequested = true
+            return self
         }
         
-        Log(.debug, logString: "Peripheral BLE state - \(peripheral.state.rawValue)")
-        stateChangeCallBack?(EBManagerState(rawValue: peripheral.state.rawValue)!)
-    }
-    
-    internal func handleReadRequest(_ request: CBATTRequest) {
-    
-        guard let responseData = processReadRequest(from: request.central.identifier,
-                                                    for: request.characteristic,
-                                                    mtuSize: Int16(request.central.maximumUpdateValueLength)) else {
-            return
+        peripheralManager.removeAllServices()
+        
+        for service in registeredServices {
+            peripheralManager.add(service)
         }
         
-        request.value = responseData
-        peripheralManager.respond(to: request, withResult: .success)
+        var advertisementData = [String : Any]()
+        
+        if let localName = localName {
+            advertisementData[CBAdvertisementDataLocalNameKey] = localName
+        }
+        
+        let uuid = registeredServices.filter { $0.isPrimary }.map { $0.uuid }
+        advertisementData[CBAdvertisementDataServiceUUIDsKey] = uuid
+        peripheralManager.startAdvertising(advertisementData)
+        
+        return self
     }
     
+    @discardableResult public func stopAdvertising() -> EBPeripheralManager {
+        peripheralManager.stopAdvertising()
+        return self
+    }
+}
+
+
+// MARK: Write
+
+extension EBPeripheralManager {
+
     internal func handleWriteRequests(_ requests: [CBATTRequest]) {
         
         for request in requests {
+            
             if processWriteRequest(packet: request.value,
                                    from: request.central.identifier,
                                    for: request.characteristic,
@@ -171,36 +147,24 @@ extension EBPeripheralManager {
   
                 if activeWriteTransations[request.central.identifier]?
                     .first(where: { $0.characteristic?.uuid == request.characteristic.uuid }) == nil {
-                     processMTUSubscription(for: request.central)
+                        processMTUSubscription(for: request.central)
                 }
             }
         }
     }
     
-    // TODO: Test This Method
-    internal func processReadRequest(from centralUUID : UUID, for characteristic: CBCharacteristic, mtuSize : Int16) -> Data? {
-        
-        guard let data = getLocalValue(for : characteristic),
-              let activeReadTransaction = readTransaction(data, for: characteristic,
-                                                          from: centralUUID,
-                                                          mtuSize: mtuSize) else {
-                                                            return nil
-        }
-        
-        activeReadTransaction.processTransaction()
-        
-        Log(.debug, logString: "Peripheral Sent Read Packet \(activeReadTransaction.activeResponseCount) / \( activeReadTransaction.totalPackets)")
-        
-        if activeReadTransaction.isComplete {
-            Log(.debug, logString: "Peripheral Sent Read Complete")
-            clearReadTransaction(from: centralUUID, on: characteristic)
-        }
-        
-        return activeReadTransaction.nextPacket()
-    }
-    
-    // TODO: Test This Method
-    internal func processWriteRequest(packet : Data?, from centralUUID : UUID, for characteristic: CBCharacteristic, mtuSize : Int16) -> Bool {
+    /// Tested
+    ///
+    /// - Parameters:
+    ///   - packet: <#packet description#>
+    ///   - centralUUID: <#centralUUID description#>
+    ///   - characteristic: <#characteristic description#>
+    ///   - mtuSize: <#mtuSize description#>
+    /// - Returns: <#return value description#>
+    internal func processWriteRequest(packet : Data?,
+                                      from centralUUID : UUID,
+                                      for characteristic: CBCharacteristic,
+                                      mtuSize : Int16) -> Bool {
         
         guard let activeWriteTransaction = writeTransaction(for: characteristic,
                                                             from: centralUUID,
@@ -219,49 +183,18 @@ extension EBPeripheralManager {
             setLocalValue(for: activeWriteTransaction)
             registeredCharacteristicCallbacks[characteristic.uuid]?(activeWriteTransaction.data, nil)
             clearWriteTransaction(from: centralUUID, on: characteristic)
-    
         }
         
         return true
+    }
 
-    }
-}
-
-extension EBPeripheralManager {
-    
-    internal func handleSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
-        Log(.debug, logString: "Central \(central.identifier)")
-        Log(.debug, logString: "    - Subscribed tp \(characteristic.uuid.uuidString)")
-        if characteristic.uuid.uuidString == mtuCharacteristicUUIDKey {
-            processMTUSubscription(for: central)
-        }
-    }
-    
-    internal func handleUnSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
-        Log(.debug, logString: "Central \(central.identifier) Unsubscribed for \(characteristic.uuid.uuidString)")
-    }
-    
-    internal func processMTUSubscription(for central: CBCentral) {
-        
-        for service in registeredServices {
-            if let characteristic =  service.characteristics?.first(where: {
-                $0.uuid.uuidString == mtuCharacteristicUUIDKey }) as? CBMutableCharacteristic {
-                
-                let messageData = NSMutableData()
-                messageData.appendInt16(Int16(central.maximumUpdateValueLength))
-                characteristic.value = (messageData as Data)
-                
-                Log(.debug, logString: "Peripheral Notified Central w/ MTU value: \(central.maximumUpdateValueLength)")
-                
-                peripheralManager.updateValue((messageData as Data), for:  characteristic, onSubscribedCentrals: [central])
-            }
-        }
-    }
-}
-
-extension EBPeripheralManager {
-    
-    // TODO: Test This Method
+    /// Tested
+    ///
+    /// - Parameters:
+    ///   - characteristic: <#characteristic description#>
+    ///   - centralUUID: <#centralUUID description#>
+    ///   - mtuSize: <#mtuSize description#>
+    /// - Returns: <#return value description#>
     internal func writeTransaction(for characteristic : CBCharacteristic,
                                    from centralUUID : UUID,
                                    mtuSize : Int16) -> Transaction? {
@@ -298,7 +231,95 @@ extension EBPeripheralManager {
         return activeWriteTransaction
     }
     
-    // TODO: Test This Method
+    
+    /// Tested
+    ///
+    /// - Parameter transaction: <#transaction description#>
+    internal func setLocalValue(for transaction : Transaction) {
+        guard let characteristic = transaction.characteristic else {
+            Log(.error, logString: "Could not Find Local Characteristic to Update")
+            return
+        }
+        
+        for service in registeredServices {
+            if  let index =  service.characteristics?.index(of : characteristic),
+                let characteristic = service.characteristics?[index] as? CBMutableCharacteristic {
+                
+                characteristic.value = transaction.data
+            }
+        }
+    }
+    
+    
+    /// Tested
+    ///
+    /// - Parameters:
+    ///   - centralUUID: <#centralUUID description#>
+    ///   - characteristic: <#characteristic description#>
+    internal func clearWriteTransaction(from centralUUID: UUID, on characteristic : CBCharacteristic) {
+        if let index = self.activeWriteTransations[centralUUID]?.index(where: {
+            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
+        {
+            activeWriteTransations[centralUUID]?.remove(at: index)
+        }
+    }
+}
+
+// MARK: Read Request
+extension EBPeripheralManager {
+    
+    internal func handleReadRequest(_ request: CBATTRequest) {
+        
+        guard let responseData = processReadRequest(from: request.central.identifier,
+                                                    for: request.characteristic,
+                                                    mtuSize: Int16(request.central.maximumUpdateValueLength)) else {
+                                                        return
+        }
+        
+        request.value = responseData
+        peripheralManager.respond(to: request, withResult: .success)
+    }
+    
+
+    /// Tested
+    ///
+    /// - Parameters:
+    ///   - centralUUID: <#centralUUID description#>
+    ///   - characteristic: <#characteristic description#>
+    ///   - mtuSize: <#mtuSize description#>
+    /// - Returns: <#return value description#>
+    internal func processReadRequest(from centralUUID : UUID,
+                                     for characteristic: CBCharacteristic,
+                                     mtuSize : Int16) -> Data? {
+        
+        guard let data = getLocalValue(for : characteristic),
+            let activeReadTransaction = readTransaction(data, for: characteristic,
+                                                        from: centralUUID,
+                                                        mtuSize: mtuSize) else {
+                                                            return nil
+        }
+        
+        activeReadTransaction.processTransaction()
+        
+        Log(.debug, logString: "Peripheral Sent Read Packet \(activeReadTransaction.activeResponseCount) / \( activeReadTransaction.totalPackets)")
+        
+        if activeReadTransaction.isComplete {
+            Log(.debug, logString: "Peripheral Sent Read Complete")
+            clearReadTransaction(from: centralUUID, on: characteristic)
+        }
+        
+        return activeReadTransaction.nextPacket()
+    }
+    
+    
+    /// Tested
+    ///
+    /// - Parameters:
+    ///   - data: <#data description#>
+    ///   - characteristic: <#characteristic description#>
+    ///   - centralUUID: <#centralUUID description#>
+    ///   - mtuSize: <#mtuSize description#>
+    /// - Returns: <#return value description#>
     internal func readTransaction(_ data : Data,
                                   for characteristic : CBCharacteristic,
                                   from centralUUID : UUID,
@@ -337,42 +358,11 @@ extension EBPeripheralManager {
         return activeReadTransaction
     }
     
-
-    // TODO: Test This Method
-    internal func clearReadTransaction(from centralUUID: UUID, on characteristic : CBCharacteristic) {
-        if let index = self.activeReadTransations[centralUUID]?.index(where: {
-            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
-        {
-            activeReadTransations[centralUUID]?.remove(at: index)
-        }
-    }
     
-    // TODO: Test This Method
-    internal func clearWriteTransaction(from centralUUID: UUID, on characteristic : CBCharacteristic) {
-        if let index = self.activeWriteTransations[centralUUID]?.index(where: {
-            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
-        {
-            activeWriteTransations[centralUUID]?.remove(at: index)
-        }
-    }
-    
-    internal func setLocalValue(for transaction : Transaction) {
-        
-        guard let characteristic = transaction.characteristic else {
-            Log(.error, logString: "Could not Find Local Characteristic to Update")
-            return
-        }
-        
-        for service in registeredServices {
-            if  let index =  service.characteristics?.index(of : characteristic),
-                let characteristic = service.characteristics?[index] as? CBMutableCharacteristic {
-                
-                characteristic.value = transaction.data
-            }
-        }
-    }
-    
-    // TODO: Test This Method
+    /// Tested
+    ///
+    /// - Parameter characteristic: <#characteristic description#>
+    /// - Returns: <#return value description#>
     internal func getLocalValue(for characteristic: CBCharacteristic?) -> Data? {
         
         guard let characteristic = characteristic  else {
@@ -387,6 +377,70 @@ extension EBPeripheralManager {
         }
         
         return nil
+    }
+
+    
+    /// Tested
+    ///
+    /// - Parameters:
+    ///   - centralUUID: <#centralUUID description#>
+    ///   - characteristic: <#characteristic description#>
+    internal func clearReadTransaction(from centralUUID: UUID, on characteristic : CBCharacteristic) {
+        if let index = self.activeReadTransations[centralUUID]?.index(where: {
+            $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
+        {
+            activeReadTransations[centralUUID]?.remove(at: index)
+        }
+    }
+}
+
+// MARK: Transaction Handlers
+
+extension EBPeripheralManager {
+    
+    internal func handleStateChange(on peripheral: CBPeripheralManager) {
+        
+        switch peripheral.state {
+        case .poweredOn:
+            if advertisingRequested {
+                advertisingRequested = false
+                startAdvertising()
+            }
+        default:
+            break
+        }
+        
+        Log(.debug, logString: "Peripheral BLE state - \(peripheral.state.rawValue)")
+        stateChangeCallBack?(EBManagerState(rawValue: peripheral.state.rawValue)!)
+    }
+    
+    internal func handleSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
+        Log(.debug, logString: "Central \(central.identifier)")
+        Log(.debug, logString: "    - Subscribed tp \(characteristic.uuid.uuidString)")
+        if characteristic.uuid.uuidString == mtuCharacteristicUUIDKey {
+            processMTUSubscription(for: central)
+        }
+    }
+    
+    internal func handleUnSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
+        Log(.debug, logString: "Central \(central.identifier) Unsubscribed for \(characteristic.uuid.uuidString)")
+    }
+    
+    internal func processMTUSubscription(for central: CBCentral) {
+        
+        for service in registeredServices {
+            if let characteristic =  service.characteristics?.first(where: {
+                $0.uuid.uuidString == mtuCharacteristicUUIDKey }) as? CBMutableCharacteristic {
+                
+                let messageData = NSMutableData()
+                messageData.appendInt16(Int16(central.maximumUpdateValueLength))
+                characteristic.value = (messageData as Data)
+                
+                Log(.debug, logString: "Peripheral Notified Central w/ MTU value: \(central.maximumUpdateValueLength)")
+                
+                peripheralManager.updateValue((messageData as Data), for:  characteristic, onSubscribedCentrals: [central])
+            }
+        }
     }
 }
 

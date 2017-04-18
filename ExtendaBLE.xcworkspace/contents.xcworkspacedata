@@ -20,9 +20,6 @@
             location = "group:EBCentralManager.swift">
          </FileRef>
          <FileRef
-            location = "group:/Users/Anton/Developer/OpenSource/ExtendaBLE/Source/EBManager/EBCentralManager+Delegates.swift">
-         </FileRef>
-         <FileRef
             location = "group:EBPeripheralManager.swift">
          </FileRef>
       </Group>

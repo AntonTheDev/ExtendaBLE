@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A41B1E91EA2A32C00121F69 /* EBCentralManager+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A41B1E81EA2A32C00121F69 /* EBCentralManager+Delegates.swift */; };
 		3A6020D71E9750D000FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D61E9750D000FBE08C /* ViewController.swift */; };
 		3AAD8A931E9293DB0013CE98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */; };
 		3AAD8A981E9293DB0013CE98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AAD8A961E9293DB0013CE98 /* Main.storyboard */; };
@@ -25,7 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A41B1E81EA2A32C00121F69 /* EBCentralManager+Delegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EBCentralManager+Delegates.swift"; sourceTree = "<group>"; };
 		3A6020D61E9750D000FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
 		3AAD8A8F1E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-tvOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				3AAD8B111E929ABF0013CE98 /* EBDefinitions.swift */,
-				3A41B1E81EA2A32C00121F69 /* EBCentralManager+Delegates.swift */,
 				3AAD8B101E929ABF0013CE98 /* EBCentralManager.swift */,
 			);
 			path = EBManager;
@@ -228,7 +225,6 @@
 				3AAD8B1D1E929ABF0013CE98 /* EBCentralManager.swift in Sources */,
 				3AAD8B221E929ABF0013CE98 /* Data+BLE.swift in Sources */,
 				3A6020D71E9750D000FBE08C /* ViewController.swift in Sources */,
-				3A41B1E91EA2A32C00121F69 /* EBCentralManager+Delegates.swift in Sources */,
 				3AAD8B231E929ABF0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8A931E9293DB0013CE98 /* AppDelegate.swift in Sources */,
 				3AD483501E9FD9A300505FDA /* Logger.swift in Sources */,
