@@ -12,22 +12,40 @@ import CoreBluetooth
 @available(iOS 9.0, OSX 10.10, *)
 public class EBPeripheralManager : NSObject {
     
+    /// Peripheral manager instance
     internal var peripheralManager                  : CBPeripheralManager
+    
+    /// The peripheral name to be included in the advertising data, configured during creation
     internal var localName                          : String?
     
+    /// Registered local services to be advertised, configured during creation
     internal var registeredServices                 = [CBMutableService]()
+    
+    /// Registered callbacks to trigger a characteristic has been written to, configured during creation
     internal var registeredCharacteristicCallbacks  = [CBUUID : EBTransactionCallback]()
+    
+    /// Array of packet based characteristics, determines how reads/writes are handled
     internal var packetBasedCharacteristicUUIDS     = [CBUUID]()
     
+    /// Currently active write transactions, associated with a peripheral uuid
     internal var activeWriteTransations             = [UUID : [Transaction]]()
+    
+    /// Currently active read transactions, associated with a peripheral uuid
     internal var activeReadTransations              = [UUID : [Transaction]]()
     
+    /// Default operation queue for the central manager if not specified, also used for non data operations
     internal var operationQueue                     = DispatchQueue(label: "PeripheralManagerQueue", qos: .userInitiated)
+   
+    /// All data operations are handled on this queue, read / write are synchronous
     internal var dataQueue                          = DispatchQueue(label: "PeripheralOperationQueue", qos: .default )
-
+    
+    /// State change delegate callback, specify during creation
     internal var stateChangeCallBack                : PeripheralManagerStateChangeCallBack?
+    
+    /// Did start advertising delegate callback
     internal var didStartAdvertisingCallBack        : PeripheralManagerDidStartAdvertisingCallBack?
     
+    /// Internal flag to ensure a advertising starts if the user attempts to start advertising before the peripheral is powered on
     internal var advertisingRequested : Bool        = false
     
     @available(iOS 9.0, OSX 10.10, *)
@@ -43,8 +61,8 @@ public class EBPeripheralManager : NSObject {
     }
 }
 
-// MARK: - CBPeripheralManagerDelegate
 
+// MARK: - CBPeripheralManagerDelegate
 extension EBPeripheralManager: CBPeripheralManagerDelegate {
     
     public func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
@@ -93,15 +111,15 @@ extension EBPeripheralManager: CBPeripheralManagerDelegate {
 
 
 // MARK: - Advertising
-
 extension EBPeripheralManager {
     
-    @discardableResult public func startAdvertising() -> EBPeripheralManager {
+    /// Call this method to start advertising the registered services
+    public func startAdvertising() {
         
         if peripheralManager.state != .poweredOn {
             peripheralManager.delegate = self
             advertisingRequested = true
-            return self
+            return
         }
         
         peripheralManager.removeAllServices()
@@ -119,21 +137,23 @@ extension EBPeripheralManager {
         let uuid = registeredServices.filter { $0.isPrimary }.map { $0.uuid }
         advertisementData[CBAdvertisementDataServiceUUIDsKey] = uuid
         peripheralManager.startAdvertising(advertisementData)
-        
-        return self
     }
+
     
-    @discardableResult public func stopAdvertising() -> EBPeripheralManager {
+    /// Call this method to stop advertising
+    public func stopAdvertising() {
         peripheralManager.stopAdvertising()
-        return self
     }
 }
 
 
 // MARK: Write
-
 extension EBPeripheralManager {
-
+    
+    /// Called by the peripheral manager delegate once a write requests are
+    /// received from the central
+    ///
+    /// - Parameter requests: requests to process
     internal func handleWriteRequests(_ requests: [CBATTRequest]) {
         
         for request in requests {
@@ -144,23 +164,27 @@ extension EBPeripheralManager {
                                    mtuSize: Int16(request.central.maximumUpdateValueLength)) {
                 
                 peripheralManager.respond(to: request, withResult: .success)
-  
+                
                 if activeWriteTransations[request.central.identifier]?
                     .first(where: { $0.characteristic?.uuid == request.characteristic.uuid }) == nil {
-                        processMTUSubscription(for: request.central)
+                    processMTUSubscription(for: request.central)
                 }
             }
         }
     }
     
-    /// Tested
+    
+    /// The method responds to the delegate call when a write transaction is initiated.
+    /// A new transaction will be generated to keep track of all the packets received,
+    /// once complete, it will reconstruct the data, and set the value on the local
+    /// characteristic instance, and perform updatedValue callback if it exists
     ///
     /// - Parameters:
-    ///   - packet: <#packet description#>
-    ///   - centralUUID: <#centralUUID description#>
-    ///   - characteristic: <#characteristic description#>
-    ///   - mtuSize: <#mtuSize description#>
-    /// - Returns: <#return value description#>
+    ///   - packet: the data packet received
+    ///   - centralUUID: the uuid of the sending central
+    ///   - characteristic: the characcteristic the value is received for
+    ///   - mtuSize: the mtu size that has been synchronized during the connection
+    /// - Returns: returns true if value received sucessfully
     internal func processWriteRequest(packet : Data?,
                                       from centralUUID : UUID,
                                       for characteristic: CBCharacteristic,
@@ -169,7 +193,7 @@ extension EBPeripheralManager {
         guard let activeWriteTransaction = writeTransaction(for: characteristic,
                                                             from: centralUUID,
                                                             mtuSize: mtuSize) else {
-            return false
+                                                                return false
         }
         
         activeWriteTransaction.appendPacket(packet)
@@ -187,14 +211,17 @@ extension EBPeripheralManager {
         
         return true
     }
-
-    /// Tested
+    
+    
+    /// Generates a write transactions if there isn't one in the queue already,
+    /// and stores it in the activeWriteTransations dictionary. The transaction
+    /// keeps track of the packets sent to the central until completion
     ///
     /// - Parameters:
-    ///   - characteristic: <#characteristic description#>
-    ///   - centralUUID: <#centralUUID description#>
-    ///   - mtuSize: <#mtuSize description#>
-    /// - Returns: <#return value description#>
+    ///   - characteristic: he characcteristic the value is received for
+    ///   - centralUUID: the uuid of the sending central
+    ///   - mtuSize: the mtu size that has been synchronized during the connection
+    /// - Returns: new or existing write transaction instance for the operation
     internal func writeTransaction(for characteristic : CBCharacteristic,
                                    from centralUUID : UUID,
                                    mtuSize : Int16) -> Transaction? {
@@ -232,9 +259,10 @@ extension EBPeripheralManager {
     }
     
     
-    /// Tested
+    /// Finds the local reference of the characteristic instance
+    /// and sets the value once the transaction is complete.
     ///
-    /// - Parameter transaction: <#transaction description#>
+    /// - Parameter transaction: compelted write trasaction
     internal func setLocalValue(for transaction : Transaction) {
         guard let characteristic = transaction.characteristic else {
             Log(.error, logString: "Could not Find Local Characteristic to Update")
@@ -251,11 +279,11 @@ extension EBPeripheralManager {
     }
     
     
-    /// Tested
+    /// Clears the write transation instance upon completion
     ///
     /// - Parameters:
-    ///   - centralUUID: <#centralUUID description#>
-    ///   - characteristic: <#characteristic description#>
+    ///   - centralUUID: central initiating the transaction
+    ///   - characteristic: characteristic written to
     internal func clearWriteTransaction(from centralUUID: UUID, on characteristic : CBCharacteristic) {
         if let index = self.activeWriteTransations[centralUUID]?.index(where: {
             $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
@@ -265,9 +293,14 @@ extension EBPeripheralManager {
     }
 }
 
-// MARK: Read Request
+
+// MARK: Read
 extension EBPeripheralManager {
     
+    /// Called by the peripheral manager delegate once a read request is
+    /// received from the central
+    ///
+    /// - Parameter requests: request to process
     internal func handleReadRequest(_ request: CBATTRequest) {
         
         guard let responseData = processReadRequest(from: request.central.identifier,
@@ -280,14 +313,15 @@ extension EBPeripheralManager {
         peripheralManager.respond(to: request, withResult: .success)
     }
     
-
-    /// Tested
+    
+    /// Called my by the delegate for a successful to preocess and respond to a request.
+    /// This method gets called to request the next packet to send to the peripheral.
     ///
     /// - Parameters:
-    ///   - centralUUID: <#centralUUID description#>
-    ///   - characteristic: <#characteristic description#>
-    ///   - mtuSize: <#mtuSize description#>
-    /// - Returns: <#return value description#>
+    ///   - centralUUID: central uuid requesting the read
+    ///   - characteristic: characteristic beign requested
+    ///   - mtuSize: synchronized mtu value from connection
+    /// - Returns: data packet to send to the central
     internal func processReadRequest(from centralUUID : UUID,
                                      for characteristic: CBCharacteristic,
                                      mtuSize : Int16) -> Data? {
@@ -312,14 +346,17 @@ extension EBPeripheralManager {
     }
     
     
-    /// Tested
+    /// Generates a read transactions if there isn't one in the queue already,
+    /// and stores it in the activeReadTransations dictionary. The transaction
+    /// keeps track of the packets sent to the central, and until all of them
+    /// are sent.
     ///
     /// - Parameters:
-    ///   - data: <#data description#>
-    ///   - characteristic: <#characteristic description#>
-    ///   - centralUUID: <#centralUUID description#>
-    ///   - mtuSize: <#mtuSize description#>
-    /// - Returns: <#return value description#>
+    ///   - data: full data to send
+    ///   - characteristic: characteristic being requested
+    ///   - centralUUID: central uuid requesting the write
+    ///   - mtuSize: synchronized mtu value from connection
+    /// - Returns:  new or existing write transaction instance for the operation
     internal func readTransaction(_ data : Data,
                                   for characteristic : CBCharacteristic,
                                   from centralUUID : UUID,
@@ -359,10 +396,11 @@ extension EBPeripheralManager {
     }
     
     
-    /// Tested
+    /// Finds the local reference of the characteristic instance
+    /// and returns the value to send to the central.
     ///
-    /// - Parameter characteristic: <#characteristic description#>
-    /// - Returns: <#return value description#>
+    /// - Parameter characteristic: characteristic requested
+    /// - Returns: value to send to the central requesting it
     internal func getLocalValue(for characteristic: CBCharacteristic?) -> Data? {
         
         guard let characteristic = characteristic  else {
@@ -378,13 +416,13 @@ extension EBPeripheralManager {
         
         return nil
     }
-
     
-    /// Tested
+    
+    /// Clears the read transation instance upon completion
     ///
     /// - Parameters:
-    ///   - centralUUID: <#centralUUID description#>
-    ///   - characteristic: <#characteristic description#>
+    ///   - centralUUID: central initiating the transaction
+    ///   - characteristic: characteristic written to
     internal func clearReadTransaction(from centralUUID: UUID, on characteristic : CBCharacteristic) {
         if let index = self.activeReadTransations[centralUUID]?.index(where: {
             $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
@@ -394,8 +432,8 @@ extension EBPeripheralManager {
     }
 }
 
-// MARK: Transaction Handlers
 
+// MARK: Synchronization Handlers
 extension EBPeripheralManager {
     
     internal func handleStateChange(on peripheral: CBPeripheralManager) {

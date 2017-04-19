@@ -11,54 +11,88 @@ import CoreBluetooth
 
 public class EBCentralManager : NSObject {
     
+    /// Central manager instance
     internal var centralManager             : CBCentralManager!
     
-    // The peripheral name to search for, the central will attempt to connect if defined
-    // otherwise it will scan for registered services defined during constructions only
+    /// The peripheral name to search for, the central will attempt to connect if defined
+    /// otherwise it will scan for registered services defined during constructions only
     internal var peripheralName             : String?
+    
+    /// If multiple peripherals are supported, a scan will begin after reconnecting 
+    /// to paied peripherals
     internal var supportMutiplePeripherals  = false
     
-    // Reconnect on start stores devices we haev connected to prior
+    /// Reconnect on start stores devices we haev connected to prior
     internal var reconnectOnStart           = true
+    
+    /// NSUserdefautls key for tracking paired peripheral uuids
     internal var reconnectCacheKey          = "EBCentralManagerDefaultPeripheralCacheKey"
+    
+    /// Time interval to way before scanning while attempting to recoonect to paied peripherals
     internal var reconnectTimeout           = 2.0
     
-    // If no devices are found it will rescan after the internal specified, defailt is 0
-    // which implies that it will not rescan automatically
-    // The scan time out will stop scanning after 10 seconds, and restart it after the rescanInterval
+    /// If no devices are found it will rescan after the internal specified, defailt is 0
     internal var rescanInterval             = 0.0
+    
+    /// If the rescan internval is defined, this is the timer that is used to scan again
     internal var rescanTimer : Timer?
+    
+    /// Scan timeout internval if no peripherals are found
     internal var scanTimeout                = 10.0
     
-    // Options defined during creation
+    // Central manager options, defined during creation
     internal var managerOptions             = [String : Any]()
+    
+    /// Scan options used for discovering peripherals, determined during creation
     internal var scanOptions                = [String : Any]()
+    
+    /// Connection optiosn used when connecting to a peripheral, determined during creation
     internal var connectionOptions          = [String : Any]()
     
-    // Services Defined during creation
+    /// Array of registered setvice UUIDs, used for service discovery
     internal var registeredServiceUUIDs             = [CBUUID]()
+    
+    /// Array of packet based characteristics, determines how reads/writes are handled
     internal var packetBasedCharacteristicUUIDS     = [CBUUID]()
+    
+    /// Callsbacks associated with updates from the peripheral
     internal var registeredCharacteristicCallbacks  = [CBUUID : EBTransactionCallback]()
     
     // TODO: Make sure to remove the peripheral on disconnect and set the delegate to nill
     internal var connectedPeripherals               = [CBPeripheral]()
     
+    // Discovered characteristics associated with a peripheral, user to read/write
     internal var peripheralCharacteristics          = [UUID : [CBCharacteristic]]()
+    
+    /// Synchronized MTU Value for connected peripherals
     internal var peripheralMTUValues                = [UUID : Int16]()
     
+    /// Currently active write transactions, associated with a peripheral uuid
     internal var activeWriteTransations             = [UUID : [Transaction]]()
-    internal var activeReadTransations              = [UUID : [Transaction]]()
     
+    /// Currently active read transactions, associated with a peripheral uuid
+    internal var activeReadTransations              = [UUID : [Transaction]]()
+
+    /// Default operation queue for the central manager if not specified, also used for non data operations
     internal var operationQueue                     = DispatchQueue(label: "CentralManagerQueue", qos: .userInitiated)
+    
+    /// All data operations are handled on this queue, read / write are synchronous
     internal var dataQueue                          = DispatchQueue(label: "CentralManagerOperationQueue", qos: .userInitiated)
     
+    /// State change delegate callback, specify during creation
     internal var stateChangeCallBack                : CentralManagerStateChangeCallback?
+    
+    /// Did Discover peripheral callback, if you manually want to connect, specify during creation
     internal var didDiscoverCallBack                : CentralManagerDidDiscoverCallback?
+    
+    /// Connection connection state change delegate callback, specify during creation
     internal var peripheralConnectionCallback       : CentralManagerPeripheralConnectionCallback?
     
+    /// Internal flag to ensure a scan starts if the user attempts to start scanning before the central is powered on
     internal var scanningRequested  = false
     
     #if os(OSX)
+    /// Internal flag for OSX, since the central does not report if it is scanning on OSX
     internal var _isScanning        = false
     #endif
     
@@ -73,8 +107,8 @@ public class EBCentralManager : NSObject {
     }
 }
 
-// MARK: - CBCentralManagerDelegate
 
+// MARK: - CBCentralManagerDelegate
 extension EBCentralManager: CBCentralManagerDelegate {
     
     public func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -90,7 +124,7 @@ extension EBCentralManager: CBCentralManagerDelegate {
         
         print(peripheral)
         operationQueue.async { [unowned self] in
-            self.connect(to : peripheral, advertisementData, RSSI)
+            self.connect(to : peripheral, advertisementData, RSSI, false)
         }
     }
     
@@ -122,8 +156,8 @@ extension EBCentralManager: CBCentralManagerDelegate {
      */
 }
 
-// MARK: - CBPeripheralDelegate
 
+// MARK: - CBPeripheralDelegate
 extension EBCentralManager: CBPeripheralDelegate {
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -191,9 +225,9 @@ extension EBCentralManager: CBPeripheralDelegate {
 
 
 // MARK: - Peripheral Discovery
-
 extension EBCentralManager {
     
+    /// Wrapper around isScanning to support multiple platforms
     public var isScanning: Bool {
         get {
             #if os(OSX)
@@ -209,30 +243,34 @@ extension EBCentralManager {
         }
     }
     
-    @discardableResult public func startScan() -> EBCentralManager {
-        
-        if centralManager.state != .poweredOn { return self }
+    
+    /// Start scanning for peripherals by calling this method
+    public func startScan() {
+        if centralManager.state != .poweredOn {
+            scanningRequested = true
+            return
+        }
         
         if reconnectOnStart {
             pairConnectedPeripherals()
         } else {
             scanForPeripherals()
         }
-        
-        return self
     }
     
-    @discardableResult public func stopScan() -> EBCentralManager {
+    
+    /// Stop scanning for peripherals by calling this method
+    public func stopScan() {
         Log(.debug, logString: "Stopped Scan")
         
         centralManager.stopScan()
         isScanning = false
         
         scheduleRescanIfNeeded()
-        
-        return self
     }
     
+    
+    /// Internal trigger for scanning, called ass needed
     internal func scanForPeripherals() {
         Log(.debug, logString: "Started Scan")
         
@@ -242,11 +280,11 @@ extension EBCentralManager {
         isScanning = true
     }
     
-    func scheduleRescanIfNeeded() {
-        
+    
+    /// Internal trigger for the rescan timmer
+    internal func scheduleRescanIfNeeded() {
         if (rescanInterval > 0 && supportMutiplePeripherals) ||
-            (connectedPeripherals.count == 0 && !supportMutiplePeripherals)
-        {
+            (connectedPeripherals.count == 0 && !supportMutiplePeripherals) {
             rescanTimer?.invalidate()
             rescanTimer =   Timer(fireAt: Date().addingTimeInterval(rescanInterval),
                                   interval: 0.0,
@@ -257,21 +295,36 @@ extension EBCentralManager {
         }
     }
     
+    
+    /// Internal method to stop the rescan timer
     func invalidateScheduledRescan() {
         rescanTimer?.invalidate()
         rescanTimer = nil
     }
 }
 
-// MARK: - Peripheral Connection
 
+// MARK: - Peripheral Connection
 extension EBCentralManager {
     
-    func connect(to peripheral : CBPeripheral,
+    /// Called by the cenrtral manager delegate upon finding a peripheral, if the
+    /// didDiscoverCallBack is not defined. It is up to the developer to manually call
+    /// this method to connect to a peripheral other wise. The overrideValidation is
+    /// set to false internal if the conenction is attempted automatically, other wise
+    /// if the attempting to reconnect to a paired peripheral, or it is user initiated
+    /// the validation is ignored.
+    ///
+    /// - Parameters:
+    ///   - peripheral: peripheral discover
+    ///   - advertisementData: advertisement data for the peripheral
+    ///   - RSSI: RSSI for discovered peripheral
+    ///   - overrideValidation: flag used internal to force validation
+    public func connect(to peripheral : CBPeripheral,
                  _ advertisementData: [String : Any]? = nil,
-                 _ RSSI: NSNumber? = nil) {
+                 _ RSSI: NSNumber? = nil,
+                 _ overrideValidation : Bool = true) {
         
-        if isValidPeripheral(peripheral, advertisementData, RSSI) {
+        if overrideValidation || isValidPeripheral(peripheral, advertisementData, RSSI) {
             
             Log(.debug, logString: "Connecting to \(String(describing: peripheral.name))")
             
@@ -286,6 +339,13 @@ extension EBCentralManager {
         }
     }
     
+    
+    /// Clears all the data associated associated with the peripheral when disconnect occurs,
+    /// this is called on didFailToConnect and didDisconnect, can also be manually triggered
+    ///
+    /// - Parameters:
+    ///   - peripheralUUID: the peripheral uuid to disconnect
+    ///   - error: error
     internal func disconnect(from peripheralUUID : UUID, _ error: Error?) {
         
         Log(.debug, logString: "Disconnect from \(String(describing: peripheralUUID)) - \(String(describing: error))")
@@ -315,6 +375,15 @@ extension EBCentralManager {
         peripheralConnectionCallback?(false, peripheral, error)
     }
     
+    
+    /// This method validates and returns true if the discovered peripheral is valid according
+    /// to the services, or peripheral name defined during scanning.
+    ///
+    /// - Parameters:
+    ///   - peripheral: the peripheral that was discovered
+    ///   - advertisementData: the advertisement data associated with the peripheral
+    ///   - RSSI: the RSSI for discovered peripheral
+    /// - Returns: true if the peripheral fits the registered criteria
     internal func isValidPeripheral(_ peripheral : CBPeripheral,
                                     _ advertisementData: [String : Any]? = nil,
                                     _ RSSI: NSNumber? = nil) -> Bool {
@@ -351,10 +420,11 @@ extension EBCentralManager {
     }
 }
 
-// MARK: - Caching Peripherals
 
+// MARK: - Caching Peripherals
 extension EBCentralManager {
     
+    /// Internal variable to retrieve paired peripherals
     internal var pairedPeripherals : [CBPeripheral]? {
         get {
             guard reconnectOnStart else {
@@ -380,6 +450,8 @@ extension EBCentralManager {
         }
     }
 
+    
+    /// Internal method to attempt to pair periviously connected devices
     internal func pairConnectedPeripherals() {
         
         let peripherals = pairedPeripherals
@@ -393,7 +465,7 @@ extension EBCentralManager {
             
             Log(.debug, logString: "Central Found Cached Peripheral \(String(describing: peripheral.name)), Attempting to Connect")
             
-            connect(to: peripheral)
+            connect(to: peripheral, nil, nil, true)
             
             DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + reconnectTimeout, execute: { [unowned self] in
                 if peripheral.state != .connected {
@@ -405,6 +477,11 @@ extension EBCentralManager {
         }
     }
     
+    
+    /// If peripheral caching is enabled, called after the peripheral has connected
+    /// to cache the peripheral uuid in the nsuserdefaults
+    ///
+    /// - Parameter peripheralUUID: peripheral uuid to cache
     internal func pairPeripheral(_ peripheralUUID : UUID) {
         
         guard reconnectOnStart else {
@@ -425,6 +502,11 @@ extension EBCentralManager {
         defaults.synchronize()
     }
     
+    
+    /// If the peripheral was cached and cannot be found, this is called
+    /// to removce the peripheral uuid from the nsuserdefaults
+    ///
+    /// - Parameter peripheralUUID: peripheral uuid to remove from cache
     internal func unpairPeripheral(_ peripheralUUID : UUID) {
         
         guard reconnectOnStart else {
@@ -445,10 +527,13 @@ extension EBCentralManager {
     }
 }
 
-// MARK: - Service Discovery
 
+// MARK: - Service Discovery
 extension EBCentralManager {
     
+    /// Called after connecting to the peripheral to discover services
+    ///
+    /// - Parameter peripheral: the peripheral to discover services on
     internal func discoverRegisteredServices(on peripheral : CBPeripheral) {
         
         Log(.debug, logString: "Connected to \(String(describing: peripheral.name))")
@@ -458,6 +543,15 @@ extension EBCentralManager {
         peripheral.discoverServices(registeredServiceUUIDs)
     }
     
+    
+    /// Once a service has been discovered, a call is made to this method
+    /// to store them in the peripheralCharacteristics dictioanry
+    /// as an internal reference. Once the service has been discovvered,
+    /// a call is made to discover chracterics on that service
+    ///
+    /// - Parameters:
+    ///   - peripheral: peripheral for which the services were found
+    ///   - error: error returned if there was an issue with service discovery
     internal func handleServicesDiscovered(for peripheral : CBPeripheral, _ error : Error?) {
         
         guard let services = peripheral.services else {
@@ -472,7 +566,15 @@ extension EBCentralManager {
         }
     }
     
-    // TODO: Break Up This Method and Test It
+    
+    /// Once a characteristic has been discoved for a service on a specific peripheral
+    /// a call to this method will store the characteristics for the associated peripheral
+    /// for later ference
+    ///
+    /// - Parameters:
+    ///   - service: service for which characteristics were discovered
+    ///   - peripheral: associated peripheral for associated service
+    ///   - error: error if there was an issue during characteristic discovery
     internal func discoveredCharactetistics(forService service: CBService, from peripheral: CBPeripheral, _ error: Error?) {
         
         guard let characteristics = service.characteristics else {
@@ -503,19 +605,20 @@ extension EBCentralManager {
     }
 }
 
+
+// MARK: - Helpers
 extension EBCentralManager {
     
-    
-    /// TODO : Write Description / Tested as Read / Write
+    /// Returns the connected characteristic associated with the peripheral UUID
     ///
     /// - Parameters:
-    ///   - uuid: <#uuid description#>
-    ///   - peripheralUUID: <#peripheralUUID description#>
-    /// - Returns: <#return value description#>
-    internal func characteristic(for uuid: String, on peripheralUUID : UUID) -> CBCharacteristic? {
+    ///   - characteristicUUID: the characteristic UUID to find
+    ///   - peripheralUUID: the associated peripherial with the characterixtic
+    /// - Returns: the characteristic if instance, if found
+    internal func characteristic(for characteristicUUID: String, on peripheralUUID : UUID) -> CBCharacteristic? {
         
         if let characteristic = self.peripheralCharacteristics[peripheralUUID]?.first(where:
-            { $0.uuid.uuidString.uppercased() == uuid.uppercased() })
+            { $0.uuid.uuidString.uppercased() == characteristicUUID.uppercased() })
         {
             return characteristic
         }
@@ -524,22 +627,24 @@ extension EBCentralManager {
     }
 }
 
-// MARK: - Write
 
+// MARK: - Write
 extension EBCentralManager {
 
-    /// TODO : Write Description / Unit Tests Complete
+    /// Write data to the peripheral with the associated characteristic. The method
+    /// will find all the associated connected peripherals registered to the 
+    /// and will post the data to those peripherals.
     ///
     /// - Parameters:
-    ///   - data: <#data description#>
-    ///   - uuid: <#uuid description#>
-    ///   - completion: <#completion description#>
-    public func write(data : Data, toUUID uuid: String, completion : EBTransactionCallback? = nil) {
+    ///   - data: the data stream to send to the peripheral
+    ///   - characteristicUUID: the associated characteristic uuid to send write
+    ///   - completion: completion callback called once the write is complete
+    public func write(data : Data, toUUID characteristicUUID: String, completion : EBTransactionCallback? = nil) {
         
         dataQueue.async { [unowned self] in
             for (peripheralUUID, _) in self.peripheralCharacteristics {
                 
-                if let characteristic = self.characteristic(for: uuid, on: peripheralUUID) {
+                if let characteristic = self.characteristic(for: characteristicUUID, on: peripheralUUID) {
                     
                     guard let transaction = self.writeTransaction(for : characteristic, to : peripheralUUID) else {
                         return
@@ -562,11 +667,13 @@ extension EBCentralManager {
     }
     
     
-    /// TODO : Write Description / Unit Tests Complete
+    /// Called my by the peripheral delegate for a successful write response. If the
+    /// characteristic supports packets, it will continue to perform write calls until
+    /// all the packets are awknowledged by the peripheral.
     ///
     /// - Parameters:
-    ///   - characteristic: <#characteristic description#>
-    ///   - peripheralUUID: <#peripheralUUID description#>
+    ///   - characteristic: the characteristic responding to the write request
+    ///   - peripheralUUID: the peripheral uuid to write to
     internal func receivedWriteResponse(forCharacteristic characteristic: CBCharacteristic, from peripheralUUID: UUID) {
         
         guard let transaction = writeTransaction(for : characteristic, to  : peripheralUUID) else {
@@ -585,12 +692,14 @@ extension EBCentralManager {
     }
     
     
-    /// TODO : Write Description / Unit Tests Complete
+    /// Generate a write transactions if there isn't one in the queue already,
+    /// otherwise it regenerates one, and stores it in the activeWriteTransations
+    /// dictionary. The transaction keeps track of the packets sent to the peripheral.
     ///
     /// - Parameters:
-    ///   - characteristic: <#characteristic description#>
-    ///   - peripheralUUID: <#peripheralUUID description#>
-    /// - Returns: <#return value description#>
+    ///   - characteristic: characteristic to write to
+    ///   - peripheralUUID: peripheral uuid to write to
+    /// - Returns: new or existing write transaction instance for the operation
     internal func writeTransaction(for characteristic : CBCharacteristic,
                                    to peripheralUUID : UUID) -> Transaction? {
         
@@ -627,11 +736,11 @@ extension EBCentralManager {
     }
     
     
-    /// TODO : Write Description / Unit Tests Complete
+    /// Clears the transation instance upon completion
     ///
     /// - Parameters:
-    ///   - peripheralUUID: <#peripheralUUID description#>
-    ///   - characteristic: <#characteristic description#>
+    ///   - peripheralUUID: the peripheral uuid to write to
+    ///   - characteristic: the characteristic written to
     internal func clearWriteTransaction(from peripheralUUID: UUID, on characteristic : CBCharacteristic) {
         if let index = self.activeWriteTransations[peripheralUUID]?.index(where: {
             $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
@@ -643,15 +752,17 @@ extension EBCentralManager {
 
 
 // MARK: - Read
-
 extension EBCentralManager {
-    
 
-    /// TODO : Write Description / Unit Tests Complete
+    /// Read data from the peripheral for the associated characteristic uuid. 
+    /// The method will find the connected peripheral registered, and trigger
+    /// a read request. If the characteristic is packet based, it will keep
+    /// triggering read requests until all the packets are received, before 
+    /// reconstructing the data, and calling the completion callback
     ///
     /// - Parameters:
-    ///   - uuid: <#uuid description#>
-    ///   - completion: <#completion description#>
+    ///   - uuid: the associated characteristic uuid to read
+    ///   - completion: completion callback called once the read is complete
     public func read(characteristicUUID uuid: String, completion : EBTransactionCallback? = nil) {
         
         dataQueue.async { [unowned self] in
@@ -678,13 +789,17 @@ extension EBCentralManager {
     }
     
     
-    /// TODO : Write Description / Unit Tests Complete
+    /// Called my by the peripheral delegate for a successful read response. If the
+    /// characteristic supports packets, it will continue to perform read calls until
+    /// all the packets are received.
     ///
     /// - Parameters:
-    ///   - characteristic: <#characteristic description#>
-    ///   - peripheralUUID: <#peripheralUUID description#>
-    ///   - error: <#error description#>
-    internal func receivedReadResponse(forCharacteristic characteristic: CBCharacteristic, from peripheralUUID: UUID, error: Error?) {
+    ///   - characteristic: the characteristic responding to the read request
+    ///   - peripheralUUID: the peripheral uuid to read from
+    ///   - error: error received from the peripheral
+    internal func receivedReadResponse(forCharacteristic characteristic: CBCharacteristic,
+                                       from peripheralUUID: UUID,
+                                       error: Error?) {
         
         guard let transaction = readTransaction(for: characteristic, from: peripheralUUID) else {
             return
@@ -703,20 +818,24 @@ extension EBCentralManager {
             }
             
             transaction.completion?(transaction.data!, nil)
-            clearReadTransaction(from: peripheralUUID, on: characteristic)
+            registeredCharacteristicCallbacks[characteristic.uuid]?(transaction.data, nil)
             
+            clearReadTransaction(from: peripheralUUID, on: characteristic)
         } else {
             read(characteristicUUID : characteristic.uuid.uuidString)
         }
     }
     
     
-    /// TODO : Write Description / Unit Tests Complete
+    /// Generate a read transactions if there isn't one in the queue already,
+    /// otherwise it regenerates one, and stores it in the activeReadTransations
+    /// dictionary. The transaction keeps track of the packets read to the peripheral,
+    /// and reconstructs once the read is complete
     ///
     /// - Parameters:
-    ///   - characteristic: <#characteristic description#>
-    ///   - peripheralUUID: <#peripheralUUID description#>
-    /// - Returns: <#return value description#>
+    ///   - characteristic: the characteristic to read
+    ///   - peripheralUUID: the peripheral uuid to read from
+    /// - Returns: new or existing read transaction instance for the operation
     internal func readTransaction(for characteristic : CBCharacteristic,
                                   from peripheralUUID : UUID) -> Transaction? {
         
@@ -747,11 +866,11 @@ extension EBCentralManager {
     }
     
     
-    /// TODO : Write Description / Unit Tests Complete
+    /// Clears the transation instance upon completion
     ///
     /// - Parameters:
-    ///   - peripheralUUID: <#peripheralUUID description#>
-    ///   - characteristic: <#characteristic description#>
+    ///   - peripheralUUID: the peripheral uuid to written to
+    ///   - characteristic: the characteristic written to
     internal func clearReadTransaction(from peripheralUUID: UUID, on characteristic : CBCharacteristic) {
         if let index = self.activeReadTransations[peripheralUUID]?.index(where: {
             $0.characteristic?.uuid.uuidString.uppercased() == characteristic.uuid.uuidString.uppercased() })
@@ -761,8 +880,8 @@ extension EBCentralManager {
     }
 }
 
-// MARK: - Read / Write Response
 
+// MARK: Synchronization Handlers
 extension EBCentralManager {
     
     internal func respondToManagerStateChange(_ central: CBCentralManager) {
@@ -770,8 +889,11 @@ extension EBCentralManager {
         
         switch central.state {
         case .poweredOn:
-            operationQueue.async { [unowned self] in
-                self.startScan()
+            
+            if scanningRequested {
+                operationQueue.async { [unowned self] in
+                    self.startScan()
+                }
             }
         default:
             break

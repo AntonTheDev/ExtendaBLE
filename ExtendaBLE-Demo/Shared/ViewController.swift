@@ -136,7 +136,9 @@ extension ViewController {
                         self.performSliceServiceReadWrite()
                     }
             }
-            }.startScan()
+        }
+        
+        central?.startScan()
         
     }
     
@@ -189,7 +191,9 @@ extension ViewController {
                         self.performSensorReadWrite()
                     }
             }
-        }.startScan()
+        }
+        
+        central?.startScan()
     }
     
     func performSensorReadWrite() {
@@ -243,7 +247,9 @@ extension ViewController {
                         self.self.performBlueBeanReadWrite()
                     }
             }
-            }.startScan()
+        }
+            
+        central?.startScan()
     }
     
     func performBlueBeanReadWrite() {

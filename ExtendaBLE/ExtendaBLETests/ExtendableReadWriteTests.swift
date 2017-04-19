@@ -13,22 +13,14 @@ import CoreBluetooth
 
 class ExtendableReadWriteTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+    override func setUp() { super.setUp() }
+    override func tearDown() { super.tearDown() }
 
-    
     func testPeripheralWriteReadPackets() {
+        
         let testStringData = testValueString.data(using: .utf8)
         let packets = testStringData?.packetArray(withMTUSize: 101)
         var characteristic : CBCharacteristic?
-        
         
         let peripheral = ExtendaBLE.newPeripheralManager { (manager) in
             manager.addService(Service1UUIDKey) { (service) in
@@ -40,9 +32,7 @@ class ExtendableReadWriteTests: XCTestCase {
                 }
             }
         }
-        
 
-        
         for service in peripheral.registeredServices {
             if let tempCharacteristic = service.characteristics?.filter ({ $0.uuid.uuidString == Characteristic1UUIDKey.uppercased() }).first {
                 characteristic = tempCharacteristic
@@ -89,7 +79,6 @@ class ExtendableReadWriteTests: XCTestCase {
             manager.addService(Service1UUIDKey) { (service) in
                 
                 service.addCharacteristic(Characteristic1UUIDKey) { (characteristic) in
-                    
                     characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
                     characteristic.packetsEnabled(true)
                 }
@@ -125,7 +114,6 @@ class ExtendableReadWriteTests: XCTestCase {
         for packet in packets! {
             characteristic.value = packet
             central.receivedReadResponse(forCharacteristic: characteristic, from: Peripheral1!, error: nil)
-            
         }
         
         XCTAssertTrue(central.activeReadTransations[Peripheral1!]?.count == 0, "Read Transation was not cleared")

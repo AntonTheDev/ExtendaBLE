@@ -60,6 +60,11 @@ public class EBCentralManagerMaker  {
                 newCentralManager.registeredCharacteristicCallbacks[uuid] = updateCallback
             }
             
+            for (uuid, updateCallback) in service.characteristicUpdateCallbacks {
+                newCentralManager.registeredCharacteristicCallbacks[uuid] = updateCallback
+            }
+            
+            
             newCentralManager.registeredServiceUUIDs.append(CBUUID(string: service.serviceUUID))
             newCentralManager.packetBasedCharacteristicUUIDS += service.packetBasedCharacteristicUUIDS
         }
