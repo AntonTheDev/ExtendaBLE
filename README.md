@@ -2,8 +2,10 @@
 
 [![Cocoapods Compatible](https://img.shields.io/badge/pod-v0.2-blue.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)]()
-[![Platform](https://img.shields.io/badge/platform-iOS%20|%20tvOS|%20OSX-lightgrey.svg)]()
+[![Platform](https://img.shields.io/badge/platform-iOS%20|%20tvOS%20|%20OSX-lightgrey.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-343434.svg)](/LICENSE.md)
+
+**NOTE: 11/06/2017 - Still In Beta, currently being updated w/ unit tests, documentatiom, and configured for cocoapods / carthage** 
 
 ## Introduction
 
