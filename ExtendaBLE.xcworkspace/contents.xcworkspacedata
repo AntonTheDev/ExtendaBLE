@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:ExtendaBLE-Demo/Shared/ViewController.swift">
+   </FileRef>
+   <Group
+      location = "group:Source"
+      name = "Source">
+      <FileRef
+         location = "group:ExtendaBLE.swift">
+      </FileRef>
+      <Group
+         location = "group:EBManager"
+         name = "EBManager">
+         <FileRef
+            location = "group:EBDefinitions.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBCentralManager.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBPeripheralManager.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:EBMaker"
+         name = "EBMaker">
+         <FileRef
+            location = "group:EBCentralManagerMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBPeripheralManagerMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBServiceMaker.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBCharacteristicMaker.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:EBTransaction"
+         name = "EBTransaction">
+         <FileRef
+            location = "group:EBTransaction.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Extensions"
+         name = "Extensions">
+         <FileRef
+            location = "group:Data+BLE.swift">
+         </FileRef>
+         <FileRef
+            location = "group:Data+BLEConversion.swift">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Logger"
+         name = "Logger">
+         <FileRef
+            location = "group:Logger.swift">
+         </FileRef>
+      </Group>
+   </Group>
+   <FileRef
+      location = "group:ExtendaBLE/ExtendaBLE.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ExtendaBLE-Demo/ExtendaBLE-tvOS-Demo/ExtendaBLE-tvOS-Demo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ExtendaBLE-Demo/ExtendaBLE-OSX-Demo/ExtendaBLE-OSX-Demo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ExtendaBLE-Demo/ExtendeBLE-iOS-Demo/ExtendaBLE-iOS-Demo.xcodeproj">
+   </FileRef>
+</Workspace>
