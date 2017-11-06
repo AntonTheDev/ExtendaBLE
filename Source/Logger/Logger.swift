@@ -8,6 +8,8 @@
 
 import Foundation
 
+public var publicLogString = ""
+
 public struct ExtendableLoggingConfig {
     static public var logLevel : LogLevel = .none
 }
@@ -52,7 +54,8 @@ public func EXIT_LOG(functionName:  String = #function) {
 public func Log(_ currentLogLevel: LogLevel, logString:  String) {
 	if currentLogLevel.rawValue <= ExtendableLoggingConfig.logLevel.rawValue {
 		let log = stringForLogLevel(ExtendableLoggingConfig.logLevel) + " - " + logString
-		print(log)
+		publicLogString += log
+        print(log)
 	}
 }
 

@@ -8,7 +8,6 @@
 
 import CoreBluetooth
 
-
 enum ControllerConfig : Int {
     case central, peripheral, both, sensor, bluebean
     
@@ -19,9 +18,11 @@ enum ControllerConfig : Int {
             #elseif os(tvOS)
                 return .central
             #else
-                if UIDevice.current.name == "iPhone 6Plus" {
-                    return .central
+                
+                if UIDevice.current.name == "iPhone" {
+                    return .peripheral
                 }
+                
                 return .central
             #endif
         }
@@ -73,7 +74,7 @@ extension ViewController {
         }
     }
     
-    func triggerUpdate() {
+    @objc func triggerUpdate() {
         
     }
 }
@@ -92,10 +93,9 @@ extension ViewController {
             /* Create Peripheral Manager advertise device as central */
             
             peripheral = ExtendaBLE.newPeripheralManager { (manager) in
-                manager.localName("A495FF10")
+               // manager.localName("A495FF10")
                 manager.addService(dataServiceUUIDKey) { (service) in
-                    
-   
+        
                     service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
                         
                         characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
@@ -111,7 +111,10 @@ extension ViewController {
                         }
                     }
                 }
-                }.startAdvertising()
+                }
+                
+                
+               peripheral?.startAdvertising()
             
         #endif
     }
@@ -126,6 +129,7 @@ extension ViewController {
                     characteristic.properties([.read, .write, .notify])
                     characteristic.permissions([.readable, .writeable])
                     characteristic.packetsEnabled(true)
+                   
                     characteristic.onUpdate { (data, error) in
                         /* Callback when ever the value is updated by the PERIPHERAL */
                     }
@@ -244,7 +248,7 @@ extension ViewController {
                 
                 }.onPeripheralConnectionChange{ (connected, peripheral, error) in
                     if connected {
-                        self.self.performBlueBeanReadWrite()
+                        self.performBlueBeanReadWrite()
                     }
             }
         }
@@ -283,6 +287,7 @@ extension ViewController {
 
 
 #if os(OSX)
+   
     import Cocoa
     
     class ViewController: NSViewController  {
@@ -307,7 +312,9 @@ extension ViewController {
             return button
         }()
     }
+    
 #else
+    
     import UIKit
     
     class ViewController: UIViewController  {
@@ -335,5 +342,6 @@ extension ViewController {
             return button
         }()
     }
+    
 #endif
 

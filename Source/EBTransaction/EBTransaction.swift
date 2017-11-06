@@ -111,8 +111,6 @@ public class Transaction {
                 return totalPackets == activeResponseCount
             } else if type == .writePackets {
                 return totalPackets == activeResponseCount
-                
-              //  return self.dataPackets.count == totalPackets
             }
             
             return (activeResponseCount == 1)

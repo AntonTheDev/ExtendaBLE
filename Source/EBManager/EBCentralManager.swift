@@ -271,7 +271,7 @@ extension EBCentralManager {
     
     
     /// Internal trigger for scanning, called ass needed
-    internal func scanForPeripherals() {
+    @objc internal func scanForPeripherals() {
         Log(.debug, logString: "Started Scan")
         
         invalidateScheduledRescan()
