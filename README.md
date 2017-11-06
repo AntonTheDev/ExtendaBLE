@@ -1,8 +1,8 @@
 # ExtendaBLE
 
-[![Cocoapods Compatible](https://img.shields.io/badge/pod-v0.1-blue.svg)]()
+[![Cocoapods Compatible](https://img.shields.io/badge/pod-v0.2-blue.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)]()
-[![Platform](https://img.shields.io/badge/platform-ios | osx | tvos-lightgrey.svg)]()
+[![Platform](https://img.shields.io/badge/platform-iOS%20|%20tvOS|%20OSX-lightgrey.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-343434.svg)](/LICENSE.md)
 
 ## Introduction
@@ -33,10 +33,36 @@ Blocks Based BLE Client to streamline BLE communication between configured for P
 
 One of the unique features of **ExtendaBLE** is that it allows to bypass the limitations of the MTU size in communicating between devices. The library negotiates a common MTU size, and allows breaks down the data to be sent between devices into packets, which are then reconstructed by the receiving entity.
 
+### Configuring Peripheral Manager
+
+```swift
+let dataServiceUUIDKey                  = "3C215EBB-D3EF-4D7E-8E00-A700DFD6E9EF"
+let dataServiceCharacteristicUUIDKey    = "830FEB83-C879-4B14-92E0-DF8CCDDD8D8F"
+
+/* Create Peripheral Manager advertise device as central */
+
+peripheral = ExtendaBLE.newPeripheralManager { (manager) in
+    
+    manager.addService(dataServiceUUIDKey) { (service) in
+        
+        service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
+
+            characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
+            characteristic.packetsEnabled(true)
+                
+            characteristic.onUpdate { (data, error) in
+                /* Called whenever the value is updated by the CENTRAL */
+            }
+        }
+    }
+}
+
+peripheral?.startAdvertising()
+```
+
 ### Configuring Central Manager
 
 ```swift
-
 let dataServiceUUIDKey                  = "3C215EBB-D3EF-4D7E-8E00-A700DFD6E9EF"
 let dataServiceCharacteristicUUIDKey    = "830FEB83-C879-4B14-92E0-DF8CCDDD8D8F"
 
@@ -47,63 +73,37 @@ central = ExtendaBLE.newCentralManager { (manager) in
     manager.addService(dataServiceUUIDKey) {(service) in
 
         service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
+            
             characteristic.properties([.read, .write, .notify])
             characteristic.permissions([.readable, .writeable])
             characteristic.packetsEnabled(true)
-
+            
             characteristic.onUpdate { (data, error) in
                 /* Callback when ever the value is updated by the PERIPHERAL */
             }
         }
 
-        }.onPeripheralConnectionChange{ (connected, peripheral, error) in
-          /* Perform Read Transaction upon connecting */
-        }
+    }.onPeripheralConnectionChange{ (connected, peripheral, error) in
+        /* Perform Read Transaction upon connecting */
     }
+}
 
-    central?.startScan()
-```
-
-### Configuring Peripheral Manager
-
-```swift
-
-let dataServiceUUIDKey                  = "3C215EBB-D3EF-4D7E-8E00-A700DFD6E9EF"
-let dataServiceCharacteristicUUIDKey    = "830FEB83-C879-4B14-92E0-DF8CCDDD8D8F"
-
-    /* Create Peripheral Manager advertise device as central */
-
-    peripheral = ExtendaBLE.newPeripheralManager { (manager) in
-    
-        manager.addService(dataServiceUUIDKey) { (service) in
-        
-            service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
-
-                characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
-                characteristic.packetsEnabled(true)
-                characteristic.onUpdate { (data, error) in
-                    /* Callback when ever the value is updated by the CENTRAL */
-                }
-            }
-      }
-  }
-
-  peripheral?.startAdvertising()
+central?.startScan()
 ```
 
 ### Perform Write - Central Manager 
 
 ```swift 
-    central?.write(data: largeStringData, toUUID: dataServiceCharacteristicUUIDKey) { (writtenData, error) in        
-        /* Do something upon successful write operation */
-    } 
+central?.write(data: largeStringData, toUUID: dataServiceCharacteristicUUIDKey) { (writtenData, error) in        
+    /* Do something upon successful write operation */
+} 
 ```
 
 ### Perform Read - Central Manager 
 
 ```swift
-    self.central?.read(characteristicUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
-        let valueString = String(data: returnedData!, encoding: .utf8)!
-        /* Do something upon successful read operation */  
-    }
+self.central?.read(characteristicUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
+    let valueString = String(data: returnedData!, encoding: .utf8)!
+    /* Do something upon successful read operation */  
+}
 ```
