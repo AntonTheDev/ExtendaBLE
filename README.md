@@ -5,21 +5,27 @@
 [![Platform](https://img.shields.io/badge/platform-ios | osx | tvos-lightgrey.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-343434.svg)](/LICENSE.md)
 
-##Introduction
+## Introduction
 
 Blocks Based BLE Client to streamline BLE communication between configured for Peripherals and centrals.
 
-##Features
+## Features
 
 - [x] Blocks Syntax for Building Centrals and Peripherals
 - [x] Callbacks for responding to, read and write, characteristic changes
 - [x] Packet Based Payload transfer using negotiated MTU sizes
 
-##Installation
+## Installation
 
 * **Requirements** : XCode 8.0+, iOS 9.0+, tvOS 9.0+, OSX 10.10+
 * [Installation Instructions](/Documentation/installation.md)
 * [Release Notes](/Documentation/release_notes.md)
+
+## Communication
+
+- If you **found a bug**, or **have a feature request**, open an issue.
+- If you **need help** or a **general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/extenda-ble). (tag 'extenda-ble')
+- If you **want to contribute**, review the [Contribution Guidelines](/Documentation/CONTRIBUTING.md), and submit a pull request.
 
 ## Basic Use
 
@@ -58,38 +64,7 @@ central?.startScan()
 
 ```
 
-
 ### Configuring Peripheral Manager
-
-```swift
-
-let dataServiceUUIDKey                  = "3C215EBB-D3EF-4D7E-8E00-A700DFD6E9EF"
-let dataServiceCharacteristicUUIDKey    = "830FEB83-C879-4B14-92E0-DF8CCDDD8D8F"
-
-/* Creates Central Manager and begins scanning for peripherals */
-
-central = ExtendaBLE.newCentralManager { (manager) in
-    manager.reconnectOnStart(false)
-
-    manager.addService(dataServiceUUIDKey) {(service) in
-
-        service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
-            characteristic.properties([.read, .write, .notify])
-            characteristic.permissions([.readable, .writeable])
-            characteristic.packetsEnabled(true)
-
-            characteristic.onUpdate { (data, error) in
-                /* Callback when ever the value is updated by the PERIPHERAL */
-            }
-        }
-
-        }.onPeripheralConnectionChange{ (connected, peripheral, error) in
-
-          /* Perform Read Transaction upon connecting */
-    }
-}
-
-central?.startScan()
 
 ```swift
 
@@ -117,8 +92,25 @@ let dataServiceCharacteristicUUIDKey    = "830FEB83-C879-4B14-92E0-DF8CCDDD8D8F"
 
 ```
 
-##Communication
+### Perform Write - Central Manager 
 
-- If you **found a bug**, or **have a feature request**, open an issue.
-- If you **need help** or a **general question**, use [Stack Overflow](http://stackoverflow.com/questions/tagged/extenda-ble). (tag 'extenda-ble')
-- If you **want to contribute**, review the [Contribution Guidelines](/Documentation/CONTRIBUTING.md), and submit a pull request.
+```swift 
+     
+    central?.write(data: largeStringData, toUUID: dataServiceCharacteristicUUIDKey) { (writtenData, error) in
+        let valueString = String(data: writtenData!, encoding: .utf8)
+        
+    }
+    
+```
+
+### Perform Read - Central Manager 
+
+```swift
+       
+    self.central?.read(characteristicUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
+        let valueString = String(data: returnedData!, encoding: .utf8)!
+                
+    }
+```
+
+
