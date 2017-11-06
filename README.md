@@ -41,6 +41,7 @@ let dataServiceUUIDKey                  = "3C215EBB-D3EF-4D7E-8E00-A700DFD6E9EF"
 let dataServiceCharacteristicUUIDKey    = "830FEB83-C879-4B14-92E0-DF8CCDDD8D8F"
 
 central = ExtendaBLE.newCentralManager { (manager) in
+
     manager.reconnectOnStart(false)
 
     manager.addService(dataServiceUUIDKey) {(service) in
@@ -57,11 +58,10 @@ central = ExtendaBLE.newCentralManager { (manager) in
 
         }.onPeripheralConnectionChange{ (connected, peripheral, error) in
           /* Perform Read Transaction upon connecting */
+        }
     }
-}
 
-central?.startScan()
-
+    central?.startScan()
 ```
 
 ### Configuring Peripheral Manager
@@ -71,46 +71,39 @@ central?.startScan()
 let dataServiceUUIDKey                  = "3C215EBB-D3EF-4D7E-8E00-A700DFD6E9EF"
 let dataServiceCharacteristicUUIDKey    = "830FEB83-C879-4B14-92E0-DF8CCDDD8D8F"
 
-/* Creates Peripheral Manager advertise device as central */
+    /* Create Peripheral Manager advertise device as central */
 
-  peripheral = ExtendaBLE.newPeripheralManager { (manager) in
+    peripheral = ExtendaBLE.newPeripheralManager { (manager) in
+    
+        manager.addService(dataServiceUUIDKey) { (service) in
+        
+            service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
 
-      manager.addService(dataServiceUUIDKey) { (service) in
-
-          service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
-
-              characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
-              characteristic.packetsEnabled(true)
-              characteristic.onUpdate { (data, error) in
-                /* Callback when ever the value is updated by the CENTRAL */
-              }
+                characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
+                characteristic.packetsEnabled(true)
+                characteristic.onUpdate { (data, error) in
+                    /* Callback when ever the value is updated by the CENTRAL */
+                }
             }
       }
   }
 
   peripheral?.startAdvertising()
-
 ```
 
 ### Perform Write - Central Manager 
 
 ```swift 
-     
-    central?.write(data: largeStringData, toUUID: dataServiceCharacteristicUUIDKey) { (writtenData, error) in
-        let valueString = String(data: writtenData!, encoding: .utf8)
-        
-    }
-    
+    central?.write(data: largeStringData, toUUID: dataServiceCharacteristicUUIDKey) { (writtenData, error) in        
+        /* Do something upon successful write operation */
+    } 
 ```
 
 ### Perform Read - Central Manager 
 
 ```swift
-       
     self.central?.read(characteristicUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
         let valueString = String(data: returnedData!, encoding: .utf8)!
-                
+        /* Do something upon successful read operation */  
     }
 ```
-
-
