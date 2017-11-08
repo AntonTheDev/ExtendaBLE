@@ -48,9 +48,7 @@ If you are not familiar with how BLE works, please review the [Core Bluetooth Pr
 
 ### Peripheral Manager
 
-#### Configuration
-
-Configuring a peripheral follows a simple blocks based syntax as follows
+In it's simplest form, the following is an example of how to configure peripheral using a simple blocks based syntax.
 
 ```swift
 peripheral = ExtendaBLE.newPeripheralManager { (manager) in
@@ -107,7 +105,7 @@ peripheral = ExtendaBLE.newPeripheralManager { (manager) in
 
 ### Central Manager
 
-#### Configuration
+In it's simplest form, the following is an example of how to configure central manager using a simple blocks based syntax.
 
 ```swift
 central = ExtendaBLE.newCentralManager { (manager) in
