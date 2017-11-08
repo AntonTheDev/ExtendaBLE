@@ -48,7 +48,7 @@ If you are not familiar with how BLE works, please review the [Core Bluetooth Pr
 
 ### Peripheral Manager
 
-###### Configuration
+#### Configuration
 
 Configuring a peripheral follows a simple blocks based syntax as follows
 
@@ -63,7 +63,7 @@ peripheral = ExtendaBLE.newPeripheralManager { (manager) in
 }
 ```
 
-###### Begin Advertising
+#### Begin Advertising
 
 To start advertising services and their respective characteristics, just call on ``startAdvertising()`` on the peripheral created in the prior section.
 
@@ -71,7 +71,7 @@ To start advertising services and their respective characteristics, just call on
 peripheral?.startAdvertising()
 ```
 
-###### Responding to Updates
+#### Responding to Updates
 
 If you would like to respond to characteristic updates on the peripheral when a central updates a value, define an ``onUpdate  { (data, error) in }`` per characteristic accordingly. When the Central finishes updating the value, the callback will be triggered.
 
@@ -90,7 +90,7 @@ peripheral = ExtendaBLE.newPeripheralManager { (manager) in
 }
 ```
 
-###### Notifying Central
+#### Notifying Central
 
 If you would like the peripheral to retain a connection for a specific characteristic, and notify the connected central manager when the value is updated, when configuring the properties, ensure to include the ``.notify`` CBCharacteristicProperty in the definition as follows.
 
@@ -107,7 +107,7 @@ peripheral = ExtendaBLE.newPeripheralManager { (manager) in
 
 ### Central Manager
 
-###### Configuration
+#### Configuration
 
 ```swift
 central = ExtendaBLE.newCentralManager { (manager) in
@@ -120,7 +120,7 @@ central = ExtendaBLE.newCentralManager { (manager) in
 }
 ```
 
-###### Begin Scanning
+#### Begin Scanning
 
 Start scanning for peripheral(s) defined with the services, and their respective characteristics, just call on ``startScan()`` on the central created in the prior section. The central will auto connect to the peripheral when found.
 
@@ -128,7 +128,7 @@ Start scanning for peripheral(s) defined with the services, and their respective
 central?.startScan()
 ```
 
-###### Responding to State Changes
+#### Responding to State Changes
 
 Responding to stages of the scanning operation, the following callbacks can be defined for the manager.
 
@@ -147,7 +147,7 @@ central = ExtendaBLE.newCentralManager { (manager) in
 }
 ```
 
-###### Respond to Successful Connection
+#### Respond to Successful Connection
 
 To perform a Read/Write upon connecting to a peripheral, define a callback as follows to be notified of the successful connection.
 
@@ -164,7 +164,7 @@ central = ExtendaBLE.newCentralManager { (manager) in
 }
 ```
 
-###### Responding to Update Notification
+#### Responding to Update Notification
 
 If you would like to retain a connection for a specific characteristic, and be notified by the peripheral when the value is updated, when configuring the properties, ensure to include the ``.notify`` CBCharacteristicProperty in the definition as follows, and create a call back to respond to the change.
 
@@ -183,7 +183,7 @@ peripheral = ExtendaBLE.newPeripheralManager { (manager) in
 }
 ```
 
-###### Perform Write
+#### Perform Write
 
 To perform a write for a specific characteristic for a connected peripheral, call the ``write(..)`` on the central, and with the content to write, and the characteristicUUID to write to. The callback will be triggered once the write is complete.  
 
@@ -194,7 +194,7 @@ central?.write(data: stringData, toUUID: dataServiceCharacteristicUUIDKey) { (wr
 }
 ```
 
-###### Perform Read
+#### Perform Read
 
 To perform a read for a specific characteristic for a connected peripheral, call the ``read(..)`` on the central, and with  the characteristicUUID to read. The callback will be triggered once the read is complete with the ``Data`` read, or an error if the operation failed.
 
