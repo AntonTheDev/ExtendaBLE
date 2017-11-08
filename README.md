@@ -5,6 +5,8 @@
 [![Platform](https://img.shields.io/badge/platform-iOS%20|%20tvOS%20|%20OSX-lightgrey.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-343434.svg)](/LICENSE.md)
 
+![alt tag](/Documentation/extendable_header.jpg?raw=true)
+
 ## Introduction
 
 **ExtendaBLE** provides a very flexible syntax for defining centrals, and peripherals with ease. Following a blocks based builder approach you can easily define an centrals, peripherals, associated services and characteristics in minutes. With a blocks based syntax, it makes it very easy to listen for characteristic changes, and respond to them accordingly.
