@@ -5,11 +5,11 @@
 [![Platform](https://img.shields.io/badge/platform-iOS%20|%20tvOS%20|%20OSX-lightgrey.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-343434.svg)](/LICENSE.md)
 
-![alt tag](/Documentation/extendable_header.jpg?raw=true)
+![alt tag](/Documentation/extendable_header.png?raw=true)
 
 ## Introduction
 
-**ExtendaBLE** provides a very flexible syntax for defining centrals, and peripherals with ease. Following a blocks based builder approach you can easily define an centrals, peripherals, associated services and characteristics in minutes. With a blocks based syntax, it makes it very easy to listen for characteristic changes, and respond to them accordingly.
+**ExtendaBLE** provides a very flexible syntax for defining centrals and peripherals with ease. Following a blocks based builder approach you can easily create centrals, peripherals, associated services, characteristics, and define callbacks to listen for characteristic changes accordingly.
 
 One of the unique features of **ExtendaBLE** is that it allows to bypass the limitations of the MTU size in communicating between devices. The library negotiates a common MTU size, and allows breaks down the data to be sent between devices into packets, which are then reconstructed by the receiving entity.
 
