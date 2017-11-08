@@ -167,9 +167,10 @@ central = ExtendaBLE.newCentralManager { (manager) in
 If you would like to retain a connection for a specific characteristic, and be notified by the peripheral when the value is updated, when configuring the properties, ensure to include the ``.notify`` CBCharacteristicProperty in the definition as follows, and create a call back to respond to the change.
 
 ```swift
-peripheral = ExtendaBLE.newPeripheralManager { (manager) in
 
-    manager.addService(dataServiceUUIDKey) { (service) in
+central = ExtendaBLE.newCentralManager { (manager) in
+
+    manager.addService(dataServiceUUIDKey) {(service) in
         service.addCharacteristic(dataServiceCharacteristicUUIDKey) { (characteristic) in
             characteristic.properties([.read, .write, .notify]).permissions([.readable, .writeable])
 
@@ -179,6 +180,7 @@ peripheral = ExtendaBLE.newPeripheralManager { (manager) in
         }
     }
 }
+
 ```
 
 #### Perform Write
