@@ -13,6 +13,10 @@
 
 One of the unique features of **ExtendaBLE** is that it allows to bypass the limitations of the MTU size in communicating between devices. The library negotiates a common MTU size, and allows breaks down the data to be sent between devices into packets, which are then reconstructed by the receiving entity.
 
+An Android library is in the works with support for packet based communication between iOS /tvOs/OSX. **ExtendaBLE-Android**, a work in progress can be found here..
+
+[ExtendaBLE-Android](https://github.com/AntonTheDev/ExtendaBLE-Android)
+
 ## Features
 
 - [x] Blocks Syntax for Building Centrals and Peripherals
