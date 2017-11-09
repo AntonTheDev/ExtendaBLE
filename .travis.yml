@@ -1,16 +1,17 @@
 language: objective-c
 osx_image: xcode9.1
-
-xcode_sdk:
-- iphonesimulator11.1
-- appletvsimulator11.1
-- watchsimulator4.1
-- macosx10.13
-
 xcode_workspace: ExtendaBLE.xcworkspace
 
-jobs:
+matrix:
   include:
-    - script: xcodebuild -workspace ExtendaBLE.xcworkspace -scheme ExtendaBLE-iOS-Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.1' test
-    - script: xcodebuild -workspace ExtendaBLE.xcworkspace -scheme ExtendaBLE-tvOS-Demo -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.1' test
-    - script: xcodebuild -workspace ExtendaBLE.xcworkspace -scheme ExtendaBLE-watchOS-Demo -sdk watchsimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.1’ test
+    - xcode_scheme: ExtendaBLE-iOS-Demo
+      xcode_sdk: iphonesimulator
+
+    - xcode_scheme: ExtendaBLE-tvOS-Demo
+      xcode_sdk: appletvsimulator
+
+    - xcode_scheme: ExtendaBLE-watchOS-Demo
+      xcode_sdk: watchsimulator
+
+    - xcode_scheme: ExtendaBLE-watchOS-Demo
+      xcode_sdk: macosx
