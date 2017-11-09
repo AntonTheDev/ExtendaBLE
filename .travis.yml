@@ -4,4 +4,3 @@ osx_image: xcode9.1
 jobs:
   include:
     - script: xcodebuild -workspace ExtendaBLE.xcworkspace -scheme ExtendaBLE-iOS-Demo -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.1' test
-    - script: xcodebuild -workspace ExtendaBLE.xcworkspace -scheme ExtendaBLE-watchOS-Demo -sdk watchsimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=11.1’ test
