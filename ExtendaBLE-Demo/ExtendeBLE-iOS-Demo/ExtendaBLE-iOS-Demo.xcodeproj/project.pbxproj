@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131AACE11FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACDB1FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift */; };
+		131AACE21FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACDC1FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift */; };
+		131AACE31FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACDE1FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift */; };
+		131AACE41FB49016005CB0A1 /* ExtendaBLEPMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACDF1FB49016005CB0A1 /* ExtendaBLEPMReadWriteTests.swift */; };
+		131AACE51FB49016005CB0A1 /* ExtendaBLETestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACE01FB49016005CB0A1 /* ExtendaBLETestConstants.swift */; };
 		3A0322371E8DFFBD0080E13F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A0322361E8DFFBD0080E13F /* AppDelegate.swift */; };
 		3A03223E1E8DFFBD0080E13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223D1E8DFFBD0080E13F /* Assets.xcassets */; };
 		3A0322411E8DFFBD0080E13F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A03223F1E8DFFBD0080E13F /* LaunchScreen.storyboard */; };
@@ -25,7 +30,24 @@
 		3AE59EFC1EA15C0F00DA8811 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59EF01EA15C0F00DA8811 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		13E65A471FB39C820076BC6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A03222B1E8DFFBD0080E13F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A0322321E8DFFBD0080E13F;
+			remoteInfo = "ExtendaBLE-iOS-Demo";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		131AACDB1FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMMakerTests.swift; sourceTree = "<group>"; };
+		131AACDC1FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMReadWriteTests.swift; sourceTree = "<group>"; };
+		131AACDE1FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLEPMMakerTests.swift; sourceTree = "<group>"; };
+		131AACDF1FB49016005CB0A1 /* ExtendaBLEPMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLEPMReadWriteTests.swift; sourceTree = "<group>"; };
+		131AACE01FB49016005CB0A1 /* ExtendaBLETestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendaBLETestConstants.swift; path = "../../Shared-Tests/ExtendaBLETestConstants.swift"; sourceTree = "<group>"; };
+		13E65A421FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ExtendaBLE-iOS-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13E65A461FB39C820076BC6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A0322331E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-iOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0322361E8DFFBD0080E13F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A03223D1E8DFFBD0080E13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -47,6 +69,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		13E65A3F1FB39C820076BC6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A0322301E8DFFBD0080E13F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,11 +86,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131AACDA1FB49016005CB0A1 /* CentralManager */ = {
+			isa = PBXGroup;
+			children = (
+				131AACDB1FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift */,
+				131AACDC1FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift */,
+			);
+			name = CentralManager;
+			path = "../../Shared-Tests/CentralManager";
+			sourceTree = "<group>";
+		};
+		131AACDD1FB49016005CB0A1 /* PeripheralManager */ = {
+			isa = PBXGroup;
+			children = (
+				131AACDE1FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift */,
+				131AACDF1FB49016005CB0A1 /* ExtendaBLEPMReadWriteTests.swift */,
+			);
+			name = PeripheralManager;
+			path = "../../Shared-Tests/PeripheralManager";
+			sourceTree = "<group>";
+		};
+		13E65A431FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				131AACE01FB49016005CB0A1 /* ExtendaBLETestConstants.swift */,
+				131AACDA1FB49016005CB0A1 /* CentralManager */,
+				131AACDD1FB49016005CB0A1 /* PeripheralManager */,
+				13E65A461FB39C820076BC6F /* Info.plist */,
+			);
+			path = "ExtendaBLE-iOS-DemoTests";
+			sourceTree = "<group>";
+		};
 		3A03222A1E8DFFBD0080E13F = {
 			isa = PBXGroup;
 			children = (
 				3AE59EDF1EA15C0F00DA8811 /* Source */,
 				3A0322351E8DFFBD0080E13F /* ExtendaBLE-Demo */,
+				13E65A431FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests */,
 				3A0322341E8DFFBD0080E13F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				3A0322331E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo.app */,
+				13E65A421FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -157,6 +219,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		13E65A411FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13E65A4B1FB39C820076BC6F /* Build configuration list for PBXNativeTarget "ExtendaBLE-iOS-DemoTests" */;
+			buildPhases = (
+				13E65A3E1FB39C820076BC6F /* Sources */,
+				13E65A3F1FB39C820076BC6F /* Frameworks */,
+				13E65A401FB39C820076BC6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13E65A481FB39C820076BC6F /* PBXTargetDependency */,
+			);
+			name = "ExtendaBLE-iOS-DemoTests";
+			productName = "ExtendaBLE-iOS-DemoTests";
+			productReference = 13E65A421FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3A0322321E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A0322451E8DFFBD0080E13F /* Build configuration list for PBXNativeTarget "ExtendaBLE-iOS-Demo" */;
@@ -180,10 +260,17 @@
 		3A03222B1E8DFFBD0080E13F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Anton Doudarev";
 				TargetAttributes = {
+					13E65A411FB39C820076BC6F = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = WQAUP4LZJV;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3A0322321E8DFFBD0080E13F;
+					};
 					3A0322321E8DFFBD0080E13F = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = WQAUP4LZJV;
@@ -211,11 +298,19 @@
 			projectRoot = "";
 			targets = (
 				3A0322321E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo */,
+				13E65A411FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		13E65A401FB39C820076BC6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A0322311E8DFFBD0080E13F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,6 +323,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		13E65A3E1FB39C820076BC6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				131AACE41FB49016005CB0A1 /* ExtendaBLEPMReadWriteTests.swift in Sources */,
+				131AACE21FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift in Sources */,
+				131AACE31FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift in Sources */,
+				131AACE11FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift in Sources */,
+				131AACE51FB49016005CB0A1 /* ExtendaBLETestConstants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A03222F1E8DFFBD0080E13F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,6 +358,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		13E65A481FB39C820076BC6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A0322321E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo */;
+			targetProxy = 13E65A471FB39C820076BC6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		3A03223F1E8DFFBD0080E13F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -263,6 +378,52 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		13E65A491FB39C820076BC6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ExtendaBLE-iOS-DemoTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-watchOS.ExtendaBLE-iOS-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtendaBLE-iOS-Demo.app/ExtendaBLE-iOS-Demo";
+			};
+			name = Debug;
+		};
+		13E65A4A1FB39C820076BC6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ExtendaBLE-iOS-DemoTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-watchOS.ExtendaBLE-iOS-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtendaBLE-iOS-Demo.app/ExtendaBLE-iOS-Demo";
+			};
+			name = Release;
+		};
 		3A0322431E8DFFBD0080E13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -410,6 +571,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		13E65A4B1FB39C820076BC6F /* Build configuration list for PBXNativeTarget "ExtendaBLE-iOS-DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13E65A491FB39C820076BC6F /* Debug */,
+				13E65A4A1FB39C820076BC6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3A03222E1E8DFFBD0080E13F /* Build configuration list for PBXProject "ExtendaBLE-iOS-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131AAD111FB49301005CB0A1 /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0322671E8E00E50080E13F /* ExtendaBLE.framework */; };
+		13E65A311FB396420076BC6F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		13E65A321FB3964D0076BC6F /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC91E9299BB0013CE98 /* ExtendaBLE.swift */; };
+		13E65A331FB396520076BC6F /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC51E9299BB0013CE98 /* EBDefinitions.swift */; };
+		13E65A341FB396520076BC6F /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC41E9299BB0013CE98 /* EBCentralManager.swift */; };
+		13E65A351FB396520076BC6F /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC61E9299BB0013CE98 /* EBPeripheralManager.swift */; };
+		13E65A361FB396570076BC6F /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ABF1E9299BB0013CE98 /* EBCentralManagerMaker.swift */; };
+		13E65A371FB396570076BC6F /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC11E9299BB0013CE98 /* EBPeripheralManagerMaker.swift */; };
+		13E65A381FB396570076BC6F /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC21E9299BB0013CE98 /* EBServiceMaker.swift */; };
+		13E65A391FB396570076BC6F /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC01E9299BB0013CE98 /* EBCharacteristicMaker.swift */; };
+		13E65A3A1FB3965A0076BC6F /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC81E9299BB0013CE98 /* EBTransaction.swift */; };
+		13E65A3B1FB3965E0076BC6F /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACB1E9299BB0013CE98 /* Data+BLE.swift */; };
+		13E65A3C1FB3965E0076BC6F /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
+		13E65A3D1FB396620076BC6F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
 		3A03221A1E8DFF260080E13F /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0322101E8DFF260080E13F /* ExtendaBLE.framework */; };
 		3A03221F1E8DFF260080E13F /* ExtendaBLEMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03221E1E8DFF260080E13F /* ExtendaBLEMakerTests.swift */; };
 		3A0322211E8DFF260080E13F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +65,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		131AAD121FB49301005CB0A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3A0322071E8DFF260080E13F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3A0322661E8E00E50080E13F;
+			remoteInfo = "ExtendaBLE-tvOS";
+		};
 		3A03221B1E8DFF260080E13F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3A0322071E8DFF260080E13F /* Project object */;
@@ -61,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		131AAD0C1FB49301005CB0A1 /* ExtendaBLE-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ExtendaBLE-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13E65A291FB396330076BC6F /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0322101E8DFF260080E13F /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0322131E8DFF260080E13F /* ExtendaBLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtendaBLE.h; sourceTree = "<group>"; };
 		3A0322191E8DFF260080E13F /* ExtendaBLE-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ExtendaBLE-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +107,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		131AAD091FB49301005CB0A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				131AAD111FB49301005CB0A1 /* ExtendaBLE.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13E65A251FB396330076BC6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A03220C1E8DFF260080E13F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -132,6 +170,8 @@
 				3A0322191E8DFF260080E13F /* ExtendaBLE-Tests.xctest */,
 				3A0322671E8E00E50080E13F /* ExtendaBLE.framework */,
 				3A0322741E8E01130080E13F /* ExtendaBLE.framework */,
+				13E65A291FB396330076BC6F /* ExtendaBLE.framework */,
+				131AAD0C1FB49301005CB0A1 /* ExtendaBLE-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -219,6 +259,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		13E65A261FB396330076BC6F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13E65A311FB396420076BC6F /* ExtendaBLE.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A03220D1E8DFF260080E13F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,6 +294,42 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		131AAD0B1FB49301005CB0A1 /* ExtendaBLE-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 131AAD161FB49301005CB0A1 /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOSTests" */;
+			buildPhases = (
+				131AAD081FB49301005CB0A1 /* Sources */,
+				131AAD091FB49301005CB0A1 /* Frameworks */,
+				131AAD0A1FB49301005CB0A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				131AAD131FB49301005CB0A1 /* PBXTargetDependency */,
+			);
+			name = "ExtendaBLE-tvOSTests";
+			productName = "ExtendaBLE-tvOSTests";
+			productReference = 131AAD0C1FB49301005CB0A1 /* ExtendaBLE-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13E65A281FB396330076BC6F /* ExtendaBLE-watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13E65A301FB396330076BC6F /* Build configuration list for PBXNativeTarget "ExtendaBLE-watchOS" */;
+			buildPhases = (
+				13E65A241FB396330076BC6F /* Sources */,
+				13E65A251FB396330076BC6F /* Frameworks */,
+				13E65A261FB396330076BC6F /* Headers */,
+				13E65A271FB396330076BC6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ExtendaBLE-watchOS";
+			productName = "ExtendaBLE-watchOS";
+			productReference = 13E65A291FB396330076BC6F /* ExtendaBLE.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		3A03220F1E8DFF260080E13F /* ExtendaBLE-iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A0322241E8DFF260080E13F /* Build configuration list for PBXNativeTarget "ExtendaBLE-iOS" */;
@@ -324,10 +408,20 @@
 		3A0322071E8DFF260080E13F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0910;
 				ORGANIZATIONNAME = "Anton Doudarev";
 				TargetAttributes = {
+					131AAD0B1FB49301005CB0A1 = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = WQAUP4LZJV;
+						ProvisioningStyle = Automatic;
+					};
+					13E65A281FB396330076BC6F = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = WQAUP4LZJV;
+						ProvisioningStyle = Automatic;
+					};
 					3A03220F1E8DFF260080E13F = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = WQAUP4LZJV;
@@ -367,12 +461,28 @@
 				3A03220F1E8DFF260080E13F /* ExtendaBLE-iOS */,
 				3A0322661E8E00E50080E13F /* ExtendaBLE-tvOS */,
 				3A0322731E8E01130080E13F /* ExtendaBLE-OSX */,
+				13E65A281FB396330076BC6F /* ExtendaBLE-watchOS */,
 				3A0322181E8DFF260080E13F /* ExtendaBLE-Tests */,
+				131AAD0B1FB49301005CB0A1 /* ExtendaBLE-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		131AAD0A1FB49301005CB0A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13E65A271FB396330076BC6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A03220E1E8DFF260080E13F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -404,6 +514,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		131AAD081FB49301005CB0A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13E65A241FB396330076BC6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13E65A321FB3964D0076BC6F /* ExtendaBLE.swift in Sources */,
+				13E65A3B1FB3965E0076BC6F /* Data+BLE.swift in Sources */,
+				13E65A341FB396520076BC6F /* EBCentralManager.swift in Sources */,
+				13E65A3A1FB3965A0076BC6F /* EBTransaction.swift in Sources */,
+				13E65A381FB396570076BC6F /* EBServiceMaker.swift in Sources */,
+				13E65A3C1FB3965E0076BC6F /* Data+BLEConversion.swift in Sources */,
+				13E65A351FB396520076BC6F /* EBPeripheralManager.swift in Sources */,
+				13E65A3D1FB396620076BC6F /* Logger.swift in Sources */,
+				13E65A371FB396570076BC6F /* EBPeripheralManagerMaker.swift in Sources */,
+				13E65A331FB396520076BC6F /* EBDefinitions.swift in Sources */,
+				13E65A391FB396570076BC6F /* EBCharacteristicMaker.swift in Sources */,
+				13E65A361FB396570076BC6F /* EBCentralManagerMaker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3A03220B1E8DFF260080E13F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,6 +608,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		131AAD131FB49301005CB0A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3A0322661E8E00E50080E13F /* ExtendaBLE-tvOS */;
+			targetProxy = 131AAD121FB49301005CB0A1 /* PBXContainerItemProxy */;
+		};
 		3A03221C1E8DFF260080E13F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3A03220F1E8DFF260080E13F /* ExtendaBLE-iOS */;
@@ -480,6 +621,98 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		131AAD141FB49301005CB0A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ExtendaBLE-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOS.ExtendaBLE-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Debug;
+		};
+		131AAD151FB49301005CB0A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ExtendaBLE-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOS.ExtendaBLE-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
+			};
+			name = Release;
+		};
+		13E65A2E1FB396330076BC6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ExtendaBLE/Info-watchOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-ios.ExtendaBLE-iOS.ExtendaBLE-watchOS";
+				PRODUCT_NAME = ExtendaBLE;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Debug;
+		};
+		13E65A2F1FB396330076BC6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "ExtendaBLE/Info-watchOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-ios.ExtendaBLE-iOS.ExtendaBLE-watchOS";
+				PRODUCT_NAME = ExtendaBLE;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 3.0;
+			};
+			name = Release;
+		};
 		3A0322221E8DFF260080E13F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -758,6 +991,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		131AAD161FB49301005CB0A1 /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				131AAD141FB49301005CB0A1 /* Debug */,
+				131AAD151FB49301005CB0A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13E65A301FB396330076BC6F /* Build configuration list for PBXNativeTarget "ExtendaBLE-watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13E65A2E1FB396330076BC6F /* Debug */,
+				13E65A2F1FB396330076BC6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3A03220A1E8DFF260080E13F /* Build configuration list for PBXProject "ExtendaBLE" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

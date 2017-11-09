@@ -3,51 +3,81 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A6020D51E974E8D00FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D41E974E8D00FBE08C /* ViewController.swift */; };
-		3A6F74811E8EA8CD00CDDE0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F74801E8EA8CD00CDDE0B /* AppDelegate.swift */; };
-		3A6F74851E8EA8CD00CDDE0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F74841E8EA8CD00CDDE0B /* Assets.xcassets */; };
-		3A6F74881E8EA8CD00CDDE0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6F74861E8EA8CD00CDDE0B /* Main.storyboard */; };
-		3AAD8B341E929AC70013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B261E929AC70013CE98 /* EBCentralManagerMaker.swift */; };
-		3AAD8B351E929AC70013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B271E929AC70013CE98 /* EBCharacteristicMaker.swift */; };
-		3AAD8B361E929AC70013CE98 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B281E929AC70013CE98 /* EBPeripheralManagerMaker.swift */; };
-		3AAD8B371E929AC70013CE98 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B291E929AC70013CE98 /* EBServiceMaker.swift */; };
-		3AAD8B381E929AC70013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B2B1E929AC70013CE98 /* EBCentralManager.swift */; };
-		3AAD8B391E929AC70013CE98 /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B2C1E929AC70013CE98 /* EBDefinitions.swift */; };
-		3AAD8B3A1E929AC70013CE98 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B2D1E929AC70013CE98 /* EBPeripheralManager.swift */; };
-		3AAD8B3B1E929AC70013CE98 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B2F1E929AC70013CE98 /* EBTransaction.swift */; };
-		3AAD8B3C1E929AC70013CE98 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B301E929AC70013CE98 /* ExtendaBLE.swift */; };
-		3AAD8B3D1E929AC70013CE98 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B321E929AC70013CE98 /* Data+BLE.swift */; };
-		3AAD8B3E1E929AC70013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B331E929AC70013CE98 /* Data+BLEConversion.swift */; };
-		3AD483561E9FD9D100505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483551E9FD9D100505FDA /* Logger.swift */; };
+		130370521FB4A7FF00765E65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370511FB4A7FF00765E65 /* AppDelegate.swift */; };
+		130370561FB4A7FF00765E65 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130370551FB4A7FF00765E65 /* Assets.xcassets */; };
+		130370591FB4A7FF00765E65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130370571FB4A7FF00765E65 /* Main.storyboard */; };
+		130370811FB4A80C00765E65 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370711FB4A80C00765E65 /* EBCentralManagerMaker.swift */; };
+		130370821FB4A80C00765E65 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370721FB4A80C00765E65 /* EBCharacteristicMaker.swift */; };
+		130370831FB4A80C00765E65 /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370731FB4A80C00765E65 /* EBPeripheralManagerMaker.swift */; };
+		130370841FB4A80C00765E65 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370741FB4A80C00765E65 /* EBServiceMaker.swift */; };
+		130370851FB4A80C00765E65 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370761FB4A80C00765E65 /* EBCentralManager.swift */; };
+		130370861FB4A80C00765E65 /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370771FB4A80C00765E65 /* EBDefinitions.swift */; };
+		130370871FB4A80C00765E65 /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370781FB4A80C00765E65 /* EBPeripheralManager.swift */; };
+		130370881FB4A80C00765E65 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303707A1FB4A80C00765E65 /* EBTransaction.swift */; };
+		130370891FB4A80C00765E65 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303707B1FB4A80C00765E65 /* ExtendaBLE.swift */; };
+		1303708A1FB4A80C00765E65 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303707D1FB4A80C00765E65 /* Data+BLE.swift */; };
+		1303708B1FB4A80C00765E65 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303707E1FB4A80C00765E65 /* Data+BLEConversion.swift */; };
+		1303708C1FB4A80C00765E65 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370801FB4A80C00765E65 /* Logger.swift */; };
+		130370941FB4A82300765E65 /* ExtendaBLECMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303708E1FB4A82300765E65 /* ExtendaBLECMMakerTests.swift */; };
+		130370951FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303708F1FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift */; };
+		130370961FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370911FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift */; };
+		130370971FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370921FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift */; };
+		130370981FB4A82300765E65 /* ExtendaBLETestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370931FB4A82300765E65 /* ExtendaBLETestConstants.swift */; };
+		1303709A1FB4A82F00765E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370991FB4A82F00765E65 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		130370611FB4A7FF00765E65 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 130370461FB4A7FF00765E65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1303704D1FB4A7FF00765E65;
+			remoteInfo = "ExtendaBLE-OSX-Demo";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		3A6020D41E974E8D00FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
-		3A6F747D1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-OSX-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A6F74801E8EA8CD00CDDE0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3A6F74841E8EA8CD00CDDE0B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3A6F74871E8EA8CD00CDDE0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3A6F74891E8EA8CD00CDDE0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3AAD8B261E929AC70013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
-		3AAD8B271E929AC70013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
-		3AAD8B281E929AC70013CE98 /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
-		3AAD8B291E929AC70013CE98 /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
-		3AAD8B2B1E929AC70013CE98 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
-		3AAD8B2C1E929AC70013CE98 /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
-		3AAD8B2D1E929AC70013CE98 /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
-		3AAD8B2F1E929AC70013CE98 /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
-		3AAD8B301E929AC70013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
-		3AAD8B321E929AC70013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
-		3AAD8B331E929AC70013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
-		3AD483551E9FD9D100505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1303704E1FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-OSX-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		130370511FB4A7FF00765E65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		130370551FB4A7FF00765E65 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		130370581FB4A7FF00765E65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1303705A1FB4A7FF00765E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1303705B1FB4A7FF00765E65 /* ExtendaBLE_OSX_Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExtendaBLE_OSX_Demo.entitlements; sourceTree = "<group>"; };
+		130370601FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ExtendaBLE-OSX-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		130370661FB4A7FF00765E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		130370711FB4A80C00765E65 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
+		130370721FB4A80C00765E65 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
+		130370731FB4A80C00765E65 /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
+		130370741FB4A80C00765E65 /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
+		130370761FB4A80C00765E65 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
+		130370771FB4A80C00765E65 /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
+		130370781FB4A80C00765E65 /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
+		1303707A1FB4A80C00765E65 /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
+		1303707B1FB4A80C00765E65 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
+		1303707D1FB4A80C00765E65 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
+		1303707E1FB4A80C00765E65 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		130370801FB4A80C00765E65 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		1303708E1FB4A82300765E65 /* ExtendaBLECMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMMakerTests.swift; sourceTree = "<group>"; };
+		1303708F1FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMReadWriteTests.swift; sourceTree = "<group>"; };
+		130370911FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLEPMMakerTests.swift; sourceTree = "<group>"; };
+		130370921FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLEPMReadWriteTests.swift; sourceTree = "<group>"; };
+		130370931FB4A82300765E65 /* ExtendaBLETestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendaBLETestConstants.swift; path = "../../Shared-Tests/ExtendaBLETestConstants.swift"; sourceTree = "<group>"; };
+		130370991FB4A82F00765E65 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3A6F747A1E8EA8CD00CDDE0B /* Frameworks */ = {
+		1303704B1FB4A7FF00765E65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1303705D1FB4A7FF00765E65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -57,113 +87,139 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A6F74741E8EA8CD00CDDE0B = {
+		130370451FB4A7FF00765E65 = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B241E929AC70013CE98 /* Source */,
-				3A6F747F1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo */,
-				3A6F747E1E8EA8CD00CDDE0B /* Products */,
+				130370501FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo */,
+				130370631FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests */,
+				1303704F1FB4A7FF00765E65 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		3A6F747E1E8EA8CD00CDDE0B /* Products */ = {
+		1303704F1FB4A7FF00765E65 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3A6F747D1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo.app */,
+				1303704E1FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo.app */,
+				130370601FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3A6F747F1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo */ = {
+		130370501FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo */ = {
 			isa = PBXGroup;
 			children = (
-				3A6F74801E8EA8CD00CDDE0B /* AppDelegate.swift */,
-				3A6020D41E974E8D00FBE08C /* ViewController.swift */,
-				3A6F748F1E8EA8F800CDDE0B /* SupportingFiles */,
+				130370991FB4A82F00765E65 /* ViewController.swift */,
+				1303706F1FB4A80C00765E65 /* Source */,
+				130370511FB4A7FF00765E65 /* AppDelegate.swift */,
+				130370551FB4A7FF00765E65 /* Assets.xcassets */,
+				130370571FB4A7FF00765E65 /* Main.storyboard */,
+				1303705A1FB4A7FF00765E65 /* Info.plist */,
+				1303705B1FB4A7FF00765E65 /* ExtendaBLE_OSX_Demo.entitlements */,
 			);
 			path = "ExtendaBLE-OSX-Demo";
 			sourceTree = "<group>";
 		};
-		3A6F748F1E8EA8F800CDDE0B /* SupportingFiles */ = {
+		130370631FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				3A6F74841E8EA8CD00CDDE0B /* Assets.xcassets */,
-				3A6F74861E8EA8CD00CDDE0B /* Main.storyboard */,
-				3A6F74891E8EA8CD00CDDE0B /* Info.plist */,
+				1303708D1FB4A82300765E65 /* CentralManager */,
+				130370931FB4A82300765E65 /* ExtendaBLETestConstants.swift */,
+				130370901FB4A82300765E65 /* PeripheralManager */,
+				130370661FB4A7FF00765E65 /* Info.plist */,
 			);
-			name = SupportingFiles;
+			path = "ExtendaBLE-OSX-DemoTests";
 			sourceTree = "<group>";
 		};
-		3AAD8B241E929AC70013CE98 /* Source */ = {
+		1303706F1FB4A80C00765E65 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B301E929AC70013CE98 /* ExtendaBLE.swift */,
-				3AAD8B2A1E929AC70013CE98 /* EBManager */,
-				3AAD8B251E929AC70013CE98 /* EBMaker */,
-				3AAD8B2E1E929AC70013CE98 /* EBTransaction */,
-				3AAD8B311E929AC70013CE98 /* Extensions */,
-				3AD483541E9FD9D100505FDA /* Logger */,
+				130370701FB4A80C00765E65 /* EBMaker */,
+				130370751FB4A80C00765E65 /* EBManager */,
+				130370791FB4A80C00765E65 /* EBTransaction */,
+				1303707B1FB4A80C00765E65 /* ExtendaBLE.swift */,
+				1303707C1FB4A80C00765E65 /* Extensions */,
+				1303707F1FB4A80C00765E65 /* Logger */,
 			);
 			name = Source;
-			path = ../../Source;
+			path = ../../../Source;
 			sourceTree = "<group>";
 		};
-		3AAD8B251E929AC70013CE98 /* EBMaker */ = {
+		130370701FB4A80C00765E65 /* EBMaker */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B261E929AC70013CE98 /* EBCentralManagerMaker.swift */,
-				3AAD8B281E929AC70013CE98 /* EBPeripheralManagerMaker.swift */,
-				3AAD8B291E929AC70013CE98 /* EBServiceMaker.swift */,
-				3AAD8B271E929AC70013CE98 /* EBCharacteristicMaker.swift */,
+				130370711FB4A80C00765E65 /* EBCentralManagerMaker.swift */,
+				130370721FB4A80C00765E65 /* EBCharacteristicMaker.swift */,
+				130370731FB4A80C00765E65 /* EBPeripheralManagerMaker.swift */,
+				130370741FB4A80C00765E65 /* EBServiceMaker.swift */,
 			);
 			path = EBMaker;
 			sourceTree = "<group>";
 		};
-		3AAD8B2A1E929AC70013CE98 /* EBManager */ = {
+		130370751FB4A80C00765E65 /* EBManager */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B2C1E929AC70013CE98 /* EBDefinitions.swift */,
-				3AAD8B2B1E929AC70013CE98 /* EBCentralManager.swift */,
-				3AAD8B2D1E929AC70013CE98 /* EBPeripheralManager.swift */,
+				130370761FB4A80C00765E65 /* EBCentralManager.swift */,
+				130370771FB4A80C00765E65 /* EBDefinitions.swift */,
+				130370781FB4A80C00765E65 /* EBPeripheralManager.swift */,
 			);
 			path = EBManager;
 			sourceTree = "<group>";
 		};
-		3AAD8B2E1E929AC70013CE98 /* EBTransaction */ = {
+		130370791FB4A80C00765E65 /* EBTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B2F1E929AC70013CE98 /* EBTransaction.swift */,
+				1303707A1FB4A80C00765E65 /* EBTransaction.swift */,
 			);
 			path = EBTransaction;
 			sourceTree = "<group>";
 		};
-		3AAD8B311E929AC70013CE98 /* Extensions */ = {
+		1303707C1FB4A80C00765E65 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B321E929AC70013CE98 /* Data+BLE.swift */,
-				3AAD8B331E929AC70013CE98 /* Data+BLEConversion.swift */,
+				1303707D1FB4A80C00765E65 /* Data+BLE.swift */,
+				1303707E1FB4A80C00765E65 /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3AD483541E9FD9D100505FDA /* Logger */ = {
+		1303707F1FB4A80C00765E65 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				3AD483551E9FD9D100505FDA /* Logger.swift */,
+				130370801FB4A80C00765E65 /* Logger.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		1303708D1FB4A82300765E65 /* CentralManager */ = {
+			isa = PBXGroup;
+			children = (
+				1303708E1FB4A82300765E65 /* ExtendaBLECMMakerTests.swift */,
+				1303708F1FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift */,
+			);
+			name = CentralManager;
+			path = "../../Shared-Tests/CentralManager";
+			sourceTree = "<group>";
+		};
+		130370901FB4A82300765E65 /* PeripheralManager */ = {
+			isa = PBXGroup;
+			children = (
+				130370911FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift */,
+				130370921FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift */,
+			);
+			name = PeripheralManager;
+			path = "../../Shared-Tests/PeripheralManager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A6F747C1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo */ = {
+		1303704D1FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3A6F748C1E8EA8CD00CDDE0B /* Build configuration list for PBXNativeTarget "ExtendaBLE-OSX-Demo" */;
+			buildConfigurationList = 130370691FB4A7FF00765E65 /* Build configuration list for PBXNativeTarget "ExtendaBLE-OSX-Demo" */;
 			buildPhases = (
-				3A6F74791E8EA8CD00CDDE0B /* Sources */,
-				3A6F747A1E8EA8CD00CDDE0B /* Frameworks */,
-				3A6F747B1E8EA8CD00CDDE0B /* Resources */,
+				1303704A1FB4A7FF00765E65 /* Sources */,
+				1303704B1FB4A7FF00765E65 /* Frameworks */,
+				1303704C1FB4A7FF00765E65 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -171,85 +227,136 @@
 			);
 			name = "ExtendaBLE-OSX-Demo";
 			productName = "ExtendaBLE-OSX-Demo";
-			productReference = 3A6F747D1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo.app */;
+			productReference = 1303704E1FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		1303705F1FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1303706C1FB4A7FF00765E65 /* Build configuration list for PBXNativeTarget "ExtendaBLE-OSX-DemoTests" */;
+			buildPhases = (
+				1303705C1FB4A7FF00765E65 /* Sources */,
+				1303705D1FB4A7FF00765E65 /* Frameworks */,
+				1303705E1FB4A7FF00765E65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				130370621FB4A7FF00765E65 /* PBXTargetDependency */,
+			);
+			name = "ExtendaBLE-OSX-DemoTests";
+			productName = "ExtendaBLE-OSX-DemoTests";
+			productReference = 130370601FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3A6F74751E8EA8CD00CDDE0B /* Project object */ = {
+		130370461FB4A7FF00765E65 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 0910;
-				ORGANIZATIONNAME = "Anton Doudarev";
+				ORGANIZATIONNAME = IAGD;
 				TargetAttributes = {
-					3A6F747C1E8EA8CD00CDDE0B = {
-						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = WQAUP4LZJV;
+					1303704D1FB4A7FF00765E65 = {
+						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+					};
+					1303705F1FB4A7FF00765E65 = {
+						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 1303704D1FB4A7FF00765E65;
 					};
 				};
 			};
-			buildConfigurationList = 3A6F74781E8EA8CD00CDDE0B /* Build configuration list for PBXProject "ExtendaBLE-OSX-Demo" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 130370491FB4A7FF00765E65 /* Build configuration list for PBXProject "ExtendaBLE-OSX-Demo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 3A6F74741E8EA8CD00CDDE0B;
-			productRefGroup = 3A6F747E1E8EA8CD00CDDE0B /* Products */;
+			mainGroup = 130370451FB4A7FF00765E65;
+			productRefGroup = 1303704F1FB4A7FF00765E65 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3A6F747C1E8EA8CD00CDDE0B /* ExtendaBLE-OSX-Demo */,
+				1303704D1FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo */,
+				1303705F1FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3A6F747B1E8EA8CD00CDDE0B /* Resources */ = {
+		1303704C1FB4A7FF00765E65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A6F74851E8EA8CD00CDDE0B /* Assets.xcassets in Resources */,
-				3A6F74881E8EA8CD00CDDE0B /* Main.storyboard in Resources */,
+				130370561FB4A7FF00765E65 /* Assets.xcassets in Resources */,
+				130370591FB4A7FF00765E65 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1303705E1FB4A7FF00765E65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3A6F74791E8EA8CD00CDDE0B /* Sources */ = {
+		1303704A1FB4A7FF00765E65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAD8B3B1E929AC70013CE98 /* EBTransaction.swift in Sources */,
-				3AAD8B391E929AC70013CE98 /* EBDefinitions.swift in Sources */,
-				3AAD8B381E929AC70013CE98 /* EBCentralManager.swift in Sources */,
-				3AAD8B3A1E929AC70013CE98 /* EBPeripheralManager.swift in Sources */,
-				3AAD8B3D1E929AC70013CE98 /* Data+BLE.swift in Sources */,
-				3AAD8B3E1E929AC70013CE98 /* Data+BLEConversion.swift in Sources */,
-				3A6F74811E8EA8CD00CDDE0B /* AppDelegate.swift in Sources */,
-				3AAD8B351E929AC70013CE98 /* EBCharacteristicMaker.swift in Sources */,
-				3A6020D51E974E8D00FBE08C /* ViewController.swift in Sources */,
-				3AAD8B361E929AC70013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
-				3AAD8B3C1E929AC70013CE98 /* ExtendaBLE.swift in Sources */,
-				3AD483561E9FD9D100505FDA /* Logger.swift in Sources */,
-				3AAD8B341E929AC70013CE98 /* EBCentralManagerMaker.swift in Sources */,
-				3AAD8B371E929AC70013CE98 /* EBServiceMaker.swift in Sources */,
+				130370881FB4A80C00765E65 /* EBTransaction.swift in Sources */,
+				130370861FB4A80C00765E65 /* EBDefinitions.swift in Sources */,
+				130370851FB4A80C00765E65 /* EBCentralManager.swift in Sources */,
+				130370871FB4A80C00765E65 /* EBPeripheralManager.swift in Sources */,
+				1303709A1FB4A82F00765E65 /* ViewController.swift in Sources */,
+				1303708A1FB4A80C00765E65 /* Data+BLE.swift in Sources */,
+				1303708B1FB4A80C00765E65 /* Data+BLEConversion.swift in Sources */,
+				130370521FB4A7FF00765E65 /* AppDelegate.swift in Sources */,
+				130370821FB4A80C00765E65 /* EBCharacteristicMaker.swift in Sources */,
+				130370831FB4A80C00765E65 /* EBPeripheralManagerMaker.swift in Sources */,
+				130370891FB4A80C00765E65 /* ExtendaBLE.swift in Sources */,
+				1303708C1FB4A80C00765E65 /* Logger.swift in Sources */,
+				130370811FB4A80C00765E65 /* EBCentralManagerMaker.swift in Sources */,
+				130370841FB4A80C00765E65 /* EBServiceMaker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1303705C1FB4A7FF00765E65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				130370971FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift in Sources */,
+				130370951FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift in Sources */,
+				130370961FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift in Sources */,
+				130370941FB4A82300765E65 /* ExtendaBLECMMakerTests.swift in Sources */,
+				130370981FB4A82300765E65 /* ExtendaBLETestConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		130370621FB4A7FF00765E65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1303704D1FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo */;
+			targetProxy = 130370611FB4A7FF00765E65 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		3A6F74861E8EA8CD00CDDE0B /* Main.storyboard */ = {
+		130370571FB4A7FF00765E65 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3A6F74871E8EA8CD00CDDE0B /* Base */,
+				130370581FB4A7FF00765E65 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -257,13 +364,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3A6F748A1E8EA8CD00CDDE0B /* Debug */ = {
+		130370671FB4A7FF00765E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -283,14 +390,15 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -307,20 +415,19 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DDebug";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		3A6F748B1E8EA8CD00CDDE0B /* Release */ = {
+		130370681FB4A7FF00765E65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -340,14 +447,15 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -362,64 +470,106 @@
 			};
 			name = Release;
 		};
-		3A6F748D1E8EA8CD00CDDE0B /* Debug */ = {
+		1303706A1FB4A7FF00765E65 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "ExtendaBLE-OSX-Demo/ExtendaBLE_OSX_Demo.entitlements";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
 				INFOPLIST_FILE = "ExtendaBLE-OSX-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "-DDebug";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-OSX.ExtendaBLE-OSX-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-osx.ExtendaBLE-osxDemo.ExtendaBLE-OSX-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
-		3A6F748E1E8EA8CD00CDDE0B /* Release */ = {
+		1303706B1FB4A7FF00765E65 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "ExtendaBLE-OSX-Demo/ExtendaBLE_OSX_Demo.entitlements";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
 				INFOPLIST_FILE = "ExtendaBLE-OSX-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_SWIFT_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-OSX.ExtendaBLE-OSX-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-osx.ExtendaBLE-osxDemo.ExtendaBLE-OSX-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		1303706D1FB4A7FF00765E65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				INFOPLIST_FILE = "ExtendaBLE-OSX-DemoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-osx.ExtendaBLE-osxDemo.ExtendaBLE-OSX-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtendaBLE-OSX-Demo.app/Contents/MacOS/ExtendaBLE-OSX-Demo";
+			};
+			name = Debug;
+		};
+		1303706E1FB4A7FF00765E65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				INFOPLIST_FILE = "ExtendaBLE-OSX-DemoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-osx.ExtendaBLE-osxDemo.ExtendaBLE-OSX-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtendaBLE-OSX-Demo.app/Contents/MacOS/ExtendaBLE-OSX-Demo";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A6F74781E8EA8CD00CDDE0B /* Build configuration list for PBXProject "ExtendaBLE-OSX-Demo" */ = {
+		130370491FB4A7FF00765E65 /* Build configuration list for PBXProject "ExtendaBLE-OSX-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3A6F748A1E8EA8CD00CDDE0B /* Debug */,
-				3A6F748B1E8EA8CD00CDDE0B /* Release */,
+				130370671FB4A7FF00765E65 /* Debug */,
+				130370681FB4A7FF00765E65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3A6F748C1E8EA8CD00CDDE0B /* Build configuration list for PBXNativeTarget "ExtendaBLE-OSX-Demo" */ = {
+		130370691FB4A7FF00765E65 /* Build configuration list for PBXNativeTarget "ExtendaBLE-OSX-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3A6F748D1E8EA8CD00CDDE0B /* Debug */,
-				3A6F748E1E8EA8CD00CDDE0B /* Release */,
+				1303706A1FB4A7FF00765E65 /* Debug */,
+				1303706B1FB4A7FF00765E65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1303706C1FB4A7FF00765E65 /* Build configuration list for PBXNativeTarget "ExtendaBLE-OSX-DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1303706D1FB4A7FF00765E65 /* Debug */,
+				1303706E1FB4A7FF00765E65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3A6F74751E8EA8CD00CDDE0B /* Project object */;
+	rootObject = 130370461FB4A7FF00765E65 /* Project object */;
 }

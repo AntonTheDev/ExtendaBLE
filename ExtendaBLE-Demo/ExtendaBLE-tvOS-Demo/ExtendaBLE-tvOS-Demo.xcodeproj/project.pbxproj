@@ -3,47 +3,105 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3A6020D71E9750D000FBE08C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6020D61E9750D000FBE08C /* ViewController.swift */; };
-		3AAD8A931E9293DB0013CE98 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */; };
-		3AAD8A981E9293DB0013CE98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AAD8A961E9293DB0013CE98 /* Main.storyboard */; };
-		3AAD8A9A1E9293DB0013CE98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AAD8A991E9293DB0013CE98 /* Assets.xcassets */; };
-		3AAD8B191E929ABF0013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B0B1E929ABF0013CE98 /* EBCentralManagerMaker.swift */; };
-		3AAD8B1A1E929ABF0013CE98 /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B0C1E929ABF0013CE98 /* EBCharacteristicMaker.swift */; };
-		3AAD8B1C1E929ABF0013CE98 /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B0E1E929ABF0013CE98 /* EBServiceMaker.swift */; };
-		3AAD8B1D1E929ABF0013CE98 /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B101E929ABF0013CE98 /* EBCentralManager.swift */; };
-		3AAD8B1E1E929ABF0013CE98 /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B111E929ABF0013CE98 /* EBDefinitions.swift */; };
-		3AAD8B201E929ABF0013CE98 /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B141E929ABF0013CE98 /* EBTransaction.swift */; };
-		3AAD8B211E929ABF0013CE98 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B151E929ABF0013CE98 /* ExtendaBLE.swift */; };
-		3AAD8B221E929ABF0013CE98 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B171E929ABF0013CE98 /* Data+BLE.swift */; };
-		3AAD8B231E929ABF0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8B181E929ABF0013CE98 /* Data+BLEConversion.swift */; };
-		3AD483501E9FD9A300505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD4834F1E9FD9A300505FDA /* Logger.swift */; };
+		13F670501FB4957F001A1FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6704F1FB4957F001A1FDB /* AppDelegate.swift */; };
+		13F670551FB4957F001A1FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F670531FB4957F001A1FDB /* Main.storyboard */; };
+		13F670571FB4957F001A1FDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F670561FB4957F001A1FDB /* Assets.xcassets */; };
+		13F6706D1FB495A2001A1FDB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6706C1FB495A1001A1FDB /* ViewController.swift */; };
+		13F670801FB495BD001A1FDB /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670701FB495BD001A1FDB /* EBCentralManagerMaker.swift */; };
+		13F670811FB495BD001A1FDB /* EBCharacteristicMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670711FB495BD001A1FDB /* EBCharacteristicMaker.swift */; };
+		13F670821FB495BD001A1FDB /* EBPeripheralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670721FB495BD001A1FDB /* EBPeripheralManagerMaker.swift */; };
+		13F670831FB495BD001A1FDB /* EBServiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670731FB495BD001A1FDB /* EBServiceMaker.swift */; };
+		13F670841FB495BD001A1FDB /* EBCentralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670751FB495BD001A1FDB /* EBCentralManager.swift */; };
+		13F670851FB495BD001A1FDB /* EBDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670761FB495BD001A1FDB /* EBDefinitions.swift */; };
+		13F670861FB495BD001A1FDB /* EBPeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670771FB495BD001A1FDB /* EBPeripheralManager.swift */; };
+		13F670871FB495BD001A1FDB /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F670791FB495BD001A1FDB /* EBTransaction.swift */; };
+		13F670881FB495BD001A1FDB /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707A1FB495BD001A1FDB /* ExtendaBLE.swift */; };
+		13F670891FB495BD001A1FDB /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707C1FB495BD001A1FDB /* Data+BLE.swift */; };
+		13F6708A1FB495BD001A1FDB /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707D1FB495BD001A1FDB /* Data+BLEConversion.swift */; };
+		13F6708B1FB495BD001A1FDB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707F1FB495BD001A1FDB /* Logger.swift */; };
+		13F670901FB495DA001A1FDB /* ExtendaBLECMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6708D1FB495D9001A1FDB /* ExtendaBLECMMakerTests.swift */; };
+		13F670911FB495DA001A1FDB /* ExtendaBLECMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6708E1FB495D9001A1FDB /* ExtendaBLECMReadWriteTests.swift */; };
+		13F670921FB495DA001A1FDB /* ExtendaBLETestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6708F1FB495DA001A1FDB /* ExtendaBLETestConstants.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		139A50191FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139A4FCA1FB4A9A50022D6B8;
+			remoteInfo = "ExtendaBLE-watchOS-Demo";
+		};
+		139A501B1FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139A4FDE1FB4A9A50022D6B8;
+			remoteInfo = "ExtendaBLE-watchOS-DemoTests";
+		};
+		139A501D1FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139A4FE71FB4A9A50022D6B8;
+			remoteInfo = "ExtendaBLE-watchOS-Demo WatchKit App";
+		};
+		139A501F1FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 139A4FF61FB4A9A50022D6B8;
+			remoteInfo = "ExtendaBLE-watchOS-Demo WatchKit Extension";
+		};
+		13F6705E1FB4957F001A1FDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 13F670441FB4957F001A1FDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13F6704B1FB4957F001A1FDB;
+			remoteInfo = "ExtendaBLE-tvOS-Demo";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		3A6020D61E9750D000FBE08C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
-		3AAD8A8F1E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-tvOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3AAD8A971E9293DB0013CE98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3AAD8A991E9293DB0013CE98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3AAD8A9B1E9293DB0013CE98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3AAD8B0B1E929ABF0013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
-		3AAD8B0C1E929ABF0013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
-		3AAD8B0E1E929ABF0013CE98 /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
-		3AAD8B101E929ABF0013CE98 /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
-		3AAD8B111E929ABF0013CE98 /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
-		3AAD8B141E929ABF0013CE98 /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
-		3AAD8B151E929ABF0013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
-		3AAD8B171E929ABF0013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
-		3AAD8B181E929ABF0013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
-		3AD4834F1E9FD9A300505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ExtendaBLE-watchOS-Demo.xcodeproj"; path = "../ExtendaBLE-watchOS-Demo/ExtendaBLE-watchOS-Demo.xcodeproj"; sourceTree = "<group>"; };
+		13F6704C1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-tvOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13F6704F1FB4957F001A1FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		13F670541FB4957F001A1FDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		13F670561FB4957F001A1FDB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		13F670581FB4957F001A1FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13F6705D1FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ExtendaBLE-tvOS-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13F670631FB49580001A1FDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13F6706C1FB495A1001A1FDB /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
+		13F670701FB495BD001A1FDB /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
+		13F670711FB495BD001A1FDB /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
+		13F670721FB495BD001A1FDB /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
+		13F670731FB495BD001A1FDB /* EBServiceMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBServiceMaker.swift; sourceTree = "<group>"; };
+		13F670751FB495BD001A1FDB /* EBCentralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManager.swift; sourceTree = "<group>"; };
+		13F670761FB495BD001A1FDB /* EBDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBDefinitions.swift; sourceTree = "<group>"; };
+		13F670771FB495BD001A1FDB /* EBPeripheralManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManager.swift; sourceTree = "<group>"; };
+		13F670791FB495BD001A1FDB /* EBTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBTransaction.swift; sourceTree = "<group>"; };
+		13F6707A1FB495BD001A1FDB /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
+		13F6707C1FB495BD001A1FDB /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
+		13F6707D1FB495BD001A1FDB /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
+		13F6707F1FB495BD001A1FDB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		13F6708D1FB495D9001A1FDB /* ExtendaBLECMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMMakerTests.swift; sourceTree = "<group>"; };
+		13F6708E1FB495D9001A1FDB /* ExtendaBLECMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMReadWriteTests.swift; sourceTree = "<group>"; };
+		13F6708F1FB495DA001A1FDB /* ExtendaBLETestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendaBLETestConstants.swift; path = "../../Shared-Tests/ExtendaBLETestConstants.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3AAD8A8C1E9293DB0013CE98 /* Frameworks */ = {
+		13F670491FB4957F001A1FDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13F6705A1FB4957F001A1FDB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,111 +111,139 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3AAD8A861E9293DB0013CE98 = {
+		139A50131FB4A9B90022D6B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B091E929ABF0013CE98 /* Source */,
-				3AAD8A911E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo */,
-				3AAD8A901E9293DB0013CE98 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		3AAD8A901E9293DB0013CE98 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3AAD8A8F1E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo.app */,
+				139A501A1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.app */,
+				139A501C1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-DemoTests.xctest */,
+				139A501E1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit App.app */,
+				139A50201FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3AAD8A911E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo */ = {
+		13F670431FB4957F001A1FDB = {
 			isa = PBXGroup;
 			children = (
-				3AAD8A921E9293DB0013CE98 /* AppDelegate.swift */,
-				3A6020D61E9750D000FBE08C /* ViewController.swift */,
-				3AAD8AA11E9294610013CE98 /* SupportingFiles */,
+				139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */,
+				13F6704E1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo */,
+				13F670601FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests */,
+				13F6704D1FB4957F001A1FDB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		13F6704D1FB4957F001A1FDB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13F6704C1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo.app */,
+				13F6705D1FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		13F6704E1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo */ = {
+			isa = PBXGroup;
+			children = (
+				13F6706E1FB495BD001A1FDB /* Source */,
+				13F6706C1FB495A1001A1FDB /* ViewController.swift */,
+				13F6704F1FB4957F001A1FDB /* AppDelegate.swift */,
+				13F670531FB4957F001A1FDB /* Main.storyboard */,
+				13F670561FB4957F001A1FDB /* Assets.xcassets */,
+				13F670581FB4957F001A1FDB /* Info.plist */,
 			);
 			path = "ExtendaBLE-tvOS-Demo";
 			sourceTree = "<group>";
 		};
-		3AAD8AA11E9294610013CE98 /* SupportingFiles */ = {
+		13F670601FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8A961E9293DB0013CE98 /* Main.storyboard */,
-				3AAD8A991E9293DB0013CE98 /* Assets.xcassets */,
-				3AAD8A9B1E9293DB0013CE98 /* Info.plist */,
+				13F6708C1FB495D9001A1FDB /* CentralManager */,
+				13F6708F1FB495DA001A1FDB /* ExtendaBLETestConstants.swift */,
+				13F670631FB49580001A1FDB /* Info.plist */,
 			);
-			name = SupportingFiles;
+			path = "ExtendaBLE-tvOS-DemoTests";
 			sourceTree = "<group>";
 		};
-		3AAD8B091E929ABF0013CE98 /* Source */ = {
+		13F6706E1FB495BD001A1FDB /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B151E929ABF0013CE98 /* ExtendaBLE.swift */,
-				3AAD8B0F1E929ABF0013CE98 /* EBManager */,
-				3AAD8B0A1E929ABF0013CE98 /* EBMaker */,
-				3AAD8B131E929ABF0013CE98 /* EBTransaction */,
-				3AAD8B161E929ABF0013CE98 /* Extensions */,
-				3AD4834E1E9FD9A300505FDA /* Logger */,
+				13F6706F1FB495BD001A1FDB /* EBMaker */,
+				13F670741FB495BD001A1FDB /* EBManager */,
+				13F670781FB495BD001A1FDB /* EBTransaction */,
+				13F6707A1FB495BD001A1FDB /* ExtendaBLE.swift */,
+				13F6707B1FB495BD001A1FDB /* Extensions */,
+				13F6707E1FB495BD001A1FDB /* Logger */,
 			);
 			name = Source;
-			path = ../../Source;
+			path = ../../../Source;
 			sourceTree = "<group>";
 		};
-		3AAD8B0A1E929ABF0013CE98 /* EBMaker */ = {
+		13F6706F1FB495BD001A1FDB /* EBMaker */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B0B1E929ABF0013CE98 /* EBCentralManagerMaker.swift */,
-				3AAD8B0E1E929ABF0013CE98 /* EBServiceMaker.swift */,
-				3AAD8B0C1E929ABF0013CE98 /* EBCharacteristicMaker.swift */,
+				13F670701FB495BD001A1FDB /* EBCentralManagerMaker.swift */,
+				13F670711FB495BD001A1FDB /* EBCharacteristicMaker.swift */,
+				13F670721FB495BD001A1FDB /* EBPeripheralManagerMaker.swift */,
+				13F670731FB495BD001A1FDB /* EBServiceMaker.swift */,
 			);
 			path = EBMaker;
 			sourceTree = "<group>";
 		};
-		3AAD8B0F1E929ABF0013CE98 /* EBManager */ = {
+		13F670741FB495BD001A1FDB /* EBManager */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B111E929ABF0013CE98 /* EBDefinitions.swift */,
-				3AAD8B101E929ABF0013CE98 /* EBCentralManager.swift */,
+				13F670751FB495BD001A1FDB /* EBCentralManager.swift */,
+				13F670761FB495BD001A1FDB /* EBDefinitions.swift */,
+				13F670771FB495BD001A1FDB /* EBPeripheralManager.swift */,
 			);
 			path = EBManager;
 			sourceTree = "<group>";
 		};
-		3AAD8B131E929ABF0013CE98 /* EBTransaction */ = {
+		13F670781FB495BD001A1FDB /* EBTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B141E929ABF0013CE98 /* EBTransaction.swift */,
+				13F670791FB495BD001A1FDB /* EBTransaction.swift */,
 			);
 			path = EBTransaction;
 			sourceTree = "<group>";
 		};
-		3AAD8B161E929ABF0013CE98 /* Extensions */ = {
+		13F6707B1FB495BD001A1FDB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3AAD8B171E929ABF0013CE98 /* Data+BLE.swift */,
-				3AAD8B181E929ABF0013CE98 /* Data+BLEConversion.swift */,
+				13F6707C1FB495BD001A1FDB /* Data+BLE.swift */,
+				13F6707D1FB495BD001A1FDB /* Data+BLEConversion.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3AD4834E1E9FD9A300505FDA /* Logger */ = {
+		13F6707E1FB495BD001A1FDB /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				3AD4834F1E9FD9A300505FDA /* Logger.swift */,
+				13F6707F1FB495BD001A1FDB /* Logger.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		13F6708C1FB495D9001A1FDB /* CentralManager */ = {
+			isa = PBXGroup;
+			children = (
+				13F6708D1FB495D9001A1FDB /* ExtendaBLECMMakerTests.swift */,
+				13F6708E1FB495D9001A1FDB /* ExtendaBLECMReadWriteTests.swift */,
+			);
+			name = CentralManager;
+			path = "../../Shared-Tests/CentralManager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3AAD8A8E1E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo */ = {
+		13F6704B1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3AAD8A9E1E9293DB0013CE98 /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOS-Demo" */;
+			buildConfigurationList = 13F670661FB49580001A1FDB /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOS-Demo" */;
 			buildPhases = (
-				3AAD8A8B1E9293DB0013CE98 /* Sources */,
-				3AAD8A8C1E9293DB0013CE98 /* Frameworks */,
-				3AAD8A8D1E9293DB0013CE98 /* Resources */,
+				13F670481FB4957F001A1FDB /* Sources */,
+				13F670491FB4957F001A1FDB /* Frameworks */,
+				13F6704A1FB4957F001A1FDB /* Resources */,
 			);
 			buildRules = (
 			);
@@ -165,83 +251,170 @@
 			);
 			name = "ExtendaBLE-tvOS-Demo";
 			productName = "ExtendaBLE-tvOS-Demo";
-			productReference = 3AAD8A8F1E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo.app */;
+			productReference = 13F6704C1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo.app */;
 			productType = "com.apple.product-type.application";
+		};
+		13F6705C1FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13F670691FB49580001A1FDB /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOS-DemoTests" */;
+			buildPhases = (
+				13F670591FB4957F001A1FDB /* Sources */,
+				13F6705A1FB4957F001A1FDB /* Frameworks */,
+				13F6705B1FB4957F001A1FDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				13F6705F1FB4957F001A1FDB /* PBXTargetDependency */,
+			);
+			name = "ExtendaBLE-tvOS-DemoTests";
+			productName = "ExtendaBLE-tvOS-DemoTests";
+			productReference = 13F6705D1FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3AAD8A871E9293DB0013CE98 /* Project object */ = {
+		13F670441FB4957F001A1FDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Anton Doudarev";
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = IAGD;
 				TargetAttributes = {
-					3AAD8A8E1E9293DB0013CE98 = {
-						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = WQAUP4LZJV;
+					13F6704B1FB4957F001A1FDB = {
+						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+					};
+					13F6705C1FB4957F001A1FDB = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13F6704B1FB4957F001A1FDB;
 					};
 				};
 			};
-			buildConfigurationList = 3AAD8A8A1E9293DB0013CE98 /* Build configuration list for PBXProject "ExtendaBLE-tvOS-Demo" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			buildConfigurationList = 13F670471FB4957F001A1FDB /* Build configuration list for PBXProject "ExtendaBLE-tvOS-Demo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 3AAD8A861E9293DB0013CE98;
-			productRefGroup = 3AAD8A901E9293DB0013CE98 /* Products */;
+			mainGroup = 13F670431FB4957F001A1FDB;
+			productRefGroup = 13F6704D1FB4957F001A1FDB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 139A50131FB4A9B90022D6B8 /* Products */;
+					ProjectRef = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
-				3AAD8A8E1E9293DB0013CE98 /* ExtendaBLE-tvOS-Demo */,
+				13F6704B1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo */,
+				13F6705C1FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		139A501A1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "ExtendaBLE-watchOS-Demo.app";
+			remoteRef = 139A50191FB4A9B90022D6B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		139A501C1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-DemoTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "ExtendaBLE-watchOS-DemoTests.xctest";
+			remoteRef = 139A501B1FB4A9B90022D6B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		139A501E1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit App.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "ExtendaBLE-watchOS-Demo WatchKit App.app";
+			remoteRef = 139A501D1FB4A9B90022D6B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		139A50201FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit Extension.appex */ = {
+			isa = PBXReferenceProxy;
+			fileType = "wrapper.app-extension";
+			path = "ExtendaBLE-watchOS-Demo WatchKit Extension.appex";
+			remoteRef = 139A501F1FB4A9B90022D6B8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
-		3AAD8A8D1E9293DB0013CE98 /* Resources */ = {
+		13F6704A1FB4957F001A1FDB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAD8A9A1E9293DB0013CE98 /* Assets.xcassets in Resources */,
-				3AAD8A981E9293DB0013CE98 /* Main.storyboard in Resources */,
+				13F670571FB4957F001A1FDB /* Assets.xcassets in Resources */,
+				13F670551FB4957F001A1FDB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13F6705B1FB4957F001A1FDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3AAD8A8B1E9293DB0013CE98 /* Sources */ = {
+		13F670481FB4957F001A1FDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AAD8B201E929ABF0013CE98 /* EBTransaction.swift in Sources */,
-				3AAD8B1E1E929ABF0013CE98 /* EBDefinitions.swift in Sources */,
-				3AAD8B1D1E929ABF0013CE98 /* EBCentralManager.swift in Sources */,
-				3AAD8B221E929ABF0013CE98 /* Data+BLE.swift in Sources */,
-				3A6020D71E9750D000FBE08C /* ViewController.swift in Sources */,
-				3AAD8B231E929ABF0013CE98 /* Data+BLEConversion.swift in Sources */,
-				3AAD8A931E9293DB0013CE98 /* AppDelegate.swift in Sources */,
-				3AD483501E9FD9A300505FDA /* Logger.swift in Sources */,
-				3AAD8B1A1E929ABF0013CE98 /* EBCharacteristicMaker.swift in Sources */,
-				3AAD8B211E929ABF0013CE98 /* ExtendaBLE.swift in Sources */,
-				3AAD8B191E929ABF0013CE98 /* EBCentralManagerMaker.swift in Sources */,
-				3AAD8B1C1E929ABF0013CE98 /* EBServiceMaker.swift in Sources */,
+				13F6706D1FB495A2001A1FDB /* ViewController.swift in Sources */,
+				13F670871FB495BD001A1FDB /* EBTransaction.swift in Sources */,
+				13F670851FB495BD001A1FDB /* EBDefinitions.swift in Sources */,
+				13F670841FB495BD001A1FDB /* EBCentralManager.swift in Sources */,
+				13F670861FB495BD001A1FDB /* EBPeripheralManager.swift in Sources */,
+				13F670891FB495BD001A1FDB /* Data+BLE.swift in Sources */,
+				13F6708A1FB495BD001A1FDB /* Data+BLEConversion.swift in Sources */,
+				13F670501FB4957F001A1FDB /* AppDelegate.swift in Sources */,
+				13F670811FB495BD001A1FDB /* EBCharacteristicMaker.swift in Sources */,
+				13F670821FB495BD001A1FDB /* EBPeripheralManagerMaker.swift in Sources */,
+				13F670881FB495BD001A1FDB /* ExtendaBLE.swift in Sources */,
+				13F6708B1FB495BD001A1FDB /* Logger.swift in Sources */,
+				13F670801FB495BD001A1FDB /* EBCentralManagerMaker.swift in Sources */,
+				13F670831FB495BD001A1FDB /* EBServiceMaker.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13F670591FB4957F001A1FDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13F670901FB495DA001A1FDB /* ExtendaBLECMMakerTests.swift in Sources */,
+				13F670921FB495DA001A1FDB /* ExtendaBLETestConstants.swift in Sources */,
+				13F670911FB495DA001A1FDB /* ExtendaBLECMReadWriteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		13F6705F1FB4957F001A1FDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13F6704B1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo */;
+			targetProxy = 13F6705E1FB4957F001A1FDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		3AAD8A961E9293DB0013CE98 /* Main.storyboard */ = {
+		13F670531FB4957F001A1FDB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3AAD8A971E9293DB0013CE98 /* Base */,
+				13F670541FB4957F001A1FDB /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -249,13 +422,13 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3AAD8A9C1E9293DB0013CE98 /* Debug */ = {
+		13F670641FB49580001A1FDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -275,13 +448,14 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -300,18 +474,17 @@
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.2;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
 			};
 			name = Debug;
 		};
-		3AAD8A9D1E9293DB0013CE98 /* Release */ = {
+		13F670651FB49580001A1FDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -331,13 +504,14 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -348,64 +522,108 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 10.2;
+				TVOS_DEPLOYMENT_TARGET = 11.1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		3AAD8A9F1E9293DB0013CE98 /* Debug */ = {
+		13F670671FB49580001A1FDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
 				INFOPLIST_FILE = "ExtendaBLE-tvOS-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOS-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOSTests.ExtendaBLE-tvOS-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
 			};
 			name = Debug;
 		};
-		3AAD8AA01E9293DB0013CE98 /* Release */ = {
+		13F670681FB49580001A1FDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WQAUP4LZJV;
 				INFOPLIST_FILE = "ExtendaBLE-tvOS-Demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOS-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOSTests.ExtendaBLE-tvOS-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+			};
+			name = Release;
+		};
+		13F6706A1FB49580001A1FDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				INFOPLIST_FILE = "ExtendaBLE-tvOS-DemoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOSTests.ExtendaBLE-tvOS-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtendaBLE-tvOS-Demo.app/ExtendaBLE-tvOS-Demo";
+			};
+			name = Debug;
+		};
+		13F6706B1FB49580001A1FDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WQAUP4LZJV;
+				INFOPLIST_FILE = "ExtendaBLE-tvOS-DemoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-tvOS.ExtendaBLE-tvOSTests.ExtendaBLE-tvOS-DemoTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExtendaBLE-tvOS-Demo.app/ExtendaBLE-tvOS-Demo";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3AAD8A8A1E9293DB0013CE98 /* Build configuration list for PBXProject "ExtendaBLE-tvOS-Demo" */ = {
+		13F670471FB4957F001A1FDB /* Build configuration list for PBXProject "ExtendaBLE-tvOS-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3AAD8A9C1E9293DB0013CE98 /* Debug */,
-				3AAD8A9D1E9293DB0013CE98 /* Release */,
+				13F670641FB49580001A1FDB /* Debug */,
+				13F670651FB49580001A1FDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3AAD8A9E1E9293DB0013CE98 /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOS-Demo" */ = {
+		13F670661FB49580001A1FDB /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOS-Demo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3AAD8A9F1E9293DB0013CE98 /* Debug */,
-				3AAD8AA01E9293DB0013CE98 /* Release */,
+				13F670671FB49580001A1FDB /* Debug */,
+				13F670681FB49580001A1FDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13F670691FB49580001A1FDB /* Build configuration list for PBXNativeTarget "ExtendaBLE-tvOS-DemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13F6706A1FB49580001A1FDB /* Debug */,
+				13F6706B1FB49580001A1FDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3AAD8A871E9293DB0013CE98 /* Project object */;
+	rootObject = 13F670441FB4957F001A1FDB /* Project object */;
 }

@@ -130,20 +130,26 @@ extension EBCentralManager: CBCentralManagerDelegate {
     
     public func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         operationQueue.async { [unowned self] in
-            self.pairPeripheral(peripheral.identifier)
-            self.discoverRegisteredServices(on: peripheral)
+            if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                self.pairPeripheral(peripheralIdentifier)
+                self.discoverRegisteredServices(on: peripheral)
+            }
         }
     }
     
     public func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         operationQueue.async { [unowned self] in
-            self.disconnect(from : peripheral.identifier, error)
+            if let centralIdentifier = central.value(forKey: "identifier") as? UUID {
+                self.disconnect(from : centralIdentifier, error)
+            }
         }
     }
     
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         operationQueue.async { [unowned self] in
-            self.disconnect(from : peripheral.identifier, error)
+            if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                self.disconnect(from : peripheralIdentifier, error)
+            }
         }
     }
     
@@ -174,13 +180,17 @@ extension EBCentralManager: CBPeripheralDelegate {
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         dataQueue.async { [unowned self] in
-            self.receivedReadResponse(forCharacteristic: characteristic, from: peripheral.identifier, error: error)
+            if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                self.receivedReadResponse(forCharacteristic: characteristic, from: peripheralIdentifier, error: error)
+            }
         }
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         dataQueue.async { [unowned self] in
-            self.receivedWriteResponse(forCharacteristic : characteristic, from : peripheral.identifier)
+            if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                self.receivedWriteResponse(forCharacteristic : characteristic, from : peripheralIdentifier)
+            }
         }
     }
     
@@ -329,12 +339,15 @@ extension EBCentralManager {
             Log(.debug, logString: "Connecting to \(String(describing: peripheral.name))")
             
             connectedPeripherals.append(peripheral)
-            peripheralCharacteristics[peripheral.identifier] = [CBCharacteristic]()
             
-            centralManager.connect(peripheral, options: connectionOptions)
-            
-            if supportMutiplePeripherals == false {
-                stopScan()
+            if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                peripheralCharacteristics[peripheralIdentifier] = [CBCharacteristic]()
+                
+                centralManager.connect(peripheral, options: connectionOptions)
+                
+                if supportMutiplePeripherals == false {
+                    stopScan()
+                }
             }
         }
     }
@@ -357,8 +370,8 @@ extension EBCentralManager {
         peripheralCharacteristics   = [UUID : [CBCharacteristic]]()
         
         unpairPeripheral(peripheralUUID)
-        
-        guard let peripheral = connectedPeripherals.first(where: { $0.identifier == peripheralUUID}) else {
+    
+        guard let peripheral = connectedPeripherals.first(where: { $0.value(forKey: "identifier") as? UUID == peripheralUUID}) else {
             return
         }
         
@@ -443,7 +456,10 @@ extension EBCentralManager {
             }
             
             for peripheral in peripherals {
-                peripheralCharacteristics[peripheral.identifier] = [CBCharacteristic]()
+                
+                if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                   peripheralCharacteristics[peripheralIdentifier] = [CBCharacteristic]()
+                }
             }
             
             return peripherals
@@ -470,8 +486,10 @@ extension EBCentralManager {
             DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + reconnectTimeout, execute: { [unowned self] in
                 if peripheral.state != .connected {
                     Log(.debug, logString: "Failed to Reconnect To \(String(describing: peripheral.name)), Attempting to Scan")
-                    self.unpairPeripheral(peripheral.identifier)
-                    self.scanForPeripherals()
+                    if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                        self.unpairPeripheral(peripheralIdentifier)
+                        self.scanForPeripherals()
+                    }
                 }
             })
         }
@@ -587,16 +605,20 @@ extension EBCentralManager {
         for characteristic in characteristics {
             Log(.debug, logString: "             - \(characteristic.uuid.uuidString)")
             
-            if !(peripheralCharacteristics[peripheral.identifier]?.contains(characteristic))! {
-                peripheralCharacteristics[peripheral.identifier]!.append(characteristic)
-                
-                if characteristic.uuid.uuidString.uppercased() == mtuCharacteristicUUIDKey {
-                    if characteristic.properties.contains(.notify) {
-                        Log(.debug, logString: "Triggered Notification Registration for: \(characteristic.uuid.uuidString)")
-                        peripheral.setNotifyValue(true, for: characteristic)
+            if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
+                if !(peripheralCharacteristics[peripheralIdentifier]?.contains(characteristic))! {
+                    peripheralCharacteristics[peripheralIdentifier]!.append(characteristic)
+                    
+                    if characteristic.uuid.uuidString.uppercased() == mtuCharacteristicUUIDKey {
+                        if characteristic.properties.contains(.notify) {
+                            Log(.debug, logString: "Triggered Notification Registration for: \(characteristic.uuid.uuidString)")
+                            peripheral.setNotifyValue(true, for: characteristic)
+                        }
                     }
                 }
             }
+            
+           
         }
         
         if packetBasedCharacteristicUUIDS.count == 0 {
@@ -653,8 +675,8 @@ extension EBCentralManager {
                     transaction.data = data
                     
                     if completion != nil { transaction.completion = completion }
-                    
-                    guard let peripheral = self.connectedPeripherals.first(where: { $0.identifier == peripheralUUID}) else {
+               
+                    guard let peripheral = self.connectedPeripherals.first(where: { $0.value(forKey: "identifier") as? UUID == peripheralUUID}) else {
                         return
                     }
                     
@@ -777,8 +799,8 @@ extension EBCentralManager {
                     }
                     
                     if completion != nil { transaction.completion = completion }
-                    
-                    guard let peripheral = self.connectedPeripherals.first(where: { $0.identifier == peripheralUUID}) else {
+                   
+                    guard let peripheral = self.connectedPeripherals.first(where: { $0.value(forKey: "identifier") as? UUID == peripheralUUID}) else {
                         return
                     }
                     
@@ -916,8 +938,8 @@ extension EBCentralManager {
         }
         
         peripheralMTUValues[peripheralUUID] = value
-        
-        guard let peripheral = connectedPeripherals.first(where: { $0.identifier == peripheralUUID}) else {
+     
+        guard let peripheral = connectedPeripherals.first(where: { $0.value(forKey: "identifier") as? UUID  == peripheralUUID}) else {
             return
         }
         

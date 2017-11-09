@@ -7,22 +7,6 @@
    <Group
       location = "group:Source"
       name = "Source">
-      <FileRef
-         location = "group:ExtendaBLE.swift">
-      </FileRef>
-      <Group
-         location = "group:EBManager"
-         name = "EBManager">
-         <FileRef
-            location = "group:EBDefinitions.swift">
-         </FileRef>
-         <FileRef
-            location = "group:EBCentralManager.swift">
-         </FileRef>
-         <FileRef
-            location = "group:EBPeripheralManager.swift">
-         </FileRef>
-      </Group>
       <Group
          location = "group:EBMaker"
          name = "EBMaker">
@@ -30,13 +14,26 @@
             location = "group:EBCentralManagerMaker.swift">
          </FileRef>
          <FileRef
+            location = "group:EBCharacteristicMaker.swift">
+         </FileRef>
+         <FileRef
             location = "group:EBPeripheralManagerMaker.swift">
          </FileRef>
          <FileRef
             location = "group:EBServiceMaker.swift">
          </FileRef>
+      </Group>
+      <Group
+         location = "group:EBManager"
+         name = "EBManager">
          <FileRef
-            location = "group:EBCharacteristicMaker.swift">
+            location = "group:EBCentralManager.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBDefinitions.swift">
+         </FileRef>
+         <FileRef
+            location = "group:EBPeripheralManager.swift">
          </FileRef>
       </Group>
       <Group
@@ -46,6 +43,9 @@
             location = "group:EBTransaction.swift">
          </FileRef>
       </Group>
+      <FileRef
+         location = "group:ExtendaBLE.swift">
+      </FileRef>
       <Group
          location = "group:Extensions"
          name = "Extensions">
@@ -64,16 +64,46 @@
          </FileRef>
       </Group>
    </Group>
+   <Group
+      location = "group:ExtendaBLE-Demo/Shared-Tests"
+      name = "Shared-Tests">
+      <Group
+         location = "group:CentralManager"
+         name = "CentralManager">
+         <FileRef
+            location = "group:ExtendaBLECMMakerTests.swift">
+         </FileRef>
+         <FileRef
+            location = "group:ExtendaBLECMReadWriteTests.swift">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:ExtendaBLETestConstants.swift">
+      </FileRef>
+      <Group
+         location = "group:PeripheralManager"
+         name = "PeripheralManager">
+         <FileRef
+            location = "group:ExtendaBLEPMMakerTests.swift">
+         </FileRef>
+         <FileRef
+            location = "group:ExtendaBLEPMReadWriteTests.swift">
+         </FileRef>
+      </Group>
+   </Group>
    <FileRef
       location = "group:ExtendaBLE/ExtendaBLE.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ExtendaBLE-Demo/ExtendaBLE-tvOS-Demo/ExtendaBLE-tvOS-Demo.xcodeproj">
+      location = "group:ExtendaBLE-Demo/ExtendeBLE-iOS-Demo/ExtendaBLE-iOS-Demo.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:ExtendaBLE-Demo/ExtendaBLE-OSX-Demo/ExtendaBLE-OSX-Demo.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:ExtendaBLE-Demo/ExtendeBLE-iOS-Demo/ExtendaBLE-iOS-Demo.xcodeproj">
+      location = "group:ExtendaBLE-Demo/ExtendaBLE-tvOS-Demo/ExtendaBLE-tvOS-Demo.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:ExtendaBLE-Demo/ExtendaBLE-watchOS-Demo/ExtendaBLE-watchOS-Demo.xcodeproj">
    </FileRef>
 </Workspace>

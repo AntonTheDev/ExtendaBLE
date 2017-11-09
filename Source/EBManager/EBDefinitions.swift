@@ -51,7 +51,7 @@ public let mtuCharacteristicUUIDKey = "37CD1740-6822-4D85-9AAF-C2378FDC4329"
 
 func newMTUService() -> CBMutableService? {
     
-    #if os(tvOS)
+    #if os(tvOS) || os(watchOS)
         return nil
     #else
         let mtuService = CBMutableService(type: CBUUID(string: mtuServiceUUIDKey), primary: true)

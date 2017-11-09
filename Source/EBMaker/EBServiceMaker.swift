@@ -29,7 +29,7 @@ public class EBServiceMaker {
     
     internal func constructedService() -> CBMutableService? {
         
-        #if os(tvOS)
+        #if os(tvOS) || os(watchOS)
             return nil
         #else
             let newService = CBMutableService(type: CBUUID(string: serviceUUID), primary: primary)
@@ -47,7 +47,7 @@ public class EBServiceMaker {
                 }
                 
                 #if os(OSX)
-                    let characteristicUUID = newCharacteristic.uuid!
+                    let characteristicUUID = newCharacteristic.uuid
                 #else
                     let characteristicUUID = newCharacteristic.uuid
                 #endif

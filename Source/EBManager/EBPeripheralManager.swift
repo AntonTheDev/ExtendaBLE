@@ -50,7 +50,7 @@ public class EBPeripheralManager : NSObject {
     
     @available(iOS 9.0, OSX 10.10, *)
     public required init(queue: DispatchQueue?) {
-        #if os(tvOS)
+        #if os(tvOS) || os(watchOS)
             peripheralManager = CBPeripheralManager()
         #else
             peripheralManager = CBPeripheralManager(delegate: nil, queue: queue != nil ? queue : operationQueue)
@@ -158,16 +158,18 @@ extension EBPeripheralManager {
         
         for request in requests {
             
-            if processWriteRequest(packet: request.value,
-                                   from: request.central.identifier,
-                                   for: request.characteristic,
-                                   mtuSize: Int16(request.central.maximumUpdateValueLength)) {
-                
-                peripheralManager.respond(to: request, withResult: .success)
-                
-                if activeWriteTransations[request.central.identifier]?
-                    .first(where: { $0.characteristic?.uuid == request.characteristic.uuid }) == nil {
-                    processMTUSubscription(for: request.central)
+            if let centralIdentifier = request.central.value(forKey: "identifier") as? UUID {
+                if processWriteRequest(packet: request.value,
+                                       from: centralIdentifier,
+                                       for: request.characteristic,
+                                       mtuSize: Int16(request.central.maximumUpdateValueLength)) {
+                    
+                    peripheralManager.respond(to: request, withResult: .success)
+                    
+                    if activeWriteTransations[centralIdentifier]?
+                        .first(where: { $0.characteristic?.uuid == request.characteristic.uuid }) == nil {
+                        processMTUSubscription(for: request.central)
+                    }
                 }
             }
         }
@@ -302,8 +304,9 @@ extension EBPeripheralManager {
     ///
     /// - Parameter requests: request to process
     internal func handleReadRequest(_ request: CBATTRequest) {
-        
-        guard let responseData = processReadRequest(from: request.central.identifier,
+    
+        guard let centralIdentifier = request.central.value(forKey: "identifier") as? UUID,
+              let responseData = processReadRequest(from: centralIdentifier,
                                                     for: request.characteristic,
                                                     mtuSize: Int16(request.central.maximumUpdateValueLength)) else {
                                                         return
@@ -453,7 +456,10 @@ extension EBPeripheralManager {
     }
     
     internal func handleSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
-        Log(.debug, logString: "Central \(central.identifier)")
+        if let centralIdentifier = central.value(forKey: "identifier") as? UUID {
+            Log(.debug, logString: "Central \(centralIdentifier)")
+        }
+        
         Log(.debug, logString: "    - Subscribed tp \(characteristic.uuid.uuidString)")
         if characteristic.uuid.uuidString == mtuCharacteristicUUIDKey {
             processMTUSubscription(for: central)
@@ -461,7 +467,10 @@ extension EBPeripheralManager {
     }
     
     internal func handleUnSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
-        Log(.debug, logString: "Central \(central.identifier) Unsubscribed for \(characteristic.uuid.uuidString)")
+        if let centralIdentifier = central.value(forKey: "identifier") as? UUID {
+            Log(.debug, logString: "Central \(centralIdentifier) Unsubscribed for \(characteristic.uuid.uuidString)")
+            
+        }
     }
     
     internal func processMTUSubscription(for central: CBCentral) {

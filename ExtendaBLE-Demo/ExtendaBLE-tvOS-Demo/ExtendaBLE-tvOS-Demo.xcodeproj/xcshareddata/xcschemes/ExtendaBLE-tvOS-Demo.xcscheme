@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3AAD8A8E1E9293DB0013CE98"
+               BlueprintIdentifier = "13F6704B1FB4957F001A1FDB"
                BuildableName = "ExtendaBLE-tvOS-Demo.app"
                BlueprintName = "ExtendaBLE-tvOS-Demo"
                ReferencedContainer = "container:ExtendaBLE-tvOS-Demo.xcodeproj">
@@ -29,11 +29,21 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "13F6705C1FB4957F001A1FDB"
+               BuildableName = "ExtendaBLE-tvOS-DemoTests.xctest"
+               BlueprintName = "ExtendaBLE-tvOS-DemoTests"
+               ReferencedContainer = "container:ExtendaBLE-tvOS-Demo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AAD8A8E1E9293DB0013CE98"
+            BlueprintIdentifier = "13F6704B1FB4957F001A1FDB"
             BuildableName = "ExtendaBLE-tvOS-Demo.app"
             BlueprintName = "ExtendaBLE-tvOS-Demo"
             ReferencedContainer = "container:ExtendaBLE-tvOS-Demo.xcodeproj">
@@ -57,7 +67,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AAD8A8E1E9293DB0013CE98"
+            BlueprintIdentifier = "13F6704B1FB4957F001A1FDB"
             BuildableName = "ExtendaBLE-tvOS-Demo.app"
             BlueprintName = "ExtendaBLE-tvOS-Demo"
             ReferencedContainer = "container:ExtendaBLE-tvOS-Demo.xcodeproj">
@@ -76,7 +86,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3AAD8A8E1E9293DB0013CE98"
+            BlueprintIdentifier = "13F6704B1FB4957F001A1FDB"
             BuildableName = "ExtendaBLE-tvOS-Demo.app"
             BlueprintName = "ExtendaBLE-tvOS-Demo"
             ReferencedContainer = "container:ExtendaBLE-tvOS-Demo.xcodeproj">

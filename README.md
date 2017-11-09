@@ -1,8 +1,8 @@
 # ExtendaBLE
-
-[![Cocoapods Compatible](https://img.shields.io/badge/pod-v0.2-blue.svg)]()
+[![Cocoapods Compatible](https://img.shields.io/badge/pod-v0.3-blue.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)]()
-[![Platform](https://img.shields.io/badge/platform-iOS%20|%20tvOS%20|%20OSX-lightgrey.svg)]()
+[![Build Status](https://travis-ci.org/AntonTheDev/ExtendaBLE.svg?branch=master)](https://travis-ci.org/AntonTheDev/ExtendaBLE)
+[![Platform](https://img.shields.io/badge/platform-iOS%20|%20tvOS%20|%20watchOS%20|%20OSX-lightgrey.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-343434.svg)](/LICENSE.md)
 
 ![alt tag](/Documentation/extendable_header.png?raw=true)

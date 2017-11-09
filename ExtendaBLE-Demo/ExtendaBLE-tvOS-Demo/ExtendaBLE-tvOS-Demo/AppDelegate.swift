@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  ExtendaBLE-tvOS-Demo
 //
-//  Created by Anton on 4/3/17.
-//  Copyright © 2017 Anton Doudarev. All rights reserved.
+//  Created by Anton Doudarev on 11/9/17.
+//  Copyright © 2017 IAGD. All rights reserved.
 //
 
 import UIKit

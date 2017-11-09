@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A6F747C1E8EA8CD00CDDE0B"
+               BlueprintIdentifier = "1303704D1FB4A7FF00765E65"
                BuildableName = "ExtendaBLE-OSX-Demo.app"
                BlueprintName = "ExtendaBLE-OSX-Demo"
                ReferencedContainer = "container:ExtendaBLE-OSX-Demo.xcodeproj">
@@ -29,11 +29,21 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1303705F1FB4A7FF00765E65"
+               BuildableName = "ExtendaBLE-OSX-DemoTests.xctest"
+               BlueprintName = "ExtendaBLE-OSX-DemoTests"
+               ReferencedContainer = "container:ExtendaBLE-OSX-Demo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A6F747C1E8EA8CD00CDDE0B"
+            BlueprintIdentifier = "1303704D1FB4A7FF00765E65"
             BuildableName = "ExtendaBLE-OSX-Demo.app"
             BlueprintName = "ExtendaBLE-OSX-Demo"
             ReferencedContainer = "container:ExtendaBLE-OSX-Demo.xcodeproj">
@@ -57,7 +67,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A6F747C1E8EA8CD00CDDE0B"
+            BlueprintIdentifier = "1303704D1FB4A7FF00765E65"
             BuildableName = "ExtendaBLE-OSX-Demo.app"
             BlueprintName = "ExtendaBLE-OSX-Demo"
             ReferencedContainer = "container:ExtendaBLE-OSX-Demo.xcodeproj">
@@ -76,7 +86,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A6F747C1E8EA8CD00CDDE0B"
+            BlueprintIdentifier = "1303704D1FB4A7FF00765E65"
             BuildableName = "ExtendaBLE-OSX-Demo.app"
             BlueprintName = "ExtendaBLE-OSX-Demo"
             ReferencedContainer = "container:ExtendaBLE-OSX-Demo.xcodeproj">

@@ -25,7 +25,7 @@ public class EBCharacteristicMaker {
     
     func constructedCharacteristic() -> CBMutableCharacteristic? {
         
-        #if os(tvOS)
+        #if os(tvOS) || os(watchOS)
             return nil
         #else
             return CBMutableCharacteristic(type: CBUUID(string: uuid), properties: properties, value: value, permissions: permissions)
