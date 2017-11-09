@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130F18201FB4D16E00D572AB /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130F181F1FB4D16E00D572AB /* ExtendaBLE.framework */; };
+		130F18211FB4D16E00D572AB /* ExtendaBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 130F181F1FB4D16E00D572AB /* ExtendaBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		139A4FCE1FB4A9A50022D6B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A4FCD1FB4A9A50022D6B8 /* AppDelegate.swift */; };
 		139A4FD01FB4A9A50022D6B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A4FCF1FB4A9A50022D6B8 /* ViewController.swift */; };
 		139A4FD31FB4A9A50022D6B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 139A4FD11FB4A9A50022D6B8 /* Main.storyboard */; };
@@ -61,6 +63,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		130F18221FB4D16F00D572AB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				130F18211FB4D16E00D572AB /* ExtendaBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		139A50071FB4A9A50022D6B8 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -86,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		130F181F1FB4D16E00D572AB /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		139A4FCA1FB4A9A50022D6B8 /* ExtendaBLE-watchOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-watchOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		139A4FCD1FB4A9A50022D6B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		139A4FCF1FB4A9A50022D6B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				130F18201FB4D16E00D572AB /* ExtendaBLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +164,7 @@
 		139A4FC11FB4A9A50022D6B8 = {
 			isa = PBXGroup;
 			children = (
+				130F181F1FB4D16E00D572AB /* ExtendaBLE.framework */,
 				139A4FCC1FB4A9A50022D6B8 /* ExtendaBLE-watchOS-Demo */,
 				139A4FE11FB4A9A50022D6B8 /* ExtendaBLE-watchOS-DemoTests */,
 				139A4FEB1FB4A9A50022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit App */,
@@ -294,6 +310,7 @@
 				139A4FC71FB4A9A50022D6B8 /* Frameworks */,
 				139A4FC81FB4A9A50022D6B8 /* Resources */,
 				139A500B1FB4A9A50022D6B8 /* Embed Watch Content */,
+				130F18221FB4D16F00D572AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130F18141FB4D11200D572AB /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130F18131FB4D11200D572AB /* ExtendaBLE.framework */; };
+		130F18151FB4D11200D572AB /* ExtendaBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 130F18131FB4D11200D572AB /* ExtendaBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		131AACE11FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACDB1FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift */; };
 		131AACE21FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACDC1FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift */; };
 		131AACE31FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131AACDE1FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift */; };
@@ -31,7 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		13E65A471FB39C820076BC6F /* PBXContainerItemProxy */ = {
+		139A50B01FB4CF8A0022D6B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3A03222B1E8DFFBD0080E13F /* Project object */;
 			proxyType = 1;
@@ -40,7 +42,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		130F18161FB4D11200D572AB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				130F18151FB4D11200D572AB /* ExtendaBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		130F18131FB4D11200D572AB /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		131AACDB1FB49016005CB0A1 /* ExtendaBLECMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMMakerTests.swift; sourceTree = "<group>"; };
 		131AACDC1FB49016005CB0A1 /* ExtendaBLECMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMReadWriteTests.swift; sourceTree = "<group>"; };
 		131AACDE1FB49016005CB0A1 /* ExtendaBLEPMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLEPMMakerTests.swift; sourceTree = "<group>"; };
@@ -80,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				130F18141FB4D11200D572AB /* ExtendaBLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,6 +138,7 @@
 		3A03222A1E8DFFBD0080E13F = {
 			isa = PBXGroup;
 			children = (
+				130F18131FB4D11200D572AB /* ExtendaBLE.framework */,
 				3AE59EDF1EA15C0F00DA8811 /* Source */,
 				3A0322351E8DFFBD0080E13F /* ExtendaBLE-Demo */,
 				13E65A431FB39C820076BC6F /* ExtendaBLE-iOS-DemoTests */,
@@ -230,7 +249,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				13E65A481FB39C820076BC6F /* PBXTargetDependency */,
+				139A50B11FB4CF8A0022D6B8 /* PBXTargetDependency */,
 			);
 			name = "ExtendaBLE-iOS-DemoTests";
 			productName = "ExtendaBLE-iOS-DemoTests";
@@ -244,6 +263,7 @@
 				3A03222F1E8DFFBD0080E13F /* Sources */,
 				3A0322301E8DFFBD0080E13F /* Frameworks */,
 				3A0322311E8DFFBD0080E13F /* Resources */,
+				130F18161FB4D11200D572AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -359,10 +379,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		13E65A481FB39C820076BC6F /* PBXTargetDependency */ = {
+		139A50B11FB4CF8A0022D6B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3A0322321E8DFFBD0080E13F /* ExtendaBLE-iOS-Demo */;
-			targetProxy = 13E65A471FB39C820076BC6F /* PBXContainerItemProxy */;
+			targetProxy = 139A50B01FB4CF8A0022D6B8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -381,7 +401,6 @@
 		13E65A491FB39C820076BC6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -405,7 +424,6 @@
 		13E65A4A1FB39C820076BC6F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -544,7 +562,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-ios.ExtendaBLE-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = Debug;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -563,7 +581,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-demo-ios.ExtendaBLE-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

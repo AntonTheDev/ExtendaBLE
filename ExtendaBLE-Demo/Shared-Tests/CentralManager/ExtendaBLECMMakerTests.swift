@@ -55,56 +55,75 @@ class ExtendableCMMakerTests: XCTestCase {
         
         XCTAssertEqual(defaultCentral.managerOptions.keys.count, 1, "CM - managerOptions defaults misconfigured")
         XCTAssertEqual(defaultCentral.scanOptions.keys.count, 1, "CM - scanOptions defaults misconfigured")
-        XCTAssertEqual(defaultCentral.connectionOptions.keys.count, 3, "CM - connectionOptions defaults misconfigured")
+        #if !os(OSX)
+            XCTAssertEqual(defaultCentral.connectionOptions.keys.count, 3, "CM - connectionOptions defaults misconfigured")
+        #else
+            XCTAssertEqual(defaultCentral.connectionOptions.keys.count, 1, "CM - connectionOptions defaults misconfigured")
+            
+        #endif
+        
         
         XCTAssertTrue(defaultCentral.managerOptions[CBCentralManagerOptionShowPowerAlertKey] as! Bool,
                       "CM - default managerOptions misconfigured")
         
         XCTAssertFalse(defaultCentral.scanOptions[CBCentralManagerScanOptionAllowDuplicatesKey] as! Bool,
                        "CM - default scanOptions misconfigured")
-        
-        XCTAssertFalse(defaultCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnConnectionKey] as! Bool,
-                       "CM - default connectionOptions misconfigured")
+        #if !os(OSX)
+            XCTAssertFalse(defaultCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnConnectionKey] as! Bool,
+                           "CM - default connectionOptions misconfigured")
+            XCTAssertFalse(defaultCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnNotificationKey] as! Bool,
+                           "CM - default connectionOptions misconfigured")
+        #endif
         
         XCTAssertFalse(defaultCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnDisconnectionKey] as! Bool,
                        "CM - default connectionOptions misconfigured")
         
-        XCTAssertFalse(defaultCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnNotificationKey] as! Bool,
-                       "CM - default connectionOptions misconfigured")
         
         let configuredCentral = ExtendaBLE.newCentralManager { (manager) in
             manager.supportMutiplePeripherals(false)
             manager.enablePowerAlert(false)
-            manager.notifyOnConnection(true)
+            #if !os(OSX)
+                manager.notifyOnConnection(true)
+                manager.notifyOnNotification(true)
+            #endif
             manager.notifyOnDisconnect(true)
-            manager.notifyOnNotification(true)
             
             XCTAssertFalse(manager.enablePowerAlert,             "CMM - enablePowerAlert misconfigured")
             XCTAssertFalse(manager.supportMutiplePeripherals,    "CMM - supportMutiplePeripherals misconfigured")
+            #if !os(OSX)
+                XCTAssertTrue(manager.notifyOnConnection,   "CMM - notifyOnConnection misconfigured")
+                XCTAssertTrue(manager.notifyOnNotification, "CMM - notifyOnNotification misconfigured")
+            #endif
             
-            XCTAssertTrue(manager.notifyOnConnection,   "CMM - notifyOnConnection misconfigured")
             XCTAssertTrue(manager.notifyOnDisconnect,   "CMM - notifyOnDisconnect misconfigured")
-            XCTAssertTrue(manager.notifyOnNotification, "CMM - notifyOnNotification misconfigured")
+            
         }
         
         XCTAssertEqual(configuredCentral.managerOptions.keys.count, 1, "CM - managerOptions defaults misconfigured")
         XCTAssertEqual(configuredCentral.scanOptions.keys.count, 1, "CM - scanOptions defaults misconfigured")
-        XCTAssertEqual(configuredCentral.connectionOptions.keys.count, 3, "CM - connectionOptions defaults misconfigured")
-        
+        #if !os(OSX)
+            XCTAssertEqual(configuredCentral.connectionOptions.keys.count, 3, "CM - connectionOptions defaults misconfigured")
+            
+        #else
+            XCTAssertEqual(configuredCentral.connectionOptions.keys.count, 1, "CM - connectionOptions defaults misconfigured")
+        #endif
         XCTAssertFalse(configuredCentral.managerOptions[CBCentralManagerOptionShowPowerAlertKey] as! Bool,
                        "CM - non-default managerOptions misconfigured")
         
         XCTAssertFalse(configuredCentral.scanOptions[CBCentralManagerScanOptionAllowDuplicatesKey] as! Bool,
                        "CM - non-default scanOptions misconfigured")
         
-        XCTAssertTrue(configuredCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnConnectionKey] as! Bool,
-                      "CM - non-default connectionOptions misconfigured")
         
         XCTAssertTrue(configuredCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnDisconnectionKey] as! Bool,
                       "CM - non-default connectionOptions misconfigured")
+        #if !os(OSX)
+            XCTAssertTrue(configuredCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnConnectionKey] as! Bool,
+                          "CM - non-default connectionOptions misconfigured")
+            
+            XCTAssertTrue(configuredCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnNotificationKey] as! Bool,
+                          "CM - non-default connectionOptions misconfigured")
+        #endif
         
-        XCTAssertTrue(configuredCentral.connectionOptions[CBConnectPeripheralOptionNotifyOnNotificationKey] as! Bool,
-                      "CM - non-default connectionOptions misconfigured")
     }
     
     /// Test Service Configuration on the Central Manager

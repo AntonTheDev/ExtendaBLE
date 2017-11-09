@@ -22,11 +22,9 @@
 		13E65A3C1FB3965E0076BC6F /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
 		13E65A3D1FB396620076BC6F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
 		3A03221A1E8DFF260080E13F /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0322101E8DFF260080E13F /* ExtendaBLE.framework */; };
-		3A03221F1E8DFF260080E13F /* ExtendaBLEMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A03221E1E8DFF260080E13F /* ExtendaBLEMakerTests.swift */; };
 		3A0322211E8DFF260080E13F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A03227C1E8E04130080E13F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A03227D1E8E04140080E13F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3A41B1F51EA5E6E800121F69 /* ExtendableReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A41B1F41EA5E6E800121F69 /* ExtendableReadWriteTests.swift */; };
 		3AAD8ACD1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ABF1E9299BB0013CE98 /* EBCentralManagerMaker.swift */; };
 		3AAD8ACE1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ABF1E9299BB0013CE98 /* EBCentralManagerMaker.swift */; };
 		3AAD8ACF1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ABF1E9299BB0013CE98 /* EBCentralManagerMaker.swift */; };
@@ -61,7 +59,6 @@
 		3AD483591E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
 		3AD4835A1E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
 		3AD4835B1E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
-		3AE59F231EA19FDF00DA8811 /* ExtendaBLETestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE59F221EA19FDF00DA8811 /* ExtendaBLETestConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,10 +84,8 @@
 		3A0322101E8DFF260080E13F /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0322131E8DFF260080E13F /* ExtendaBLE.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExtendaBLE.h; sourceTree = "<group>"; };
 		3A0322191E8DFF260080E13F /* ExtendaBLE-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ExtendaBLE-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A03221E1E8DFF260080E13F /* ExtendaBLEMakerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtendaBLEMakerTests.swift; sourceTree = "<group>"; };
 		3A0322671E8E00E50080E13F /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0322741E8E01130080E13F /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A41B1F41EA5E6E800121F69 /* ExtendableReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendableReadWriteTests.swift; sourceTree = "<group>"; };
 		3AAD8ABF1E9299BB0013CE98 /* EBCentralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCentralManagerMaker.swift; sourceTree = "<group>"; };
 		3AAD8AC01E9299BB0013CE98 /* EBCharacteristicMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBCharacteristicMaker.swift; sourceTree = "<group>"; };
 		3AAD8AC11E9299BB0013CE98 /* EBPeripheralManagerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBPeripheralManagerMaker.swift; sourceTree = "<group>"; };
@@ -103,7 +98,6 @@
 		3AAD8ACB1E9299BB0013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
 		3AD483581E9FF54500505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		3AE59F221EA19FDF00DA8811 /* ExtendaBLETestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLETestConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				3A0322121E8DFF260080E13F /* ExtendaBLE */,
-				3A03221D1E8DFF260080E13F /* ExtendaBLE-Tests */,
 				3A0322111E8DFF260080E13F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -183,17 +176,6 @@
 				3AAD8ABD1E9299BB0013CE98 /* Source */,
 			);
 			path = ExtendaBLE;
-			sourceTree = "<group>";
-		};
-		3A03221D1E8DFF260080E13F /* ExtendaBLE-Tests */ = {
-			isa = PBXGroup;
-			children = (
-				3AE59F221EA19FDF00DA8811 /* ExtendaBLETestConstants.swift */,
-				3A03221E1E8DFF260080E13F /* ExtendaBLEMakerTests.swift */,
-				3A41B1F41EA5E6E800121F69 /* ExtendableReadWriteTests.swift */,
-			);
-			name = "ExtendaBLE-Tests";
-			path = ExtendaBLETests;
 			sourceTree = "<group>";
 		};
 		3AAD8ABD1E9299BB0013CE98 /* Source */ = {
@@ -563,9 +545,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A41B1F51EA5E6E800121F69 /* ExtendableReadWriteTests.swift in Sources */,
-				3A03221F1E8DFF260080E13F /* ExtendaBLEMakerTests.swift in Sources */,
-				3AE59F231EA19FDF00DA8811 /* ExtendaBLETestConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

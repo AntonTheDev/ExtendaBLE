@@ -28,6 +28,8 @@
 		130370971FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370921FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift */; };
 		130370981FB4A82300765E65 /* ExtendaBLETestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370931FB4A82300765E65 /* ExtendaBLETestConstants.swift */; };
 		1303709A1FB4A82F00765E65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370991FB4A82F00765E65 /* ViewController.swift */; };
+		130F18181FB4D14B00D572AB /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130F18171FB4D14B00D572AB /* ExtendaBLE.framework */; };
+		130F18191FB4D14B00D572AB /* ExtendaBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 130F18171FB4D14B00D572AB /* ExtendaBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,20 @@
 			remoteInfo = "ExtendaBLE-OSX-Demo";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		130F181A1FB4D14B00D572AB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				130F18191FB4D14B00D572AB /* ExtendaBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1303704E1FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-OSX-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,6 +83,7 @@
 		130370921FB4A82300765E65 /* ExtendaBLEPMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLEPMReadWriteTests.swift; sourceTree = "<group>"; };
 		130370931FB4A82300765E65 /* ExtendaBLETestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendaBLETestConstants.swift; path = "../../Shared-Tests/ExtendaBLETestConstants.swift"; sourceTree = "<group>"; };
 		130370991FB4A82F00765E65 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Shared/ViewController.swift; sourceTree = "<group>"; };
+		130F18171FB4D14B00D572AB /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				130F18181FB4D14B00D572AB /* ExtendaBLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +108,7 @@
 		130370451FB4A7FF00765E65 = {
 			isa = PBXGroup;
 			children = (
+				130F18171FB4D14B00D572AB /* ExtendaBLE.framework */,
 				130370501FB4A7FF00765E65 /* ExtendaBLE-OSX-Demo */,
 				130370631FB4A7FF00765E65 /* ExtendaBLE-OSX-DemoTests */,
 				1303704F1FB4A7FF00765E65 /* Products */,
@@ -220,6 +239,7 @@
 				1303704A1FB4A7FF00765E65 /* Sources */,
 				1303704B1FB4A7FF00765E65 /* Frameworks */,
 				1303704C1FB4A7FF00765E65 /* Resources */,
+				130F181A1FB4D14B00D572AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130F181C1FB4D16200D572AB /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130F181B1FB4D16200D572AB /* ExtendaBLE.framework */; };
+		130F181D1FB4D16200D572AB /* ExtendaBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 130F181B1FB4D16200D572AB /* ExtendaBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13F670501FB4957F001A1FDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6704F1FB4957F001A1FDB /* AppDelegate.swift */; };
 		13F670551FB4957F001A1FDB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F670531FB4957F001A1FDB /* Main.storyboard */; };
 		13F670571FB4957F001A1FDB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13F670561FB4957F001A1FDB /* Assets.xcassets */; };
@@ -29,34 +31,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		139A50191FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 139A4FCA1FB4A9A50022D6B8;
-			remoteInfo = "ExtendaBLE-watchOS-Demo";
-		};
-		139A501B1FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 139A4FDE1FB4A9A50022D6B8;
-			remoteInfo = "ExtendaBLE-watchOS-DemoTests";
-		};
-		139A501D1FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 139A4FE71FB4A9A50022D6B8;
-			remoteInfo = "ExtendaBLE-watchOS-Demo WatchKit App";
-		};
-		139A501F1FB4A9B90022D6B8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 139A4FF61FB4A9A50022D6B8;
-			remoteInfo = "ExtendaBLE-watchOS-Demo WatchKit Extension";
-		};
 		13F6705E1FB4957F001A1FDB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 13F670441FB4957F001A1FDB /* Project object */;
@@ -66,8 +40,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		130F181E1FB4D16200D572AB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				130F181D1FB4D16200D572AB /* ExtendaBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ExtendaBLE-watchOS-Demo.xcodeproj"; path = "../ExtendaBLE-watchOS-Demo/ExtendaBLE-watchOS-Demo.xcodeproj"; sourceTree = "<group>"; };
+		130F181B1FB4D16200D572AB /* ExtendaBLE.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ExtendaBLE.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F6704C1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExtendaBLE-tvOS-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F6704F1FB4957F001A1FDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F670541FB4957F001A1FDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				130F181C1FB4D16200D572AB /* ExtendaBLE.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,21 +100,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		139A50131FB4A9B90022D6B8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				139A501A1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.app */,
-				139A501C1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-DemoTests.xctest */,
-				139A501E1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit App.app */,
-				139A50201FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit Extension.appex */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		13F670431FB4957F001A1FDB = {
 			isa = PBXGroup;
 			children = (
-				139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */,
+				130F181B1FB4D16200D572AB /* ExtendaBLE.framework */,
 				13F6704E1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo */,
 				13F670601FB4957F001A1FDB /* ExtendaBLE-tvOS-DemoTests */,
 				13F6704D1FB4957F001A1FDB /* Products */,
@@ -244,6 +222,7 @@
 				13F670481FB4957F001A1FDB /* Sources */,
 				13F670491FB4957F001A1FDB /* Frameworks */,
 				13F6704A1FB4957F001A1FDB /* Resources */,
+				130F181E1FB4D16200D572AB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,12 +283,6 @@
 			mainGroup = 13F670431FB4957F001A1FDB;
 			productRefGroup = 13F6704D1FB4957F001A1FDB /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 139A50131FB4A9B90022D6B8 /* Products */;
-					ProjectRef = 139A50121FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				13F6704B1FB4957F001A1FDB /* ExtendaBLE-tvOS-Demo */,
@@ -317,37 +290,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		139A501A1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "ExtendaBLE-watchOS-Demo.app";
-			remoteRef = 139A50191FB4A9B90022D6B8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		139A501C1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-DemoTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "ExtendaBLE-watchOS-DemoTests.xctest";
-			remoteRef = 139A501B1FB4A9B90022D6B8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		139A501E1FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit App.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "ExtendaBLE-watchOS-Demo WatchKit App.app";
-			remoteRef = 139A501D1FB4A9B90022D6B8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		139A50201FB4A9B90022D6B8 /* ExtendaBLE-watchOS-Demo WatchKit Extension.appex */ = {
-			isa = PBXReferenceProxy;
-			fileType = "wrapper.app-extension";
-			path = "ExtendaBLE-watchOS-Demo WatchKit Extension.appex";
-			remoteRef = 139A501F1FB4A9B90022D6B8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		13F6704A1FB4957F001A1FDB /* Resources */ = {
