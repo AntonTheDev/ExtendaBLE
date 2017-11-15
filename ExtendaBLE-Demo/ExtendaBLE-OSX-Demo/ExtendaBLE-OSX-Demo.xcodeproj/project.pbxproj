@@ -21,7 +21,7 @@
 		130370891FB4A80C00765E65 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303707B1FB4A80C00765E65 /* ExtendaBLE.swift */; };
 		1303708A1FB4A80C00765E65 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303707D1FB4A80C00765E65 /* Data+BLE.swift */; };
 		1303708B1FB4A80C00765E65 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303707E1FB4A80C00765E65 /* Data+BLEConversion.swift */; };
-		1303708C1FB4A80C00765E65 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370801FB4A80C00765E65 /* Logger.swift */; };
+		1303708C1FB4A80C00765E65 /* EBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370801FB4A80C00765E65 /* EBLogger.swift */; };
 		130370941FB4A82300765E65 /* ExtendaBLECMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303708E1FB4A82300765E65 /* ExtendaBLECMMakerTests.swift */; };
 		130370951FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1303708F1FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift */; };
 		130370961FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130370911FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift */; };
@@ -76,7 +76,7 @@
 		1303707B1FB4A80C00765E65 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		1303707D1FB4A80C00765E65 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		1303707E1FB4A80C00765E65 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
-		130370801FB4A80C00765E65 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		130370801FB4A80C00765E65 /* EBLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBLogger.swift; sourceTree = "<group>"; };
 		1303708E1FB4A82300765E65 /* ExtendaBLECMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMMakerTests.swift; sourceTree = "<group>"; };
 		1303708F1FB4A82300765E65 /* ExtendaBLECMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMReadWriteTests.swift; sourceTree = "<group>"; };
 		130370911FB4A82300765E65 /* ExtendaBLEPMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLEPMMakerTests.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		1303707F1FB4A80C00765E65 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				130370801FB4A80C00765E65 /* Logger.swift */,
+				130370801FB4A80C00765E65 /* EBLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -344,7 +344,7 @@
 				130370821FB4A80C00765E65 /* EBCharacteristicMaker.swift in Sources */,
 				130370831FB4A80C00765E65 /* EBPeripheralManagerMaker.swift in Sources */,
 				130370891FB4A80C00765E65 /* ExtendaBLE.swift in Sources */,
-				1303708C1FB4A80C00765E65 /* Logger.swift in Sources */,
+				1303708C1FB4A80C00765E65 /* EBLogger.swift in Sources */,
 				130370811FB4A80C00765E65 /* EBCentralManagerMaker.swift in Sources */,
 				130370841FB4A80C00765E65 /* EBServiceMaker.swift in Sources */,
 			);

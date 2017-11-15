@@ -14,7 +14,7 @@ public class ExtendaBLE {
     /// Enable logging for debugging
     ///
     /// - Parameter logLevel: log level
-    public class func setLogLevel(_ logLevel : LogLevel) {
+    public class func setLogLevel(_ logLevel : EBLogLevel) {
         ExtendableLoggingConfig.logLevel = logLevel
     }
     

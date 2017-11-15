@@ -96,16 +96,16 @@ extension EBPeripheralManager: CBPeripheralManagerDelegate {
     }
     
     public func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
-        Log(.debug, logString: "Started Advertising - Error: \(String(describing: error))")
+         EBLog(.debug, logString: "Started Advertising - Error: \(String(describing: error))")
         didStartAdvertisingCallBack?((error != nil ? false : true), error)
     }
     
     public func peripheralManager(_ peripheral: CBPeripheralManager, didAdd service: CBService, error: Error?) {
-        Log(.debug, logString: "Added Service \(service.uuid.uuidString) - Error: \(String(describing: error))")
+         EBLog(.debug, logString: "Added Service \(service.uuid.uuidString) - Error: \(String(describing: error))")
     }
     
     public func peripheralManagerIsReady(toUpdateSubscribers peripheral: CBPeripheralManager) {
-        Log(.debug, logString: "onReadyToUpdateSubscribers")
+         EBLog(.debug, logString: "onReadyToUpdateSubscribers")
     }
 }
 
@@ -201,10 +201,10 @@ extension EBPeripheralManager {
         activeWriteTransaction.appendPacket(packet)
         activeWriteTransaction.processTransaction()
         
-        Log(.debug, logString: "Peripheral Received Write Packet \(activeWriteTransaction.activeResponseCount) / \(activeWriteTransaction.totalPackets)")
+         EBLog(.debug, logString: "Peripheral Received Write Packet \(activeWriteTransaction.activeResponseCount) / \(activeWriteTransaction.totalPackets)")
         
         if activeWriteTransaction.isComplete {
-            Log(.debug, logString: "Peripheral Received Write Complete")
+             EBLog(.debug, logString: "Peripheral Received Write Complete")
             
             setLocalValue(for: activeWriteTransaction)
             registeredCharacteristicCallbacks[characteristic.uuid]?(activeWriteTransaction.data, nil)
@@ -267,7 +267,7 @@ extension EBPeripheralManager {
     /// - Parameter transaction: compelted write trasaction
     internal func setLocalValue(for transaction : Transaction) {
         guard let characteristic = transaction.characteristic else {
-            Log(.error, logString: "Could not Find Local Characteristic to Update")
+             EBLog(.error, logString: "Could not Find Local Characteristic to Update")
             return
         }
         
@@ -338,10 +338,10 @@ extension EBPeripheralManager {
         
         activeReadTransaction.processTransaction()
         
-        Log(.debug, logString: "Peripheral Sent Read Packet \(activeReadTransaction.activeResponseCount) / \( activeReadTransaction.totalPackets)")
+         EBLog(.debug, logString: "Peripheral Sent Read Packet \(activeReadTransaction.activeResponseCount) / \( activeReadTransaction.totalPackets)")
         
         if activeReadTransaction.isComplete {
-            Log(.debug, logString: "Peripheral Sent Read Complete")
+             EBLog(.debug, logString: "Peripheral Sent Read Complete")
             clearReadTransaction(from: centralUUID, on: characteristic)
         }
         
@@ -451,16 +451,16 @@ extension EBPeripheralManager {
             break
         }
         
-        Log(.debug, logString: "Peripheral BLE state - \(peripheral.state.rawValue)")
+         EBLog(.debug, logString: "Peripheral BLE state - \(peripheral.state.rawValue)")
         stateChangeCallBack?(EBManagerState(rawValue: peripheral.state.rawValue)!)
     }
     
     internal func handleSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
         if let centralIdentifier = central.value(forKey: "identifier") as? UUID {
-            Log(.debug, logString: "Central \(centralIdentifier)")
+             EBLog(.debug, logString: "Central \(centralIdentifier)")
         }
         
-        Log(.debug, logString: "    - Subscribed tp \(characteristic.uuid.uuidString)")
+         EBLog(.debug, logString: "    - Subscribed tp \(characteristic.uuid.uuidString)")
         if characteristic.uuid.uuidString == mtuCharacteristicUUIDKey {
             processMTUSubscription(for: central)
         }
@@ -468,7 +468,7 @@ extension EBPeripheralManager {
     
     internal func handleUnSubscription(for central: CBCentral, on characteristic: CBCharacteristic) {
         if let centralIdentifier = central.value(forKey: "identifier") as? UUID {
-            Log(.debug, logString: "Central \(centralIdentifier) Unsubscribed for \(characteristic.uuid.uuidString)")
+             EBLog(.debug, logString: "Central \(centralIdentifier) Unsubscribed for \(characteristic.uuid.uuidString)")
             
         }
     }
@@ -483,7 +483,7 @@ extension EBPeripheralManager {
                 messageData.appendInt16(Int16(central.maximumUpdateValueLength))
                 characteristic.value = (messageData as Data)
                 
-                Log(.debug, logString: "Peripheral Notified Central w/ MTU value: \(central.maximumUpdateValueLength)")
+                 EBLog(.debug, logString: "Peripheral Notified Central w/ MTU value: \(central.maximumUpdateValueLength)")
                 
                 peripheralManager.updateValue((messageData as Data), for:  characteristic, onSubscribedCentrals: [central])
             }

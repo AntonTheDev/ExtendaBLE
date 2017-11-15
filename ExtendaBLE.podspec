@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ExtendaBLE"
-  s.version      = "0.2"
+  s.version      = "0.4"
   s.summary      = "Bluetooth Low Energy On Crack"
   s.homepage     = "https://github.com/AntonTheDev/ExtendaBLE"
   s.license      = 'MIT'
@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.0'
   s.osx.deployment_target = '10.10'
+  s.watchos.deployment_target = '3.0'
 
-  s.source_files = "Source/*.*", "Source/EBMaker/*.*", "Source/EBManager/*.*", "Source/EBTransaction/*.*", "Source/Extensions/*.*"
+  s.source_files = "Source/*.*", "Source/EBMaker/*.*", "Source/EBManager/*.*", "Source/EBTransaction/*.*", "Source/Extensions/*.*", "Source/Logger/*.*"
 end

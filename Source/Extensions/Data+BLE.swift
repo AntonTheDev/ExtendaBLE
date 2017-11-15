@@ -16,7 +16,7 @@ extension Data {
         get {
             
             if count < 4 {
-                Log(.debug, logString: "Packet Index Not Found in \(self)")
+                 EBLog(.debug, logString: "Packet Index Not Found in \(self)")
                 return 0
             }
             
@@ -28,7 +28,7 @@ extension Data {
         get {
             
             if count < 4 {
-                Log(.debug, logString: "Packer Total Not Found in \(self)")
+                 EBLog(.debug, logString: "Packer Total Not Found in \(self)")
                 return 0
             }
             
@@ -131,7 +131,7 @@ extension Data {
     public func bytes(_ range : Range<Data.Index>) -> Int {
         /*
         if (range.lowerBound + range.upperBound) > count {
-            Log(.debug, logString: "Byte Range outside of bounds \(self)")
+             EBLog(.debug, logString: "Byte Range outside of bounds \(self)")
             return 0
         }
         */

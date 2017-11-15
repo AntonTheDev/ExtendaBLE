@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130F18C11FBCA1CD00D572AB /* EBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* EBLogger.swift */; };
 		131AAD111FB49301005CB0A1 /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0322671E8E00E50080E13F /* ExtendaBLE.framework */; };
 		13E65A311FB396420076BC6F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		13E65A321FB3964D0076BC6F /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC91E9299BB0013CE98 /* ExtendaBLE.swift */; };
@@ -20,7 +21,7 @@
 		13E65A3A1FB3965A0076BC6F /* EBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8AC81E9299BB0013CE98 /* EBTransaction.swift */; };
 		13E65A3B1FB3965E0076BC6F /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACB1E9299BB0013CE98 /* Data+BLE.swift */; };
 		13E65A3C1FB3965E0076BC6F /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
-		13E65A3D1FB396620076BC6F /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
+		13E65A3D1FB396620076BC6F /* EBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* EBLogger.swift */; };
 		3A03221A1E8DFF260080E13F /* ExtendaBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A0322101E8DFF260080E13F /* ExtendaBLE.framework */; };
 		3A0322211E8DFF260080E13F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3A03227C1E8E04130080E13F /* ExtendaBLE.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A0322131E8DFF260080E13F /* ExtendaBLE.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -56,9 +57,8 @@
 		3AAD8AEB1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
 		3AAD8AEC1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
 		3AAD8AED1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */; };
-		3AD483591E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
-		3AD4835A1E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
-		3AD4835B1E9FF54500505FDA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* Logger.swift */; };
+		3AD4835A1E9FF54500505FDA /* EBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* EBLogger.swift */; };
+		3AD4835B1E9FF54500505FDA /* EBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD483581E9FF54500505FDA /* EBLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +97,7 @@
 		3AAD8AC91E9299BB0013CE98 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		3AAD8ACB1E9299BB0013CE98 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		3AAD8ACC1E9299BB0013CE98 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
-		3AD483581E9FF54500505FDA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		3AD483581E9FF54500505FDA /* EBLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,7 +233,7 @@
 		3AD483571E9FF54500505FDA /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				3AD483581E9FF54500505FDA /* Logger.swift */,
+				3AD483581E9FF54500505FDA /* EBLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -419,11 +419,13 @@
 					3A0322661E8E00E50080E13F = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = WQAUP4LZJV;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					3A0322731E8E01130080E13F = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = WQAUP4LZJV;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -514,7 +516,7 @@
 				13E65A381FB396570076BC6F /* EBServiceMaker.swift in Sources */,
 				13E65A3C1FB3965E0076BC6F /* Data+BLEConversion.swift in Sources */,
 				13E65A351FB396520076BC6F /* EBPeripheralManager.swift in Sources */,
-				13E65A3D1FB396620076BC6F /* Logger.swift in Sources */,
+				13E65A3D1FB396620076BC6F /* EBLogger.swift in Sources */,
 				13E65A371FB396570076BC6F /* EBPeripheralManagerMaker.swift in Sources */,
 				13E65A331FB396520076BC6F /* EBDefinitions.swift in Sources */,
 				13E65A391FB396570076BC6F /* EBCharacteristicMaker.swift in Sources */,
@@ -526,6 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				130F18C11FBCA1CD00D572AB /* EBLogger.swift in Sources */,
 				3AAD8AD31E9299BB0013CE98 /* EBPeripheralManagerMaker.swift in Sources */,
 				3AAD8AE81E9299BB0013CE98 /* Data+BLE.swift in Sources */,
 				3AAD8ADF1E9299BB0013CE98 /* EBPeripheralManager.swift in Sources */,
@@ -533,7 +536,6 @@
 				3AAD8ADC1E9299BB0013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8AEB1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8AE21E9299BB0013CE98 /* EBTransaction.swift in Sources */,
-				3AD483591E9FF54500505FDA /* Logger.swift in Sources */,
 				3AAD8AD01E9299BB0013CE98 /* EBCharacteristicMaker.swift in Sources */,
 				3AAD8ACD1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8AD61E9299BB0013CE98 /* EBServiceMaker.swift in Sources */,
@@ -557,7 +559,7 @@
 				3AAD8ADD1E9299BB0013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8AEC1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8AE31E9299BB0013CE98 /* EBTransaction.swift in Sources */,
-				3AD4835A1E9FF54500505FDA /* Logger.swift in Sources */,
+				3AD4835A1E9FF54500505FDA /* EBLogger.swift in Sources */,
 				3AAD8AD11E9299BB0013CE98 /* EBCharacteristicMaker.swift in Sources */,
 				3AAD8ACE1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8AD71E9299BB0013CE98 /* EBServiceMaker.swift in Sources */,
@@ -576,7 +578,7 @@
 				3AAD8ADE1E9299BB0013CE98 /* EBDefinitions.swift in Sources */,
 				3AAD8AED1E9299BB0013CE98 /* Data+BLEConversion.swift in Sources */,
 				3AAD8AE41E9299BB0013CE98 /* EBTransaction.swift in Sources */,
-				3AD4835B1E9FF54500505FDA /* Logger.swift in Sources */,
+				3AD4835B1E9FF54500505FDA /* EBLogger.swift in Sources */,
 				3AAD8AD21E9299BB0013CE98 /* EBCharacteristicMaker.swift in Sources */,
 				3AAD8ACF1E9299BB0013CE98 /* EBCentralManagerMaker.swift in Sources */,
 				3AAD8AD81E9299BB0013CE98 /* EBServiceMaker.swift in Sources */,
@@ -821,7 +823,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-ios.ExtendaBLE-iOS";
 				PRODUCT_NAME = ExtendaBLE;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -842,7 +844,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.iagd.extendable-ios.ExtendaBLE-iOS";
 				PRODUCT_NAME = ExtendaBLE;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
@@ -892,7 +894,8 @@
 				PRODUCT_NAME = ExtendaBLE;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -915,7 +918,8 @@
 				PRODUCT_NAME = ExtendaBLE;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -940,7 +944,8 @@
 				PRODUCT_NAME = ExtendaBLE;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -963,7 +968,8 @@
 				PRODUCT_NAME = ExtendaBLE;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

@@ -201,35 +201,35 @@ extension EBCentralManager: CBPeripheralDelegate {
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverIncludedServicesFor service: CBService, error: Error?) {
-        Log(.debug, logString: "didDiscoverIncludedServicesFor \(peripheral) \(service)")
+         EBLog(.debug, logString: "didDiscoverIncludedServicesFor \(peripheral) \(service)")
     }
     
     public func peripheralDidUpdateName(_ peripheral: CBPeripheral) {
-        Log(.debug, logString: "peripheralDidUpdateName \(peripheral)")
+         EBLog(.debug, logString: "peripheralDidUpdateName \(peripheral)")
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didModifyServices invalidatedServices: [CBService]) {
-        Log(.debug, logString: "didModifyServices \(peripheral)")
+         EBLog(.debug, logString: "didModifyServices \(peripheral)")
     }
     
     public func peripheralDidUpdateRSSI(_ peripheral: CBPeripheral, error: Error?) {
-        Log(.debug, logString: "peripheralDidUpdateRSSI \(peripheral)")
+         EBLog(.debug, logString: "peripheralDidUpdateRSSI \(peripheral)")
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didReadRSSI RSSI: NSNumber, error: Error?) {
-        Log(.debug, logString: "didReadRSSI \(peripheral)")
+         EBLog(.debug, logString: "didReadRSSI \(peripheral)")
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didDiscoverDescriptorsFor characteristic: CBCharacteristic, error: Error?) {
-        Log(.debug, logString: "didDiscoverDescriptorsFor uuid: \(characteristic.uuid), value: \(String(describing: characteristic.value))")
+         EBLog(.debug, logString: "didDiscoverDescriptorsFor uuid: \(characteristic.uuid), value: \(String(describing: characteristic.value))")
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor descriptor: CBDescriptor, error: Error?) {
-        Log(.debug, logString: "didUpdateValueFor uuid: \(descriptor.uuid), value: \(String(describing: descriptor.value))")
+         EBLog(.debug, logString: "didUpdateValueFor uuid: \(descriptor.uuid), value: \(String(describing: descriptor.value))")
     }
     
     public func peripheral(_ peripheral: CBPeripheral, didWriteValueFor descriptor: CBDescriptor, error: Error?) {
-        Log(.debug, logString: "didWriteValueFor descriptor uuid: \(descriptor.uuid), value: \(String(describing: descriptor.value))")
+         EBLog(.debug, logString: "didWriteValueFor descriptor uuid: \(descriptor.uuid), value: \(String(describing: descriptor.value))")
     }
 }
 
@@ -271,7 +271,7 @@ extension EBCentralManager {
     
     /// Stop scanning for peripherals by calling this method
     public func stopScan() {
-        Log(.debug, logString: "Stopped Scan")
+         EBLog(.debug, logString: "Stopped Scan")
         
         centralManager.stopScan()
         isScanning = false
@@ -282,7 +282,7 @@ extension EBCentralManager {
     
     /// Internal trigger for scanning, called ass needed
     @objc internal func scanForPeripherals() {
-        Log(.debug, logString: "Started Scan")
+         EBLog(.debug, logString: "Started Scan")
         
         invalidateScheduledRescan()
         centralManager.scanForPeripherals(withServices: self.registeredServiceUUIDs,
@@ -336,7 +336,7 @@ extension EBCentralManager {
         
         if overrideValidation || isValidPeripheral(peripheral, advertisementData, RSSI) {
             
-            Log(.debug, logString: "Connecting to \(String(describing: peripheral.name))")
+             EBLog(.debug, logString: "Connecting to \(String(describing: peripheral.name))")
             
             connectedPeripherals.append(peripheral)
             
@@ -361,7 +361,7 @@ extension EBCentralManager {
     ///   - error: error
     internal func disconnect(from peripheralUUID : UUID, _ error: Error?) {
         
-        Log(.debug, logString: "Disconnect from \(String(describing: peripheralUUID)) - \(String(describing: error))")
+         EBLog(.debug, logString: "Disconnect from \(String(describing: peripheralUUID)) - \(String(describing: error))")
         
         activeWriteTransations      = [UUID : [Transaction]]()
         activeReadTransations       = [UUID : [Transaction]]()
@@ -412,7 +412,7 @@ extension EBCentralManager {
             return false
         }
         
-        Log(.debug, logString: "Advertisement Name \(String(describing: advertisementData?[CBAdvertisementDataLocalNameKey]))")
+         EBLog(.debug, logString: "Advertisement Name \(String(describing: advertisementData?[CBAdvertisementDataLocalNameKey]))")
         
         if let name = advertisementData?[CBAdvertisementDataLocalNameKey] as? String, name == peripheralName {
             return true
@@ -479,13 +479,13 @@ extension EBCentralManager {
         
         for peripheral in peripherals! {
             
-            Log(.debug, logString: "Central Found Cached Peripheral \(String(describing: peripheral.name)), Attempting to Connect")
+             EBLog(.debug, logString: "Central Found Cached Peripheral \(String(describing: peripheral.name)), Attempting to Connect")
             
             connect(to: peripheral, nil, nil, true)
             
             DispatchQueue.global(qos: .userInteractive).asyncAfter(deadline: .now() + reconnectTimeout, execute: { [unowned self] in
                 if peripheral.state != .connected {
-                    Log(.debug, logString: "Failed to Reconnect To \(String(describing: peripheral.name)), Attempting to Scan")
+                     EBLog(.debug, logString: "Failed to Reconnect To \(String(describing: peripheral.name)), Attempting to Scan")
                     if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
                         self.unpairPeripheral(peripheralIdentifier)
                         self.scanForPeripherals()
@@ -554,8 +554,8 @@ extension EBCentralManager {
     /// - Parameter peripheral: the peripheral to discover services on
     internal func discoverRegisteredServices(on peripheral : CBPeripheral) {
         
-        Log(.debug, logString: "Connected to \(String(describing: peripheral.name))")
-        Log(.debug, logString: "Discovering Services")
+         EBLog(.debug, logString: "Connected to \(String(describing: peripheral.name))")
+         EBLog(.debug, logString: "Discovering Services")
         
         peripheral.delegate = self
         peripheral.discoverServices(registeredServiceUUIDs)
@@ -576,10 +576,10 @@ extension EBCentralManager {
             return
         }
         
-        Log(.debug, logString: "Discovered Services:")
+         EBLog(.debug, logString: "Discovered Services:")
         
         for service in services {
-            Log(.debug, logString: "        - \(service.uuid.uuidString)")
+             EBLog(.debug, logString: "        - \(service.uuid.uuidString)")
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
@@ -599,11 +599,11 @@ extension EBCentralManager {
             return
         }
         
-        Log(.debug, logString: "Service: \(service.uuid.uuidString)")
-        Log(.debug, logString: "          - Characteristics:")
+         EBLog(.debug, logString: "Service: \(service.uuid.uuidString)")
+         EBLog(.debug, logString: "          - Characteristics:")
         
         for characteristic in characteristics {
-            Log(.debug, logString: "             - \(characteristic.uuid.uuidString)")
+             EBLog(.debug, logString: "             - \(characteristic.uuid.uuidString)")
             
             if let peripheralIdentifier = peripheral.value(forKey: "identifier") as? UUID {
                 if !(peripheralCharacteristics[peripheralIdentifier]?.contains(characteristic))! {
@@ -611,7 +611,7 @@ extension EBCentralManager {
                     
                     if characteristic.uuid.uuidString.uppercased() == mtuCharacteristicUUIDKey {
                         if characteristic.properties.contains(.notify) {
-                            Log(.debug, logString: "Triggered Notification Registration for: \(characteristic.uuid.uuidString)")
+                             EBLog(.debug, logString: "Triggered Notification Registration for: \(characteristic.uuid.uuidString)")
                             peripheral.setNotifyValue(true, for: characteristic)
                         }
                     }
@@ -704,10 +704,10 @@ extension EBCentralManager {
         
         transaction.processTransaction()
         
-        Log(.debug, logString: "Central Send Write Packet  \(transaction.activeResponseCount)  / \(transaction.totalPackets)")
+         EBLog(.debug, logString: "Central Send Write Packet  \(transaction.activeResponseCount)  / \(transaction.totalPackets)")
         
         if transaction.isComplete {
-            Log(.debug, logString: "Central Write Compelete")
+             EBLog(.debug, logString: "Central Write Compelete")
             transaction.completion?(transaction.data!, nil)
             clearWriteTransaction(from: peripheralUUID, on: characteristic)
         }
@@ -744,7 +744,7 @@ extension EBCentralManager {
         }
         
         guard let mtuValue = self.peripheralMTUValues[peripheralUUID] else {
-            Log(.debug, logString: "Central to Peripheral MTU Value Not Found")
+             EBLog(.debug, logString: "Central to Peripheral MTU Value Not Found")
             return nil
         }
         
@@ -830,10 +830,10 @@ extension EBCentralManager {
         transaction.appendPacket(characteristic.value)
         transaction.processTransaction()
         
-        Log(.debug, logString: "Central Received Read Packet  \(transaction.activeResponseCount)  / \(transaction.totalPackets)")
+         EBLog(.debug, logString: "Central Received Read Packet  \(transaction.activeResponseCount)  / \(transaction.totalPackets)")
         
         if transaction.isComplete {
-            Log(.debug, logString: "Central Read Complete")
+             EBLog(.debug, logString: "Central Read Complete")
             
             if transaction.characteristic?.uuid.uuidString == mtuCharacteristicUUIDKey {
                 handleMTUValueUpdate(for : transaction.characteristic!, from: peripheralUUID)
@@ -907,7 +907,7 @@ extension EBCentralManager {
 extension EBCentralManager {
     
     internal func respondToManagerStateChange(_ central: CBCentralManager) {
-        Log(.debug, logString: "Central BLE state - \(central.state.rawValue)")
+         EBLog(.debug, logString: "Central BLE state - \(central.state.rawValue)")
         
         switch central.state {
         case .poweredOn:
@@ -930,7 +930,7 @@ extension EBCentralManager {
             return
         }
         
-        Log(.debug, logString: "Received MTU \(value)\n");
+         EBLog(.debug, logString: "Received MTU \(value)\n");
         
         if let _ = peripheralMTUValues[peripheralUUID] {
             peripheralMTUValues[peripheralUUID] = value
@@ -948,7 +948,7 @@ extension EBCentralManager {
     
     internal func handleNotificationStateUpdate(_ peripheral: CBPeripheral, _ characteristic: CBCharacteristic, _ error: Error?) {
         let notificationState  = characteristic.isNotifying ? "Registered" : "Unregistered"
-        Log(.debug, logString: "\(notificationState) Notification for characteristic")
-        Log(.debug, logString: "        -  \(characteristic.uuid)")
+         EBLog(.debug, logString: "\(notificationState) Notification for characteristic")
+         EBLog(.debug, logString: "        -  \(characteristic.uuid)")
     }
 }

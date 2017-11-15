@@ -60,7 +60,7 @@
          location = "group:Logger"
          name = "Logger">
          <FileRef
-            location = "group:Logger.swift">
+            location = "group:/Users/adoudarev/Developer/personal/ExtendaBLE/Source/Logger/EBLogger.swift">
          </FileRef>
       </Group>
    </Group>

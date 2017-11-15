@@ -104,9 +104,9 @@ extension ViewController {
                             let valueString = String(data: data!, encoding: .utf8)
                             
                             if self.testValueString == valueString {
-                                Log(.debug, logString: "Successful Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
+                                 EBLog(.debug, logString: "Successful Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
                             } else {
-                                Log(.debug, logString: "Failed Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
+                                 EBLog(.debug, logString: "Failed Peripheral Update w/ value : \n\n\(String(describing: valueString))\n\n")
                             }
                         }
                     }
@@ -158,16 +158,16 @@ extension ViewController {
             
             let valueString = String(data: writtenData!, encoding: .utf8)
             
-            Log(.debug, logString: "Central Wrote Value : \n\n\(String(describing: valueString))\n\n")
+             EBLog(.debug, logString: "Central Wrote Value : \n\n\(String(describing: valueString))\n\n")
             
             self.central?.read(characteristicUUID: dataServiceCharacteristicUUIDKey) { (returnedData, error) in
                 
                 let valueString = String(data: returnedData!, encoding: .utf8)!
                 
                 if self.testValueString == valueString {
-                    Log(.debug, logString: "Successful Central Read w/ value : \n\n\(valueString)\n\n")
+                     EBLog(.debug, logString: "Successful Central Read w/ value : \n\n\(valueString)\n\n")
                 } else {
-                    Log(.debug, logString: "Failed Central Read w/ value : \n\n\(valueString)\n\n")
+                     EBLog(.debug, logString: "Failed Central Read w/ value : \n\n\(valueString)\n\n")
                 }
             }
         }
@@ -208,10 +208,10 @@ extension ViewController {
             
             self.central?.read(characteristicUUID: sensorValueCharacteristicUUID) { (returnedData, error) in
                 
-                Log(.debug, logString: "\nRead Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n\n")
+                 EBLog(.debug, logString: "\nRead Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n\n")
                 
                 if let value = returnedData?.int16Value(inRange: 0..<2) {
-                    Log(.debug, logString: "\nRead Callback \n\n\(value)\n\n")
+                     EBLog(.debug, logString: "\nRead Callback \n\n\(value)\n\n")
                 }
             }
         }
@@ -260,27 +260,27 @@ extension ViewController {
         
         self.central?.read(characteristicUUID: beanScratchCharacteristic1UUIDKey) { (returnedData, error) in
             if let value = returnedData?.int8Value(atIndex: 0) {
-                Log(.debug, logString: "Read beanScratchCharacteristic1UUIDKey Callback \n\n\(String(describing: value))  - \(String(describing: error))\n")
+                 EBLog(.debug, logString: "Read beanScratchCharacteristic1UUIDKey Callback \n\n\(String(describing: value))  - \(String(describing: error))\n")
             }
         }
         
         self.central?.read(characteristicUUID: beanScratchCharacteristic2UUIDKey) { (returnedData, error) in
-            Log(.debug, logString: "Read beanScratchCharacteristic2UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
+             EBLog(.debug, logString: "Read beanScratchCharacteristic2UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }
         
         self.central?.read(characteristicUUID: beanScratchCharacteristic3UUIDKey) { (returnedData, error) in
             
-            Log(.debug, logString: "Read beanScratchCharacteristic3UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
+             EBLog(.debug, logString: "Read beanScratchCharacteristic3UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }
         
         self.central?.read(characteristicUUID: beanScratchCharacteristic4UUIDKey) { (returnedData, error) in
             
-            Log(.debug, logString: "Read beanScratchCharacteristic4UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
+             EBLog(.debug, logString: "Read beanScratchCharacteristic4UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }
         
         self.central?.read(characteristicUUID: beanScratchCharacteristic5UUIDKey) { (returnedData, error) in
             
-            Log(.debug, logString: "Read beanScratchCharacteristic5UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
+             EBLog(.debug, logString: "Read beanScratchCharacteristic5UUIDKey Callback \n\n\(String(describing: returnedData))  - \(String(describing: error))\n")
         }
     }
 }

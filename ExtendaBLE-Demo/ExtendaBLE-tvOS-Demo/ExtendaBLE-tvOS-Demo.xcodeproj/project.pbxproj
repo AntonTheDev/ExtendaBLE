@@ -24,7 +24,7 @@
 		13F670881FB495BD001A1FDB /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707A1FB495BD001A1FDB /* ExtendaBLE.swift */; };
 		13F670891FB495BD001A1FDB /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707C1FB495BD001A1FDB /* Data+BLE.swift */; };
 		13F6708A1FB495BD001A1FDB /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707D1FB495BD001A1FDB /* Data+BLEConversion.swift */; };
-		13F6708B1FB495BD001A1FDB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707F1FB495BD001A1FDB /* Logger.swift */; };
+		13F6708B1FB495BD001A1FDB /* EBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6707F1FB495BD001A1FDB /* EBLogger.swift */; };
 		13F670901FB495DA001A1FDB /* ExtendaBLECMMakerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6708D1FB495D9001A1FDB /* ExtendaBLECMMakerTests.swift */; };
 		13F670911FB495DA001A1FDB /* ExtendaBLECMReadWriteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6708E1FB495D9001A1FDB /* ExtendaBLECMReadWriteTests.swift */; };
 		13F670921FB495DA001A1FDB /* ExtendaBLETestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F6708F1FB495DA001A1FDB /* ExtendaBLETestConstants.swift */; };
@@ -75,7 +75,7 @@
 		13F6707A1FB495BD001A1FDB /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		13F6707C1FB495BD001A1FDB /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		13F6707D1FB495BD001A1FDB /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
-		13F6707F1FB495BD001A1FDB /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		13F6707F1FB495BD001A1FDB /* EBLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBLogger.swift; sourceTree = "<group>"; };
 		13F6708D1FB495D9001A1FDB /* ExtendaBLECMMakerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMMakerTests.swift; sourceTree = "<group>"; };
 		13F6708E1FB495D9001A1FDB /* ExtendaBLECMReadWriteTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLECMReadWriteTests.swift; sourceTree = "<group>"; };
 		13F6708F1FB495DA001A1FDB /* ExtendaBLETestConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExtendaBLETestConstants.swift; path = "../../Shared-Tests/ExtendaBLETestConstants.swift"; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 		13F6707E1FB495BD001A1FDB /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				13F6707F1FB495BD001A1FDB /* Logger.swift */,
+				13F6707F1FB495BD001A1FDB /* EBLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -326,7 +326,7 @@
 				13F670811FB495BD001A1FDB /* EBCharacteristicMaker.swift in Sources */,
 				13F670821FB495BD001A1FDB /* EBPeripheralManagerMaker.swift in Sources */,
 				13F670881FB495BD001A1FDB /* ExtendaBLE.swift in Sources */,
-				13F6708B1FB495BD001A1FDB /* Logger.swift in Sources */,
+				13F6708B1FB495BD001A1FDB /* EBLogger.swift in Sources */,
 				13F670801FB495BD001A1FDB /* EBCentralManagerMaker.swift in Sources */,
 				13F670831FB495BD001A1FDB /* EBServiceMaker.swift in Sources */,
 			);

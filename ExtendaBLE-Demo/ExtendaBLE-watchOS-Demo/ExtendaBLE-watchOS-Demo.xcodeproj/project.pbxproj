@@ -35,7 +35,7 @@
 		139A50421FB4AA2B0022D6B8 /* ExtendaBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A50341FB4AA2B0022D6B8 /* ExtendaBLE.swift */; };
 		139A50431FB4AA2B0022D6B8 /* Data+BLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A50361FB4AA2B0022D6B8 /* Data+BLE.swift */; };
 		139A50441FB4AA2B0022D6B8 /* Data+BLEConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A50371FB4AA2B0022D6B8 /* Data+BLEConversion.swift */; };
-		139A50451FB4AA2B0022D6B8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A50391FB4AA2B0022D6B8 /* Logger.swift */; };
+		139A50451FB4AA2B0022D6B8 /* EBLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A50391FB4AA2B0022D6B8 /* EBLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,7 +132,7 @@
 		139A50341FB4AA2B0022D6B8 /* ExtendaBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendaBLE.swift; sourceTree = "<group>"; };
 		139A50361FB4AA2B0022D6B8 /* Data+BLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLE.swift"; sourceTree = "<group>"; };
 		139A50371FB4AA2B0022D6B8 /* Data+BLEConversion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+BLEConversion.swift"; sourceTree = "<group>"; };
-		139A50391FB4AA2B0022D6B8 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		139A50391FB4AA2B0022D6B8 /* EBLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EBLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,7 +294,7 @@
 		139A50381FB4AA2B0022D6B8 /* Logger */ = {
 			isa = PBXGroup;
 			children = (
-				139A50391FB4AA2B0022D6B8 /* Logger.swift */,
+				139A50391FB4AA2B0022D6B8 /* EBLogger.swift */,
 			);
 			path = Logger;
 			sourceTree = "<group>";
@@ -477,7 +477,7 @@
 				139A503B1FB4AA2B0022D6B8 /* EBCharacteristicMaker.swift in Sources */,
 				139A503C1FB4AA2B0022D6B8 /* EBPeripheralManagerMaker.swift in Sources */,
 				139A50421FB4AA2B0022D6B8 /* ExtendaBLE.swift in Sources */,
-				139A50451FB4AA2B0022D6B8 /* Logger.swift in Sources */,
+				139A50451FB4AA2B0022D6B8 /* EBLogger.swift in Sources */,
 				139A503A1FB4AA2B0022D6B8 /* EBCentralManagerMaker.swift in Sources */,
 				139A503D1FB4AA2B0022D6B8 /* EBServiceMaker.swift in Sources */,
 			);
