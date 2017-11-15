@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "ExtendaBLE"
   s.version      = "0.4"
-  s.summary      = "Bluetooth Low Energy On Crack"
+  s.summary      = "Blocks Based Bluetooth LE Connectivity framework for iOS/watchOS/tvOS/OSX"
   s.homepage     = "https://github.com/AntonTheDev/ExtendaBLE"
   s.license      = 'MIT'
   s.author       = { "Anton Doudarev" => "antonthedev@gmail.com" }
