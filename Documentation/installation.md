@@ -12,7 +12,7 @@
 1. Edit the project's podfile, and save
 
 	```
-pod 'ExtendaBLE', :git => 'https://github.com/AntonTheDev/ExtendaBLE.git', :tag => '0.3'
+	pod 'ExtendaBLE', '~> 0.4'
 	```
 
 2. Install ExtendaBLE by running
@@ -20,6 +20,13 @@ pod 'ExtendaBLE', :git => 'https://github.com/AntonTheDev/ExtendaBLE.git', :tag 
     ```
     pod install
     ```
+<br/>
+
+Note: If you receive the following error  ***[!] Unable to find a specification for `ExtendaBLE (~> 0.4)`***, run the following command to update the master cocoapods repo:
+
+```
+pod repo update master
+```
 ****
 ### Carthage
 
@@ -31,7 +38,7 @@ The installation instruction below for iOS and AppleTV
 
 	```
 	#ExtendaBLE
-	git "https://github.com/AntonTheDev/ExtendaBLE.git" >= 0.3
+	git "https://github.com/AntonTheDev/ExtendaBLE.git" >= 0.4
 	```
 2. Run `carthage update`. This will fetch dependencies into a [Carthage/Checkouts][] folder, then build each one.
 3. In the application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework for use from the Carthage/Build folder on disk.
